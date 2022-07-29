@@ -1,1 +1,4 @@
-/Front End/node_modules
+.env
+Front End/node_modules
+node_modules
+test.rest

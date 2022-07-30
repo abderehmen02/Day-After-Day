@@ -1,5 +1,5 @@
-const asyncWrapperFun = (fun)=>{
-    return (req , res , next)=>{
+const asyncWrapperFun =   (fun)=>{
+    return async (req , res , next)=>{
         try{
             await fun(req , res , next) ; 
         }

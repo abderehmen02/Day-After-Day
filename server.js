@@ -7,8 +7,8 @@ const authRouter = require("./routers/auth")
 
 
 // setting the middlewares
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
 //setting the routers 
 app.use("/api/auth"  , authRouter )

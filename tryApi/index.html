@@ -16,7 +16,7 @@ const responce = await fetch("http://localhost:2000/api/auth/regester" , {
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify({name : "bdereh" , 
+    body: JSON.stringify({fullName : "abderehmen"  , 
     email :"abderehmen02" ,
     password: "rehmenrehmen" ,
     birthDate : new Date()
@@ -24,7 +24,8 @@ const responce = await fetch("http://localhost:2000/api/auth/regester" , {
 } )
 const responceData = await responce.json() ; 
 
-console.log(responceData)
+console.log(responceData.token)
+console.log(responceData.newUser)
         } 
  
         </script>

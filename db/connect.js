@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const {MONGO_DB_CONNECT }  = require("../config/default")
 
 const connect = async (url = MONGO_DB_CONNECT)=>{
-  console.log(MONGO_DB_CONNECT)
+
     try{
     await mongoose.connect(url , {
     useNewUrlParser: true,
@@ -16,4 +16,4 @@ catch(err){
     console.log(err)
 }
 }
-  module.exports =connect
+module.exports =connect

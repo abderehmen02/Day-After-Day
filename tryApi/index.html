@@ -16,11 +16,17 @@ const responce = await fetch("http://localhost:2000/api/auth/regester" , {
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify({name : "abderehmen" , email :"abderehmen02"})
+    body: JSON.stringify({name : "bdereh" , 
+    email :"abderehmen02" ,
+    password: "rehmenrehmen" ,
+    birthDate : new Date()
+})
 } )
-console.log(responce)
-        }
+const responceData = await responce.json() ; 
 
-    </script>
+console.log(responceData)
+        } 
+ 
+        </script>
 </body>
 </html>

@@ -46,7 +46,7 @@ const login = asyncWrapper( async (req, res)=>{
   if(!isMatch) throw new Error("password is inccorect")
  
   // delete the password inorder not to send it to the client
-  delete userObj.password 
+   userObj.password  = undefined 
 
   // setting the token
   const token = jwt.sign( {...userObj} , WEB_TOKEN_SECRET )

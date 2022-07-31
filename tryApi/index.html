@@ -9,6 +9,7 @@
 <body>
     <h3> click the button to send an api </h3>
     <button onclick="sendReq()" >send request</button>
+    <button onclick="login()" >login </button>
     <script>
         const sendReq = async ()=>{
 const responce = await fetch("http://localhost:2000/api/auth/regester" , {
@@ -22,12 +23,25 @@ const responce = await fetch("http://localhost:2000/api/auth/regester" , {
     birthDate : new Date()
 })
 } )
-const responceData = await responce.json() ; 
+} 
 
-console.log(responceData.token)
-console.log(responceData.newUser)
-        } 
  
+
+            const login = async () => {
+                const responce = await fetch("http://localhost:2000/api/auth/login", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: "abderehmen02",
+                        password: "rehmenrehmen"
+                    })
+                })
+                const responceData = await responce.json() 
+                console.log(responceData)
+            } 
+
         </script>
 </body>
 </html>

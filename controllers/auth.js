@@ -26,29 +26,32 @@ const regester = asyncWrapper(async (req  , res )=>{
   if(!token) throw new Error("token can not be created")
 
   // deleting the password inorder not to send it in the front end
-  delete newUser.password 
-  res.status(201).json({newUser , token})
+   newUser.password = undefined 
+  console.log("new user");
+  console.log(newUser)
+  res.status(201).json({userObj :  newUser , token})
 
 } )
 
 
-const login = asyncWrapper((req, res)=>{
+const login = asyncWrapper( async (req, res)=>{
   if(!req.body.email ||  !req.body.password) throw new Error("email or password is missing")
  
   // fetch the user from the database 
-  const  userObj = userModel.findOne({email: req.body.email}) 
+  const  userObj = await userModel.findOne({email: req.body.email}) 
   if(!userObj)  throw new Error("user does not exist")
 
   // authonticate the user
-  const isMatch = bcrypt.compare(req.body.password , userObj.password) 
+  const isMatch = await bcrypt.compare(req.body.password , userObj.password) 
   if(!isMatch) throw new Error("password is inccorect")
  
   // delete the password inorder not to send it to the client
   delete userObj.password 
 
   // setting the token
-  const token = jwt.sign( userObj , WEB_TOKEN_SECRET )
-  res.status(200).json(userObj)
+  const token = jwt.sign( {...userObj} , WEB_TOKEN_SECRET )
+  if(!token) throw new Error("error hepened in the token module")
+  res.status(200).json({userObj , token})
 })
 
 module.exports  = {regester , login }

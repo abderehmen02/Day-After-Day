@@ -1,13 +1,10 @@
 const express  = require("express")
 const router = express.Router() ; 
-const { regester } = require("../controllers/auth")
+const { regester, login } = require("../controllers/auth")
 const asyncWrapper = require("../helpers/asyncWrapper")
 
 // setting the router paths
 router.post("/regester"   , regester )
-router.get("/regester"  , (req , res)=>{
-    console.log("regester")
-    res.send("hello")
-})
+router.post("/login"  , login)
 
 module.exports = router

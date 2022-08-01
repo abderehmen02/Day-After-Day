@@ -4,6 +4,7 @@ const {PORT  }= require('./config/default.js')
 const connect = require("./db/connect")
 const cors    = require("cors")
 const authRouter = require("./routers/auth")
+const ideaRouter = require("./routers/idea")
 
 
 // setting the middlewares
@@ -12,10 +13,9 @@ app.use(express.json())
 
 //setting the routers 
 app.use("/api/auth"  , authRouter )
-
+app.use("/api/idea"  , ideaRouter)
 
 // setting the listening function 
-
 const listenServer  = async ()=>{
 // connecting to mongodb before starting the server 
     await connect()

@@ -3,9 +3,9 @@ const asyncWrapperFun =   (fun)=>{
         try{
             await fun(req , res , next) ; 
         }
-        catch(error){
+        catch({error , status=400}){
 if(error) { console.log(error)
-    res.status(400).json({error})
+    res.status(status).json({error})
         }
     }
 }

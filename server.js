@@ -6,6 +6,7 @@ const connect = require("./db/connect")
 const cors    = require("cors")
 const authRouter = require("./routers/auth")
 const ideaRouter = require("./routers/idea")
+const prodRouter   = require("./routers/prod")
 
 
 // setting the middlewares
@@ -18,6 +19,8 @@ app.use(morgan())
 //setting the routers 
 app.use("/api/auth"  , authRouter )
 app.use("/api/idea"  , ideaRouter)
+app.use('/api/prod'  , prodRouter )
+
 
 // setting the listening function 
 const listenServer  = async ()=>{

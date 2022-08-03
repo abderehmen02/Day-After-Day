@@ -23,4 +23,4 @@ return prodValidator.validate(body)
 
 
 
-module.exports = {validateIdea  , prodValidator}
+module.exports = {validateIdea  , validateProd}

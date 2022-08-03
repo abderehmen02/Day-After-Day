@@ -1,6 +1,7 @@
 const express = require("express") 
 const app     = express()
 const {PORT  }= require('./config/default.js')
+const morgan = require("morgan")
 const connect = require("./db/connect")
 const cors    = require("cors")
 const authRouter = require("./routers/auth")
@@ -10,6 +11,9 @@ const ideaRouter = require("./routers/idea")
 // setting the middlewares
 app.use(cors())
 app.use(express.json())
+app.use(morgan())
+
+
 
 //setting the routers 
 app.use("/api/auth"  , authRouter )

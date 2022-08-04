@@ -12,8 +12,32 @@
     <button onclick="login()" >login </button>
     <button onclick="regester()" >regester</button>
     <button onclick="sendProductivity()" > send productivity request </button>
+    <button onclick="createGoal()" > send goal reqluest </button>
     <script>
-       const regester  =  async () => {
+    const createGoal = async () => {
+        try {
+            const responce = await fetch("http://localhost:2000/api/goal/62ec43005334a19b58ab0354", {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'bareer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiaW1hZ2UiOiJpbml0IiwiX2lkIjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsInBhc3N3b3JkIjoibW9kaWZ5IiwiYmlydGhEYXRlIjoiaW5pdCIsImZ1bGxOYW1lIjoiaW5pdCIsIl9fdiI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9pZCI6dHJ1ZSwiZW1haWwiOnRydWUsImltYWdlIjp0cnVlLCJiaXJ0aERhdGUiOnRydWUsImZ1bGxOYW1lIjp0cnVlLCJfX3YiOnRydWV9LCJtb2RpZnkiOnsicGFzc3dvcmQiOnRydWV9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJzdHJpY3RNb2RlIjp0cnVlLCJza2lwSWQiOnRydWUsInNlbGVjdGVkIjp7fSwiZmllbGRzIjp7fSwiZXhjbHVkZSI6bnVsbCwiX2lkIjoiNjJlNjg4YjA2ZGZmMjUzODA1NWNlYWJhIn0sIiRpc05ldyI6ZmFsc2UsIl9kb2MiOnsiX2lkIjoiNjJlNjg4YjA2ZGZmMjUzODA1NWNlYWJhIiwiZW1haWwiOiJhYmRlcmVobWVuMDIiLCJpbWFnZSI6InVua25vd25QZXJzb24ucG5nIiwiYmlydGhEYXRlIjoiMjAyMi0wNy0zMVQxMzo1MDo0MC40OTlaIiwiZnVsbE5hbWUiOiJhYmRlcmVobWVuIiwiX192IjowfSwiaWF0IjoxNjU5Mzc3NzkwfQ.7tJN73MpC-y7nc6sGM5JEazawXyhWmlbBdf2OgjURhY'
+                },
+                body: JSON.stringify({
+                title : "fourth title"  , 
+                completed: true,
+                deadLine: new Date() ,
+                descreption: "the descreption forth of the third goal" ,
+                progress: 100  })
+            })
+            const responceData = await responce.json()
+            console.log(responceData)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+const regester  =  async () => {
             try {
                 const responce = await fetch("http://localhost:2000/api/auth/regester", {
                     method: 'POST',

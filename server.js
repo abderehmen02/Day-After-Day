@@ -7,6 +7,7 @@ const cors    = require("cors")
 const authRouter = require("./routers/auth")
 const ideaRouter = require("./routers/idea")
 const prodRouter   = require("./routers/prod")
+const goalRouter = require("./routers/goal")
 
 
 // setting the middlewares
@@ -15,11 +16,12 @@ app.use(express.json())
 app.use(morgan())
 
 
-
 //setting the routers 
 app.use("/api/auth"  , authRouter )
 app.use("/api/idea"  , ideaRouter)
 app.use('/api/prod'  , prodRouter )
+app.use("/api/goal"  , goalRouter )
+
 
 
 // setting the listening function 

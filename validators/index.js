@@ -23,4 +23,13 @@ return prodValidator.validate(body)
 
 
 
-module.exports = {validateIdea  , validateProd}
+const validateGoal = (body)=>{
+const goalValidator = joi.object({
+titel: joi.string() , 
+completed: joi.boolean() ,
+deadLine: joi.date().min('now') ,
+descreption: joi.string() ,
+progress: joi.number()    })
+return goalValidator.validate(body)
+}
+module.exports = {validateIdea  , validateProd , validateGoal }

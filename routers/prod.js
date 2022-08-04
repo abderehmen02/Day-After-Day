@@ -4,8 +4,8 @@ const { deleteProd , getProds , creatProd , updateProd }   = require("../control
 const authorize = require("../middleWares/authorization")
 
 router.get("/" ,  authorize ,  getProds )  ; 
-router.delete("/" , authorize , deleteProd )  ; 
-router.put('/' , authorize , updateProd )  ; 
+router.delete("/:id" , authorize , deleteProd )  ; 
+router.put('/:id' , authorize , updateProd )  ; 
 router.post("/"  , authorize ,  creatProd )
 
 

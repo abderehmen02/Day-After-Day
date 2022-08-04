@@ -15,8 +15,8 @@ return newIdeaVlidator.validate(body)
 const validateProd = (body)=>{
     const prodValidator = joi.object({
 // the user can only be productive for about 0 to 24 hours per day
-    value : joi.number().required().min(0).max(24)           ,
-    date : joi.date().max('now') 
+    value : joi.number().required().min(0).max(24).required()           ,
+    date : joi.date().max('now').required() 
     })
 return prodValidator.validate(body)
 }

@@ -7,18 +7,18 @@ const successStatus =  require("../helpers/successStatus")
 
 // creating a productivity ***
 const creatProd = asyncWrapper( async (req , res)=>{
-
+console.log(req.body.date.slice( 0 , 10))
+console.log("date")
+console.log(typeof req.body.date)
 if(!req.body.value) sendErr(res , StatusCodes.BAD_REQUEST , "there is no value for this productivity" )
 const {value  :  prodObj} = validateProd(req.body  )
-const date = req.body.date || new Date()
-// creating a unique date string to be able to store it uniquely in our data base so we can avoid dublicate days in our database
-const day = date.getDay().toString() + date.getMonth().toString() + date.getFullYear().toString()
+const date = req.body.date || new Date().toString()
+
+// createing a unique day from the date inorder to store it uniquely in the database so we don't get a dublicate days
+const day = date.slice( 0 , 10) 
 
 // deleting the date inorder not to store it in the database
-delete prodObj.date  ;
 const newProd = await prodModel.create({user : req.user._id , day ,  ...prodObj})  ;
-console.log(newProd)
-console.log("prow obj")
 if(!newProd) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not create the productivity')
 
 successStatus(res , StatusCodes.CREATED  , newProd )
@@ -30,15 +30,17 @@ successStatus(res , StatusCodes.CREATED  , newProd )
 const deleteProd = asyncWrapper(async(req , res)=>{
 // the user can only delete the productivity of the current year
 if(!req.params.id) sendErr(res , StatusCodes.BAD_REQUEST , "you didn't provide an id for the productivity")  ; 
-const currDay = new Date().getDay().toString() + new Date().getMonth().toString() + new Date().getFullYear().toString() ; 
+const date = new Date().toISOString()
+const day = date.slice( 0 , 10) 
 
-const prodObj = await prodModel.findById(req.params.id)
+const prodObj = await prodModel.findOne({_id : req.params.id  , user : req.user._id})
   
 // the user can only delete the productivity of the current day
-if(prodObj.date !== currDay) sendErr(res , StatusCodes.FORBIDDEN , "you can not delete the productivity of the previous days")  ;
+if(prodObj.day !== day) sendErr(res , StatusCodes.FORBIDDEN , "you can not delete the productivity of the previous days")  ;
 
 // deleting the productivity from the db
-await prodModel.findOneAndDelete({_id: req.params.id})
+await prodModel.findOneAndDelete({_id: req.params.id , user: req.user._id })
+console.log("deleted")
 successStatus(res , StatusCodes.OK  , "prod deleted")
 })
 
@@ -47,18 +49,20 @@ successStatus(res , StatusCodes.OK  , "prod deleted")
 const updateProd = asyncWrapper(async (req , res)=>{
 // the user can only update the productivity of the last day ; so by default we are going to update the productivity of the last day
 if(!req.body.value) sendErr(res , StatusCodes.BAD_REQUEST  , "you have to provide a value to update the productivity")
-const currDay = new Date().getDay().toString() + new Date().getMonth().toString() + new Date().getFullYear().toString() ; 
-
-// updating the productivity
-const newProd = await prodModel.findByIdAndUpdate({day : currDay} ,{value  : req.body.value} )
-
+if(!req.params.id) sendErr(res , StatusCodes.BAD_REQUEST , 'you should provide the value of the productivity')
+const currDay = new Date().toISOString().slice( 0 , 10)
+const curProd = await prodModel.findOne({user : req.user._id  , _id : req.params.id})
+if(!curProd) sendErr(res , StatusCodes.NOT_FOUND , 'can not found the current productivity')
+// the user have the right only to update the productivity of the present day
+if(curProd.day !== currDay ) sendErr(res , StatusCodes.FORBIDDEN , 'you can not update the productivity of the past')
+const newProd = await prodModel.findOneAndUpdate({_id :  curProd._id } , {value : req.body.value} , {new : true})
 successStatus(res , StatusCodes.OK , newProd )
 })
 
 // getting all the prods ***
 const getProds = asyncWrapper(async (req , res)=>{
     const prods = await prodModel.find({user : req.user._id })
-    if(!prods) sendErr( res  , StatusCodes.BAD_REQUEST   ," can not get prods from the database") ;
+    if(!prods) sendErr( res  , StatusCodes.BAD_REQUEST   ," can not get prods from the database of this user ") ;
     successStatus( res ,  StatusCodes.OK  , prods )
 })
 

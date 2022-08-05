@@ -67,4 +67,5 @@ const getProds = asyncWrapper(async (req , res)=>{
 })
 
 
+
 module.exports = {getProds , deleteProd , updateProd , creatProd }

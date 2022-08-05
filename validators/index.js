@@ -32,4 +32,15 @@ descreption: joi.string() ,
 progress: joi.number()    })
 return goalValidator.validate(body)
 }
-module.exports = {validateIdea  , validateProd , validateGoal }
+
+const validateDailing =  (body)=>{
+const dailingValidator = joi.object({
+    desc : joi.string() ,
+    rate : joi.number().min(0).max(5) ,
+    importantEvents: joi.array() ,
+    date : joi.date().max("now") 
+})
+return dailingValidator.validate(body)
+}
+
+module.exports = {validateIdea  , validateProd , validateGoal , validateDailing}

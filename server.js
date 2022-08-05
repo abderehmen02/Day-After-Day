@@ -8,6 +8,9 @@ const authRouter = require("./routers/auth")
 const ideaRouter = require("./routers/idea")
 const prodRouter   = require("./routers/prod")
 const goalRouter = require("./routers/goal")
+const dailingRouter = require("./routers/dailing")
+
+
 
 
 // setting the middlewares
@@ -17,11 +20,11 @@ app.use(morgan())
 
 
 //setting the routers 
-app.use("/api/auth"  , authRouter )
-app.use("/api/idea"  , ideaRouter)
-app.use('/api/prod'  , prodRouter )
-app.use("/api/goal"  , goalRouter )
-
+app.use("/api/auth"       , authRouter )
+app.use("/api/idea"       , ideaRouter)
+app.use('/api/prod'       , prodRouter )
+app.use("/api/goal"       , goalRouter )
+app.use("/api/dayling"    , dailingRouter  )
 
 
 // setting the listening function 

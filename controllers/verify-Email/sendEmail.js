@@ -1,11 +1,9 @@
 const nodemailer = require('nodemailer');
 const {EMAIL , EMAIL_PASSWORD  ,URL , EMAIL_TOKEN_SECRET } = require("../../config/default")
 const jwt = require("jsonwebtoken")
-const {sendError } = require("../../helpers/sendError")
-const successStatus = require("../../helpers/successStatus")
 const asyncWraper = require("../../helpers/asyncWrapper")
 const sendMail = asyncWraper( async (receiver)=>{
-const token = jwt.sign(EMAIL_TOKEN_SECRET , receiver)  ; 
+const token = jwt.sign(receiver , EMAIL_TOKEN_SECRET)  ; 
 const link = `${URL}/api/confirmEmail/^${token}`
 // setting the html to send
 const html =  `

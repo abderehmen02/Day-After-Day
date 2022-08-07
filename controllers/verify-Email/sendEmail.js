@@ -35,6 +35,7 @@ let transporter = nodemailer.createTransport({
   };
 
   // send mail with defined transport object
+  console.log("sending email")
  const result = await  transporter.sendMail(mailOptions);
   return result 
 })

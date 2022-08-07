@@ -5,10 +5,10 @@ const {StatusCodes} = require("http-status-codes");
 const { sendError } = require("../../helpers/sendError");
 const confirmEmailFn = require("./confirmEmail")
 
-const sendEmail = asyncWraper(async (req , res)=>{
-const  result = await sendEmailFn(req.user , res)   ;
+const sendEmail = asyncWraper(async (req , res , next)=>{
+const  result = await sendEmailFn(req.body)   ;
 if(!result) sendError(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not send email ")
-succussStatus(res  , StatusCodes.OK  , "please check your email"  )     ; 
+next()
 })
 
 

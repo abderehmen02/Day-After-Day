@@ -117,14 +117,17 @@ console.log(responceData)
 
 
             const login = async () => {
-           try{     const responce = await fetch("http://localhost:2000/api/auth/login", {
+           try{     const responce = await fetch("http://localhost:2000/api/auth/regester", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                     email: "abderehmen02",
-                        password: "rehmenrehmen"
+                       email: "abderehmen02@gmail.com"  , 
+                        password: "abdo2015",
+                        birthDate: new Date() , 
+                        fullName: "abderehmen",
+    
                     })
                 })
                 const responceData = await responce.json() 

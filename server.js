@@ -17,7 +17,9 @@ const dailingRouter = require("./routers/dailing")
 app.use(cors())
 app.use(express.json())
 app.use(morgan())
-
+app.get("/"  , (req , res)=>{
+    res.send("hello")
+} )
 
 //setting the routers 
 app.use("/api/auth"       , authRouter )

@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import reactDom from 'react-dom'
-
-const App:React.FC = () =>{
+import App from './App'
+import { Provider } from 'react-redux'
+import store from './state/store'
+const MyApp:React.FC = () =>{
     return (
         <div>
-<div>hello typescript</div>
+            <Provider store={store} >
+<App/>
+            </Provider>
         </div>
-    )
+        )
 }
-reactDom.render( <App/> , document.getElementById('root') )
+reactDom.render( <MyApp/> , document.getElementById('root') )

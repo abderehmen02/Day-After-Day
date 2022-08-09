@@ -3,23 +3,24 @@ import { userLoginAction , userLoginState , userLoginTypes } from "../types"
 
 export const userLoginReducer =  (state : userLoginState = {} , action : userLoginAction )=>{
 switch(action.type){
-    case userLoginTypes.USER_LOGIIN_SUCCESS : {
+    case userLoginTypes.userLoginSuccuss : {
         return {
     token : action.token
         }
     }
-    case userLoginTypes.USER_LOGIN_ERROR  : {
+    case userLoginTypes.userLoginFail : {
         return {
             error : action.error
         }
     }
-    case userLoginTypes.USER_LOGIN_REQUEST : {
+    case userLoginTypes.userLoginRequest : {
         return {
             loading : true ,
         }
     }
-    case userLoginTypes.USER_LOGIN_RESET : {
+    case userLoginTypes.userLoginReset : {
         return {}
     }
+    default :  return {}
 }
 } 

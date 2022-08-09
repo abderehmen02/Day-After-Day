@@ -5,10 +5,10 @@ export interface userLoginState{
 }
 
 export enum userLoginTypes{
-    userLoginRequest : 'USER_LOGIN_REQUEST' , 
-    userLoginSuccuss : 'USER_LOGIIN_SUCCESS'    ,
-    userLoginFail : 'USER_LOGIN_ERROR' ,
-    userLoginReset : 'USER_LOGIN_RESET'
+    userLoginRequest  = 'USER_LOGIN_REQUEST' , 
+    userLoginSuccuss = 'USER_LOGIIN_SUCCESS'    ,
+    userLoginFail = 'USER_LOGIN_ERROR' ,
+    userLoginReset = 'USER_LOGIN_RESET'
 }
 
 export interface loginRequestAction{

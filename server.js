@@ -41,4 +41,3 @@ console.log(`app listening on port ${PORT}`)
 
 listenServer()
 
-module.exports = app     ;

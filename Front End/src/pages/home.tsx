@@ -4,8 +4,8 @@ export const Home: React.FC =  ()=> {
   return (
     <div>
     <div>Home</div>
-    <Link to='/login' > login </Link>
-    <Link to='/signUp' ></Link>
+    <Link to='/login' > login </Link> <br/>
+    <Link to='/regester' > regester</Link>
     </div>
   )
 }

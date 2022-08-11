@@ -1,6 +1,6 @@
 import axios from 'axios'
  
-const getReq = async  (url : String , token : String )=>{
+export const getReq = async  (url : String , token : String )=>{
     if(token){
         const headers = {
             'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ const getReq = async  (url : String , token : String )=>{
     return responce
 }
 
-const postReq = async (url : String ,  body : String = {} ,  token : String ){
+export const postReq = async (url : String ,  body : String = {} ,  token : String )=>{
     if(token){
         const headers = {
             'Content-Type': 'application/json',
@@ -22,6 +22,6 @@ const postReq = async (url : String ,  body : String = {} ,  token : String ){
         const responce = await axios.post(url , body  headers)
         return responce
     }
-    const responce = await axios.post(url , body) ; 
+    const responce : Promise = await axios.post(url , body) ; 
     return responce
 }

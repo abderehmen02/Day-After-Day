@@ -1,26 +1,29 @@
-import React  , {useState } from 'react'
-import { regester } from '../actions/auth'
-import { authInfo} from '../types/actions/auth'
-export const  Regester: React.FC = ()=> {
-  // email : { type : String }   ,
-  // image : { type: String , default : 'unknownPerson.png'  }  , 
-  // password : { type :String } , 
-  // birthDate  : {type : Date  , default  : new Date()} ,
-  // fullName: {type : String}  , 
-  // verified : {type : Boolean , default : false}
+  import React  , {useState } from 'react'
+  import { regester } from '../actions/auth'
+  import { authInfo} from '../types/actions/auth'
+  export const  Regester: React.FC = ()=> {
   const [email, setEmail] = useState<String>("") ; 
   const [error, setError] = useState(null)
   const [password, setPassword] = useState<String>("") ; 
   const [birthDate, setBirthDate] = useState<Date>(new Date()) ; 
   const [fullName, setFullName] = useState<String>("")
-  const handleSubmit = () : void =>{
+  const handleSubmit =  async () : void =>{
   const {error, data} = await regester({email , password ,birthDate , fullName})    ;  
   if(error){
-    setError(error)  ;
-  } 
-  
+     return    setError(error)  ;
+  }
+  console.log(data)
   }
   return (
-    div>this is the regester page</div>
+    <div>
+    <div>this is the regester page</div>
+    <from>
+      <label>full name</label><input  onChange={(e)=>{setFullName(e.target.value)}} value={fullName}  ></input>
+      <label>email</label><input type="email"  onChange={(e)=>{setEmail(e.target.value)}}  value={email}  ></input>
+      <label>birthDate</label><input onChange={(e)=>{setDate(e.target.value)}} value={birthDate}  type='Date' ></input>
+      <label>password</label><input value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input>
+      <button onClick={handleSubmit} >submit</button>
+    </from>
+    </div>
   )
 }

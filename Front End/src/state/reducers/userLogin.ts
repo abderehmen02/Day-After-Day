@@ -1,5 +1,5 @@
 import { act } from "react-dom/test-utils"
-import { userLoginAction , userLoginState , userLoginTypes } from "../types"
+import { userLoginAction , userLoginState , userLoginTypes } from '../../types'
 
 export const userLoginReducer =  (state : userLoginState = {} , action : userLoginAction )=>{
 switch(action.type){

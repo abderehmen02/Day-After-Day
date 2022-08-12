@@ -1,12 +1,13 @@
 import {authInfo , regesterBody } from '../types/actions/auth'
 import { getReq , postReq } from '../utils'
-import errorHandler from '../utils'
-export const regester  = async (body : regesterBody): authInfo  =>{
+
+export const regester  = async (body : regesterBody)  =>{
     try{
-    const responce : Promise<{ error : any | data : authInfo}> =  await postReq('/regester' , body)
-    const {error  : any , data  : authInfo } : = await responce.json()
+    console.log("regester fun")
+    const responce  =  await postReq('auth/regester' , body  , null) ;
+    const {error , data  }  = await responce.json()
     localStorage.setItem("day-after-day-auth" , JSON.stringify(authData))
-    data && return {data}
+    if(data) { return {data} }
     return { error}
     }
     catch(err){

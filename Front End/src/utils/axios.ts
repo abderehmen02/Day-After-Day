@@ -1,31 +1,41 @@
 import axios from 'axios'
 import 'dotenv' 
-export const getReq = async  (url : String , token : String )=>{
+export const getReq = async  (url : any, token : String )=>{
     if(token){
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': `bareer  ${token}`
         }
-     const responce = await   axios.get(url ,  headers ) ; 
+     const responce = await   fetch(url)
      return responce ; 
     }
-    const responce = axios.get(url)  ; 
+    const responce = await fetch(url)
     return responce
 }
 
-export const postReq = async (url : String ,  body : String = {} ,  token : String  | null )=>{
-    url = process.env.React_App_BackEndServer + url
+export const postReq = async (url: any  ,  body : any = {} ,  token : String  | null )=>{
+    url = process.env.React_App_BackEndServer + url ; 
     console.log('url')
     console.log(url) 
     if(token){
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `bareer  ${token}`
-        }
-        const responce = await axios.post(url , body ,   headers)
+        const responce = await fetch(url , {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json' 
+    }  ,
+    body: JSON.stringify(body)
+})
         return responce
     }
-    const responce : Promise = await axios.post(url , body) ; 
+     
+    const responce  = await  fetch(url , {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    }  ,
+    body: JSON.stringify(body)
+})
+    //  await axios.post(url , body) ; 
     console.log(responce)
     return responce
 }

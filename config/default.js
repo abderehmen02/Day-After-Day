@@ -1,4 +1,3 @@
-require("dotenv").config()
 module.exports = {
     PORT :  process.env.PORT || 2000,
     URL : process.env.URL ,

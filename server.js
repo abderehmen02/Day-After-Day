@@ -35,7 +35,7 @@ app.use("/api/dayling"    , dailingRouter  )
 const listenServer  = async ()=>{
 // connecting to mongodb before starting the server
 try{ 
-    await connect(MONGO_DB_CONNECT)
+    await connect(process.env.MONGO_DB_CONNECT)
 // listening to the server after connecting to mongo db
     app.listen(PORT ,()=>{
 console.log(`app listening on port ${PORT}`)

@@ -1,16 +1,13 @@
 const express = require("express") 
 const app     = express()
 const {PORT , MONGO_DB_CONNECT , WEB_TOKEN_SECRET }= require('./config/default.js')
-const morgan = require("morgan")
 const connect = require("./db/connect")
 const cors    = require("cors")
 const authRouter = require("./routers/auth")
-require("dotenv").config()
 const ideaRouter = require("./routers/idea")
 const prodRouter   = require("./routers/prod")
 const goalRouter = require("./routers/goal")
 const dailingRouter = require("./routers/dailing")
-
 
 
 

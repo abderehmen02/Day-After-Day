@@ -32,11 +32,12 @@ app.use("/api/dayling"    , dailingRouter  )
 const listenServer  = async ()=>{
 // connecting to mongodb before starting the server
 try{ 
-    await connect(process.env.MONGO_DB_CONNECT)
+await connect()
 // listening to the server after connecting to mongo db
     app.listen(PORT ,()=>{
 console.log(`app listening on port ${PORT}`)
-    }) }
+    }) 
+}
 catch(err){
     console.log("err")
     console.log(err)

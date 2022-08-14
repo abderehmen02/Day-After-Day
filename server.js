@@ -1,6 +1,6 @@
 const express = require("express") 
 const app     = express()
-const {PORT  }= require('./config/default.js')
+const {PORT , MONGO_DB_CONNECT , WEB_TOKEN_SECRET }= require('./config/default.js')
 const morgan = require("morgan")
 const connect = require("./db/connect")
 const cors    = require("cors")
@@ -34,7 +34,7 @@ app.use("/api/dayling"    , dailingRouter  )
 const listenServer  = async ()=>{
 // connecting to mongodb before starting the server
 try{ 
-    await connect("mongodb+srv://abderehmen02:abdo2015abdo2015@cluster0.xi3z5.mongodb.net/?retryWrites=true&w=majority")
+    await connect(MONGO_DB_CONNECT)
 // listening to the server after connecting to mongo db
     app.listen(PORT ,()=>{
 console.log(`app listening on port ${PORT}`)

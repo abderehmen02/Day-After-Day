@@ -9,7 +9,10 @@ console.log(MONGO_DB_CONNECT)
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }  , (err)=>{
-    if(err) { console.log("mongodb is not connected")  ;  console.log(err)  } 
+    if(err) { console.log("mongodb is not connected")  ;  
+    console.log(err) ;
+    throw new Error(err) 
+  } 
     else console.log("mongodb connected")
   }
   ) } 

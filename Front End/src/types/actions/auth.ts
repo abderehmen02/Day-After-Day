@@ -14,3 +14,15 @@ export interface loginBody {
     passWord : String , 
 }
 
+
+export interface successRegester {
+    success : boolean , 
+    data : authInfo ,
+    error : undefined 
+}
+export interface failRegester {
+    success  : boolean , 
+    error : any , 
+    data : undefined
+}
+export type authResponce = successRegester | failRegester 

@@ -2,15 +2,17 @@
   import { regester } from '../actions/auth'
   import { authInfo} from '../types/actions/auth'
   export const  Regester: React.FC = ()=> {
-  const [email, setEmail] = useState("adbdlqdmsq@gmail.com") ; 
-  const [error, setError] = useState(null)
-  const [password, setPassword] = useState("abdo2015") ; 
+  const [email, setEmail] = useState<string>("adbdlqdmsq@gmail.com") ; 
+  const [myError, setmyError] = useState(null)
+  const [password, setPassword] = useState<string>("abdo2015") ; 
   const [birthDate, setBirthDate] = useState<any>(new Date()) ; 
-  const [fullName, setFullName] = useState("abderehmen")
+  const [fullName, setFullName] = useState<string>("abderehmen")
   const handleSubmit =  async ()  =>{
   const {error, data} = await regester({email , password ,birthDate , fullName})    ;  
   if(error){
-     return    setError(error)  ;
+     console.log(error)   ;
+     console.log("error") ;
+     setmyError(error)
   }
   console.log(data)
   }

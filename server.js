@@ -15,8 +15,8 @@ const dailingRouter = require("./routers/dailing")
 
 // setting the middlewares
 app.use(cors({
-    origin: "*"
-}))
+    origin: '*'
+}));
 app.use(express.json())
 app.get("/"  , (req , res)=>{
     res.send("hello")

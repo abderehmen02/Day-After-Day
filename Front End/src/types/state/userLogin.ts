@@ -1,7 +1,7 @@
 export interface userLoginState{
-    loading? : Boolean , 
+    loading? : boolean , 
     error? : any , 
-    token? : String , 
+    token?  : string, 
 }
 
 export enum userLoginTypes{
@@ -17,7 +17,7 @@ export interface loginRequestAction{
 
 export interface loginSuccssAction{
     type  : userLoginTypes.userLoginSuccuss , 
-    token : String , 
+    token : string , 
 }
 
 export interface loginFailAction {

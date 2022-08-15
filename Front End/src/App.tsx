@@ -6,6 +6,8 @@ import {Header , Nav} from './components'
 import {Home , Login , Regester , Productivity} from './pages'
 
 const App:React.FC = () =>{
+    const state = useSelector(state => state)
+    console.log(state)
     return (
 <BrowserRouter>
 <Header/>

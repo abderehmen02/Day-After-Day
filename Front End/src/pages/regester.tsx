@@ -1,7 +1,13 @@
   import React  , {useState } from 'react'
   import { regester } from '../actions/auth'
   import { authInfo} from '../types/actions/auth'
+  import { login } from '../state/actionCreators'
+   import {useDispatch , useSelector} from 'react-redux'
+
   export const  Regester: React.FC = ()=> {
+  const dispatch = useDispatch() ;
+  const state = useSelector(state => state)
+  console.log(state)
   const [email, setEmail] = useState<string>("adbdlqdmsq@gmail.com") ; 
   const [myError, setmyError] = useState(null)
   const [password, setPassword] = useState<string>("abdo2015") ; 
@@ -10,8 +16,10 @@
   const handleSubmit =  async (event : any)  =>{
        event.preventDefault() ; 
        const {data , error} = await regester({email , password , birthDate , fullName})  ; 
-       console.log(data);
-       
+       if(error) {
+        return setmyError(error)
+       }
+        login(data.token , data.userObj)(dispatch)
            }
  
   return (

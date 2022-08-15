@@ -21,6 +21,6 @@ switch(action.type){
     case userLoginTypes.userLoginReset : {
         return {}
     }
-    default :  return {}
+    default :  return state
 }
 } 

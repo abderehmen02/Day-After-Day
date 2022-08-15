@@ -13,8 +13,7 @@ export const getReq = async  (url : RequestInfo  , token : String )=>{
     return responce
 }
 
-export const postReq = async (path : string  ,  body  = {} ,  token : String  | null )=>{
-    try{
+export const postReq = async (path : string  ,  body  = {} ,  token : String  | null )  =>{
     const url : string =  process.env.React_App_BackEndServer + path   ; 
     console.log('url')
     console.log(url) 
@@ -26,21 +25,22 @@ export const postReq = async (path : string  ,  body  = {} ,  token : String  | 
     }  ,
     body: JSON.stringify(body)
 })
-        return responce
+        const responceData = await responce.json()
+        return responceData
     }
      console.log("sending responce")
-    const responce  = await  fetch(url , {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json'
-    }  ,
-    body: JSON.stringify(body)
-})
-    //  await axios.post(url , body) ; 
-    console.log("responce")
-    console.log(responce)
-    return responce}
-    catch(err){
-        console.log(err)
-    }
+     console.log(url)
+     
+     console.log(body)
+    const responce = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body : JSON.stringify(body) 
+                })
+                const responceData = await responce.json()
+                console.log(responceData)
+     
+    return responceData
 }

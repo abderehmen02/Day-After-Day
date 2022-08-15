@@ -1,7 +1,7 @@
 export interface regesterBody {
   email : String , 
   password : String, 
-  birthDate  : Date ,
+  birthDate  : String ,
   fullName: String ,  
 }
 

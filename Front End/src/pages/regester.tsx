@@ -5,27 +5,25 @@
   const [email, setEmail] = useState<string>("adbdlqdmsq@gmail.com") ; 
   const [myError, setmyError] = useState(null)
   const [password, setPassword] = useState<string>("abdo2015") ; 
-  const [birthDate, setBirthDate] = useState<any>(new Date()) ; 
+  const [birthDate, setBirthDate] = useState<string>(new Date().toUTCString()) ; 
   const [fullName, setFullName] = useState<string>("abderehmen")
-  const handleSubmit =  async ()  =>{
-  const {error, data} = await regester({email , password ,birthDate , fullName})    ;  
-  if(error){
-     console.log(error)   ;
-     console.log("error") ;
-     setmyError(error)
-  }
-  console.log(data)
-  }
+  const handleSubmit =  async (event : any)  =>{
+       event.preventDefault() ; 
+       const {data , error} = await regester({email , password , birthDate , fullName})  ; 
+       console.log(data);
+       
+           }
+ 
   return (
     <div>
     <div>this is the regester page</div>
-    <form>
+    <form  >
       <label>full name</label><input  onChange={(e)=>{setFullName(e.target.value)}} value={fullName}  ></input>
       <label>email</label><input type="email"  onChange={(e)=>{setEmail(e.target.value)}}  value={email}  ></input>
-      <label>birthDate</label><input onChange={(e)=>{setBirthDate(e.target.value)}} value={birthDate}  type='Date' ></input>
+      <label>birthDate</label><input onChange={(e)=>{setBirthDate(e.target.value.toString())}} value={birthDate}  type='Date' ></input>
       <label>password</label><input value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input>
-      <button onClick={handleSubmit} >submit</button>
-    </form>
+      <button onClick={(e)=>{handleSubmit(e)}} type="submit" >submit</button>
+      </form>
     </div>
   )
 }

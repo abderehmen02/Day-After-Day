@@ -4,8 +4,9 @@ const userModel = require("../db/models/user")  ;
 const bcrypt = require("bcryptjs")
 const {sendErr} = require("../helpers/sendError")
 const { WEB_TOKEN_SECRET }  = require("../config/default");
-const {StatusCodes, INTERNAL_SERVER_ERROR} = require("http-status-codes")
-
+const {StatusCodes, INTERNAL_SERVER_ERROR} = require("http-status-codes");
+const successStatus = require('../helpers/successStatus');
+const {StatusCodes} = require("http-status-codes")
 
 const regester = asyncWrapper(async (req  , res )=>{
 
@@ -29,8 +30,7 @@ const regester = asyncWrapper(async (req  , res )=>{
   // deleting the password inorder not to send it in the front end
   newUser.password = undefined 
   res.cookie("day-after-day"  , token)
-  res.status(201).json({userObj :  newUser , token})
-
+  successStatus(res ,StatusCodes.CREATED , {userObj :  newUser , token})
 } )
 
 
@@ -53,7 +53,7 @@ const login = asyncWrapper( async (req, res)=>{
   console.log(userObj)
   console.log(token)
   res.cookie("day-after-day"  , token)
-  res.status(200).json({userObj , token})
+  successStatus(res , StatusCodes.OK , {userObj , token})
 })
 
 module.exports  = {regester , login }

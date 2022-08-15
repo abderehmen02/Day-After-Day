@@ -7,6 +7,6 @@ const { regester, login  , userAuth} = require("../controllers/auth")
 // setting the authontification router
 router.post("/regester"   ,  regester )
 router.post("/login"  , login)
-router.get("/auth/:token" , userAuth)
+router.get("/:token" , userAuth)
 
 module.exports = router

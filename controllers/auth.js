@@ -6,7 +6,7 @@ const {sendErr} = require("../helpers/sendError")
 const { WEB_TOKEN_SECRET }  = require("../config/default");
 const {StatusCodes, INTERNAL_SERVER_ERROR} = require("http-status-codes");
 const successStatus = require('../helpers/successStatus');
-const {StatusCodes} = require("http-status-codes")
+
 
 const regester = asyncWrapper(async (req  , res )=>{
 

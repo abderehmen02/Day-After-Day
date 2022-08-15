@@ -56,4 +56,10 @@ const login = asyncWrapper( async (req, res)=>{
   successStatus(res , StatusCodes.OK , {userObj , token})
 })
 
-module.exports  = {regester , login }
+const userAuth = asyncWrapper((req , res)=>{
+  if(!req.token) throw new Error("there is no token in the request")
+  const user = jwt.verify( req.params.token , WEB_TOKEN_SECRET)
+  if(!user) sendErr(res , StatusCodes.UNAUTHORIZED , "the token is not a valid token") ;
+  successStatus(res , StatusCodes.OK , user )
+})
+module.exports  = {regester , login  , userAuth}

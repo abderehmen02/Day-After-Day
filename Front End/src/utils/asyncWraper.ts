@@ -1,7 +1,8 @@
 export default  (fn :Function )=>{
     return async(...args : any )=>{
         try{
-            await fn(...args)
+    const returned =         await fn(...args)
+    return returned
         }
         catch(err){
             console.log(err)

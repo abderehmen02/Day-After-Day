@@ -40,7 +40,7 @@ async function fetchUser(){
  return (
 <BrowserRouter>
 
-{ !userInfo && storageUser ? <div> loading...</div>  : ( userInfo && Object.keys(userLogin).length && storageUser ? <LoggedRoute/> :<UnloggedRoute/> )}
+{ (!userInfo && storageUser  ) || userLogin.loading ?  <div> loading...</div>  : ( userInfo && Object.keys(userLogin).length && storageUser ? <LoggedRoute/> :<UnloggedRoute/> )}
 </BrowserRouter>
         )
 

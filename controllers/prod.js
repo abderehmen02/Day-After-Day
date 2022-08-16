@@ -7,12 +7,9 @@ const successStatus =  require("../helpers/successStatus")
 
 // creating a productivity ***
 const creatProd = asyncWrapper( async (req , res)=>{
-console.log(req.body.date.slice( 0 , 10))
-console.log("date")
-console.log(typeof req.body.date)
 if(!req.body.value) sendErr(res , StatusCodes.BAD_REQUEST , "there is no value for this productivity" )
 const {value  :  prodObj} = validateProd(req.body  )
-const date = req.body.date || new Date().toString()
+const date = req.body.date || new Date().toISOString()
 
 // createing a unique day from the date inorder to store it uniquely in the database so we don't get a dublicate days
 const day = date.slice( 0 , 10) 

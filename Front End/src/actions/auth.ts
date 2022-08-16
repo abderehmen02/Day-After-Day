@@ -22,5 +22,6 @@ else return {data : false , error : responceData.error}
 
 export const userInfoAuth =  asyncWraper( async(token : string) =>{
     const responceData = await getReq(`auth/${token}`)
-    console.log(responceData.data._doc)
+    if(responceData.success === true) return {data : responceData.data._doc}
+    else return {error : responceData.error}
 } )

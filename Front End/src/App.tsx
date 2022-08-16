@@ -1,13 +1,16 @@
 import React , { useEffect }from 'react'     ; 
 import {useSelector , useDispatch} from 'react-redux'
-import { BrowserRouter , Routes, Route,  } from "react-router-dom";
+import { BrowserRouter , Routes, Route, useHistory  } from "react-router-dom";
 import {Header , Nav} from './components'
 import {Home , Login , Regester , Productivity} from './pages'
 import  LoggedRoute  from  './Routes/loggedRoute'
 import  UnloggedRoute from './Routes/unloggedRoute'
 import {stateType} from './state/reducers'
 import { userInfoAuth } from './actions/auth';
+import { login } from './state/actionCreators';
 const App:React.FC = () =>{
+    const history = useHistory()
+    console.log(history)
     const userInfo  = useSelector( ( state : stateType )=> state.userInfo) ; 
     const userLogin = useSelector((state : stateType) => state.userLogin) ; 
 
@@ -18,7 +21,9 @@ const App:React.FC = () =>{
 
 async function fetchUser(){
       if(storageUser){
-  await userInfoAuth(storageUser)
+ const {data , error} =  await userInfoAuth(storageUser)
+ if(error)return console.log(error)
+ login(storageUser , data)
       } }
       fetchUser()
     }, [storageUser])

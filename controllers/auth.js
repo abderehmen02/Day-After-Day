@@ -57,8 +57,7 @@ const login = asyncWrapper( async (req, res)=>{
 })
 
 const userAuth = (req , res)=>{
-  if(!req.params.token) throw new Error("there is no token in the request")
-  console.log(req.params.token)
+  if(!req.params.token) sendErr(res , StatusCodes.BAD_REQUEST  , 'there is no token in the request')
   const user = jwt.verify( req.params.token , WEB_TOKEN_SECRET)
   if(!user) sendErr(res , StatusCodes.UNAUTHORIZED , "the token is not a valid token") ;
   successStatus(res , StatusCodes.OK , user )

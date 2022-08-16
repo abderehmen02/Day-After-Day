@@ -1,19 +1,24 @@
 import axios from 'axios'
 import 'dotenv' 
-export const getReq = async  (url : RequestInfo  , token : String )=>{
+import {BACKEND_SERVER} from '../config/default'
+
+export const getReq = async  (path : string  , token?: String )=>{
+    const url = BACKEND_SERVER + path
     if(token){
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': `bareer  ${token}`
         }
-     const responce = await   fetch(url  , undefined)
+     const responce = await   fetch(url)
      return responce ; 
     }
     const responce = await fetch(url)
-    return responce
+    const responceData = await responce.json()  ;
+    return responceData
 }
 
-export const postReq = async (path : string  ,  body  = {} ,  token : String  | null )  =>{
+
+export const postReq = async (path : string  ,  body  = {} ,  token? : String  | null )  =>{
     const url : string =  process.env.React_App_BackEndServer + path   ; 
     console.log('url')
     console.log(url) 

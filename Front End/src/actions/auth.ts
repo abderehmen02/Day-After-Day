@@ -2,7 +2,7 @@ import {authInfo , regesterBody } from '../types/actions/auth'  ;
 import { getReq , postReq } from '../utils'  ; 
 import {useDispatch} from 'react-redux'
 import { authResponce , successRegester , failRegester } from '../types/actions/auth';
-
+import asyncWraper from '../utils/asyncWraper';
 export const regester  = async (body : regesterBody) :Promise<any>  =>{
     try{
      console.log("regester") ; 
@@ -20,3 +20,7 @@ else return {data : false , error : responceData.error}
     }
 }
 
+export const userInfoAuth =  asyncWraper( async(token : string) =>{
+    const responceData = await getReq(`auth/${token}`)
+    console.log(responceData.data._doc)
+} )

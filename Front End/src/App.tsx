@@ -4,8 +4,8 @@ import { BrowserRouter , Routes, Route  } from "react-router-dom";
 import {Header , Nav} from './components'
 import {Home , Login , Regester , Productivity} from './pages'
 import  LoggedRoute  from  './Routes/loggedRoute'
-import  UnloggedRoute from './Routes/unloggedRoute'
-import {stateType} from './state/reducers'
+import   UnloggedRoute from './Routes/unloggedRoute'
+import { stateType} from './state/reducers'
 import { userInfoAuth } from './actions/auth';
 import { login } from './state/actionCreators';
 import { userLoginTypes } from './types';
@@ -21,12 +21,11 @@ console.log(Boolean(userInfo))
 console.log(Boolean(Object.keys(userLogin).length)) 
 console.log(Boolean(storageUser))
 
-    useEffect(  () => {
 
+    useEffect(  () => {
 async function fetchUser(){
       if(storageUser){
  const {data , error} =  await userInfoAuth(storageUser)
-  dispatch({type: userLoginTypes.userLoginRequest})
  login(storageUser , data)(dispatch)
     console.log(Boolean(userInfo && Object.keys(userLogin).length && storageUser))
     console.log(userInfo)
@@ -41,7 +40,7 @@ async function fetchUser(){
  return (
 <BrowserRouter>
 
-{ userLogin.loading === true ? <div> loading...</div>  : ( userInfo && Object.keys(userLogin).length && storageUser ? <LoggedRoute/> :<UnloggedRoute/> )}
+{ !userInfo && storageUser ? <div> loading...</div>  : ( userInfo && Object.keys(userLogin).length && storageUser ? <LoggedRoute/> :<UnloggedRoute/> )}
 </BrowserRouter>
         )
 

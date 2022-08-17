@@ -16,6 +16,7 @@ import { getProductivities } from '../actions/productivity';
 import { useNavigate } from 'react-router-dom';
 import {bindActionCreators} from 'redux'
 import { emitAction } from '../state/actionCreators';
+import CustomTooltip from '../features/productivity/tooltip';
 
 
 export const Productivity:React.FC  = ()=> {
@@ -28,14 +29,14 @@ export const Productivity:React.FC  = ()=> {
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
-console.log(days)
-console.log("days")
+
 
   const generateDays = ()=>{
     // we will desplay the productivity 30 days before the current day
     const formatedDays= []
     for(let i  = 0  ; i< 30  ; i++){
-     formatedDays.push({day : subDays(new Date() , i).toISOString().slice(0, 10)  , value :  0 })
+     formatedDays.push({day : subDays(new Date() , i).toISOString().slice(0, 10)  , value :  5 })
+
     }
     setDays(formatedDays)
      }
@@ -60,10 +61,39 @@ else console.log("no data or error have been reveived")
  fetchProductivities()
   },[])
 
+
+
+
+
   return (
 <div>
   { productivityInfo.loading ? <div> loading...</div> :(
-  <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> )
+  <div>
+<ResponsiveContainer width="70%" height={400}>
+<AreaChart data={days} >
+      <defs>
+          <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
+            <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
+          </linearGradient>
+        </defs>
+  <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
+</AreaChart>
+</ResponsiveContainer>
+ <XAxis   dataKey="day"
+          axisLine={false}
+          tickLine={false}
+        />
+
+        <YAxis    dataKey="value"
+                  axisLine={false}
+                  tickLine={false}
+        />
+
+        <Tooltip content={<CustomTooltip/>} />
+  <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
+  
+  </div>)
 }
 </div>
     )

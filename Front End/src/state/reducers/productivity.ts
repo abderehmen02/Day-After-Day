@@ -11,6 +11,8 @@ switch(action.type){
  case productivityActionTypes.PRODUCTIVITY_REQUEST : {
     return {
         loading  : true ,
+        error : null ,
+        data : null 
     }
  }
  case productivityActionTypes.PRODUCTIVITY_ERROR : {

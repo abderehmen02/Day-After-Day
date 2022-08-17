@@ -37,6 +37,9 @@ async function fetchUser(){
     }, [storageUser])
   console.log("user login")
   console.log(userLogin)
+  console.log("user info")
+  console.log(userInfo)
+  
  return (
 <BrowserRouter>
 

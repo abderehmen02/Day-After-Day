@@ -1,3 +1,6 @@
+import { userInfoExistState , userLoginTypes ,  userInfoAction , userInfoActionTypes , loginSuccssAction } from "../../types";
+import { Dispatch } from "redux";
+
 
 export const login  = (token : string, userObj : userInfoExistState ) : any=>{
     return (dispatch : Dispatch<loginSuccssAction | userInfoAction > )=>{

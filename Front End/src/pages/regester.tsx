@@ -30,7 +30,7 @@
        if(error) {
         return dispatch({type : userLoginTypes.userLoginFail , error })
        }
-        login(data.token , data.userObj)(dispatch)
+        login(data.token , data.userObj)
         navigate('/productivity')
            }
  

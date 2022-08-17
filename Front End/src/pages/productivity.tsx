@@ -40,7 +40,7 @@ const {data , error } = await getProductivities(userLogin.token)
 if(data){
   console.log("data from prod")
   console.log(data)
-  emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ; 
+  emitAction( productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)(dispatch)  ; 
 }
 else if(error){
   emitAction(productivityActionTypes.PRODUCTIVITY_ERROR , error )

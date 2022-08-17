@@ -23,7 +23,7 @@ export interface productivityRequestAction {
 
 export interface productivitySuccussAction {
     type  : productivityActionTypes.PRODUCTIVITY_SUCCUSS ,
-    payload : productivityState
+    payload : oneProductivityState[]
 }
 
 export interface productivityErrorAction {

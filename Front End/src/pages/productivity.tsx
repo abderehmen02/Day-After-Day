@@ -38,6 +38,8 @@ emitAction( productivityActionTypes.PRODUCTIVITY_REQUEST)(dispatch)
 const fetchProductivities = async  () :Promise<any>=>{
 const {data , error } = await getProductivities(userLogin.token)
 if(data){
+  console.log("data from prod")
+  console.log(data)
   emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ; 
 }
 else if(error){
@@ -47,9 +49,12 @@ else console.log("no data or error have been reveived")
 }
  fetchProductivities()
   },[])
+
   return (
 <div>
-  <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input>
+  { productivityInfo.loading ? <div> loading...</div> :(
+  <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> )
+}
 </div>
     )
 }

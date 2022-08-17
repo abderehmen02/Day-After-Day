@@ -25,10 +25,21 @@ switch(action.type){
     }
  }
  case productivityActionTypes.PRODUCTIVITY_SUCCUSS :{
+    console.log("prod success action")
+    if( action.payload && action.payload[action.payload.length - 1].day === new Date().toISOString().slice(0 ,10)){
+        return {
+    data : {   current : { day : action.payload[action.payload.length - 1].day },
+                allProductivities :  action.payload  },
+    loading : false, 
+    error : null       
+    }
     return {
         error : null ,
         loading : false ,
-        data : action.payload
+        data : {
+            current : { day : new Date().toISOString().slice(0 ,10)  , value :  0 } ,
+            allProductivities  : action.payload 
+        }
     }
  }
  case productivityActionTypes.PRODUCTIVITY_RESET : {

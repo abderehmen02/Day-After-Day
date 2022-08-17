@@ -10,17 +10,20 @@ import {
   Tooltip,
   CartesianGrid } from "recharts";
 import { format, parseISO, subDays } from "date-fns";
-import * as actionCreators from '../state/actionCreators';
+
 import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoAction  , userInfoState, userInfoExistState , productivityActionTypes, productivityState, userLoginState } from '../types';
 import { getProductivities } from '../actions/productivity';
 import { useNavigate } from 'react-router-dom';
 import {bindActionCreators} from 'redux'
-// import { emitAction } from '../state/actionCreators';
+import { emitAction } from '../state/actionCreators';
 
 
 export const Productivity:React.FC  = ()=> {
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
-  const  dispatch = useDispatch()      ;
+  const  dispatch = useDispatch()   ;
+  const state = useSelector((state : stateType)=>state)
+  console.log("state")
+  console.log(state)
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
@@ -29,19 +32,20 @@ export const Productivity:React.FC  = ()=> {
 
   useEffect(()=>{
 if(!userLogin) {navigate("/")}
-dispatch({type : productivityActionTypes.PRODUCTIVITY_REQUEST})
 console.log("cheking if the action is emited")
 console.log(productivityInfo)
-// const fetchProductivities = async  ():Promise<any>=>{
-// const {data , error } = await getProductivities(userLogin.token)
-// if(data){
-//   emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ; 
-// }
-// else if(error){
-//   emitAction(productivityActionTypes.PRODUCTIVITY_ERROR , error )
-// }
-// else console.log("no data or error have been reveived")
-// }
+emitAction( productivityActionTypes.PRODUCTIVITY_REQUEST)(dispatch)
+const fetchProductivities = async  () :Promise<any>=>{
+const {data , error } = await getProductivities(userLogin.token)
+if(data){
+  emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ; 
+}
+else if(error){
+  emitAction(productivityActionTypes.PRODUCTIVITY_ERROR , error )
+}
+else console.log("no data or error have been reveived")
+}
+ fetchProductivities()
   },[])
   return (
 <div>

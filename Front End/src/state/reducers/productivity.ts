@@ -10,10 +10,11 @@ export const productivityReducer = (state : productivityState = productivityInit
 switch(action.type){
  case productivityActionTypes.PRODUCTIVITY_REQUEST : {
     console.log("productivity request reducer")
+    console.log(state)
     return {
-        loading  : true ,
-        error : null ,
-        data : null 
+     error : null , 
+     loading : true , 
+     data : null
     }
  }
  case productivityActionTypes.PRODUCTIVITY_ERROR : {

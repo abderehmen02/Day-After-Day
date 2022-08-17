@@ -4,13 +4,19 @@ import {BACKEND_SERVER} from '../config/default'
 
 export const getReq = async  (path : string  , token?: String )=>{
     const url = BACKEND_SERVER + path
+    console.log(url)
+    console.log("getreq")
+    console.log(token)
     if(token){
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `bareer  ${token}`
-        }
-     const responce = await   fetch(url)
-     return responce ; 
+        const pararms = {
+             method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bareer  ${token}`
+                }, }
+     const responce = await   fetch(url , pararms ) ; 
+     const responceData = await responce.json() ; 
+     return responceData  
     }
     const responce = await fetch(url)
     const responceData = await responce.json()  ;
@@ -26,7 +32,8 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
         const responce = await fetch(url , {
     method: 'POST', 
     headers: {
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json' ,
+      'Authorization' : `bareare ${token}`
     }  ,
     body: JSON.stringify(body)
 })

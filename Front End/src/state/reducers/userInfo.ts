@@ -7,8 +7,9 @@ export const userInfoReducer =  (state :userInfoState= null, action : userInfoAc
     case userInfoActionTypes.USER_INFO_EDIT : {
     return action.payload }
     case userInfoActionTypes.USER_INFO_RESET : {
+
         return null 
     }
-    default : return null
+    default : { return state }
    }
 }

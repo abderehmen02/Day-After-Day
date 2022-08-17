@@ -9,6 +9,7 @@ const productivityInitialState = {
 export const productivityReducer = (state : productivityState = productivityInitialState  , action : productivityAction )=>{
 switch(action.type){
  case productivityActionTypes.PRODUCTIVITY_REQUEST : {
+    console.log("productivity request reducer")
     return {
         loading  : true ,
         error : null ,

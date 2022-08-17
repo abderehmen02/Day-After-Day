@@ -15,7 +15,7 @@ import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoActi
 import { getProductivities } from '../actions/productivity';
 import { useNavigate } from 'react-router-dom';
 import {bindActionCreators} from 'redux'
-
+// import { emitAction } from '../state/actionCreators';
 
 
 export const Productivity:React.FC  = ()=> {
@@ -24,25 +24,24 @@ export const Productivity:React.FC  = ()=> {
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
-  const {emitAction} =  bindActionCreators(  actionCreators , dispatch)
 
 
-  
+
   useEffect(()=>{
 if(!userLogin) {navigate("/")}
-emitAction(productivityActionTypes.PRODUCTIVITY_REQUEST)
+dispatch({type : productivityActionTypes.PRODUCTIVITY_REQUEST})
 console.log("cheking if the action is emited")
 console.log(productivityInfo)
-const fetchProductivities = async  ():Promise<any>=>{
-const {data , error } = await getProductivities(userLogin.token)
-if(data){
-  emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ; 
-}
-else if(error){
-  emitAction(productivityActionTypes.PRODUCTIVITY_ERROR , error )
-}
-else console.log("no data or error have been reveived")
-}
+// const fetchProductivities = async  ():Promise<any>=>{
+// const {data , error } = await getProductivities(userLogin.token)
+// if(data){
+//   emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ; 
+// }
+// else if(error){
+//   emitAction(productivityActionTypes.PRODUCTIVITY_ERROR , error )
+// }
+// else console.log("no data or error have been reveived")
+// }
   },[])
   return (
 <div>

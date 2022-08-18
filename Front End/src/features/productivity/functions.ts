@@ -3,9 +3,8 @@ import { createAction } from "../../utils"
 
 export const   submitProd = async (value : number | undefined, token : string | undefined , emitAction : Function  , setErr : Function)=>{
     const {data , error} = await createAction('prod' , {value} , token )
-    if(data.succuss){
+    if(data){
         emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS   , data)       
-        console.log(data)
+        emitAction(productivityActionTypes.PRODUCTIVITY_ERROR , data)
     }
-    console.log(error)
 }

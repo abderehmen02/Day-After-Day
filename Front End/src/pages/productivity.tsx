@@ -46,6 +46,7 @@ export const Productivity:React.FC  = ()=> {
      }
 
 
+     
   useEffect(()=>{
 if(!userLogin) {navigate("/")}
 emitAction( productivityActionTypes.PRODUCTIVITY_REQUEST)
@@ -95,6 +96,7 @@ else console.log("no data or error have been reveived")
         <Tooltip content={<CustomTooltip/>} />
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
   <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError)}} >submit</button>
+  <button onClick={resetProductivity} ></button>
   </div>)
 }
 </div>

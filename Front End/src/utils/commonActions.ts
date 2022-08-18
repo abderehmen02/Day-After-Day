@@ -1,10 +1,10 @@
 import { getReq, postReq } from "./axios"
 
 
-export const createAction =  async ( path : string ,  body : object , token : string | undefined )=>{
+export const createAction =  async ( path : string ,  body : object , token : string | undefined ) : Promise<{data? : object , error? : any}>=>{
 try{
 const responceData = await postReq( path ,  body , token) ;
-if(responceData.data.type === 'succuss'){
+if(responceData.type === 'succuss'){
     return {data : responceData.data}
 } 
  

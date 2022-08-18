@@ -40,7 +40,6 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
     },
     body: JSON.stringify(body)
 })    
-console.log("responce")
         const responceData = await responce.json()
         return responceData
     }

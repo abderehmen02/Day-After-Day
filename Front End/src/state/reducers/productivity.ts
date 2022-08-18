@@ -28,7 +28,7 @@ switch(action.type){
     console.log("prod success action")
     if( action.payload.length && action.payload[action.payload.length - 1].day === new Date().toISOString().slice(0 ,10)){
         return {
-    data : {   current : { day : action.payload[action.payload.length - 1].day },
+    data : {   current :  action.payload[action.payload.length - 1],
                 allProductivities :  action.payload  },
     loading : false, 
     error : null       

@@ -15,21 +15,25 @@ import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoActi
 import { getProductivities } from '../actions/productivity';
 import { useNavigate } from 'react-router-dom';
 import {bindActionCreators} from 'redux'
-import { emitAction } from '../state/actionCreators';
+import * as actionsCreators from '../state/actionCreators';
 import CustomTooltip from '../features/productivity/tooltip';
 import {submitProd} from '../features/productivity'
+
+
+
 
 export const Productivity:React.FC  = ()=> {
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
   const  dispatch = useDispatch()   ;
    const [days, setDays] = useState<oneProductivityState[]>([])
   const state = useSelector((state : stateType)=>state)
+  const [error, setError] = useState<object>({})
   console.log("state")
   console.log(state)
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
-
+  const {emitAction}= bindActionCreators(actionsCreators , dispatch)  
 
   const generateDays = ()=>{
     // we will desplay the productivity 30 days before the current day
@@ -44,13 +48,11 @@ export const Productivity:React.FC  = ()=> {
 
   useEffect(()=>{
 if(!userLogin) {navigate("/")}
-emitAction( productivityActionTypes.PRODUCTIVITY_REQUEST)(dispatch)
+emitAction( productivityActionTypes.PRODUCTIVITY_REQUEST)
 const fetchProductivities = async  () :Promise<any>=>{
 const {data , error } = await getProductivities(userLogin.token)
 if(data){
-  console.log("data from prod")
-  console.log(data)
-  emitAction( productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)(dispatch)  ;
+  emitAction( productivityActionTypes.PRODUCTIVITY_SUCCUSS, data)  ;
   generateDays() 
 }
 else if(error){
@@ -92,7 +94,7 @@ else console.log("no data or error have been reveived")
 
         <Tooltip content={<CustomTooltip/>} />
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
-  <button onClick={submitProd} >submit</button>
+  <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError)}} >submit</button>
   </div>)
 }
 </div>

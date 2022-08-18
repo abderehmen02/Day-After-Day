@@ -26,17 +26,21 @@ export const getReq = async  (path : string  , token?: String )=>{
 
 export const postReq = async (path : string  ,  body  = {} ,  token? : String  | null )  =>{
     const url : string =  process.env.React_App_BackEndServer + path   ; 
-    console.log('url')
-    console.log(url) 
+    console.log('url')   ; 
+    console.log(url) ; 
     if(token){
+        console.log(token)
+        console.log("body")
+        console.log(body)
         const responce = await fetch(url , {
     method: 'POST', 
     headers: {
-      'Content-Type': 'application/json' ,
-      'Authorization' : `bareare ${token}`
-    }  ,
+                    'Content-Type': 'application/json',
+                    'Authorization': `bareer  ${token}`
+    },
     body: JSON.stringify(body)
-})
+})    
+console.log("responce")
         const responceData = await responce.json()
         return responceData
     }

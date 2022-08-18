@@ -59,3 +59,18 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
      
     return responceData
 }
+
+
+export const deleteReq = async (path : string , token : string | undefined)=>{
+    if(token){
+        const responce = await fetch(path , {
+            method : 'DELETE'   , 
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bareer  ${token}`
+    },    
+        })
+        const responceData = await responce.json()
+        return responceData; 
+    }
+}

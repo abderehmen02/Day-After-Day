@@ -1,6 +1,8 @@
 export interface oneProductivityState {
     day : string , 
-    value : number 
+    value : number  , 
+    user : string , 
+    _id : string
 }
 
 export interface productivityState {

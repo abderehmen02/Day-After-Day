@@ -39,7 +39,7 @@ export const Productivity:React.FC  = ()=> {
     // we will desplay the productivity 30 days before the current day
     const formatedDays= []
     for(let i  = 0  ; i< 30  ; i++){
-     formatedDays.push({day : subDays(new Date() , i).toISOString().slice(0, 10)  , value :  5 })
+     formatedDays.push({day : subDays(new Date() , i).toISOString().slice(0, 10)  , user : ''  ,_id : '' , value :  5 })
 
     }
     setDays(formatedDays)
@@ -96,7 +96,7 @@ else console.log("no data or error have been reveived")
         <Tooltip content={<CustomTooltip/>} />
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
   <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError)}} >submit</button>
-  <button onClick={resetProductivity} ></button>
+  <button ></button>
   </div>)
 }
 </div>

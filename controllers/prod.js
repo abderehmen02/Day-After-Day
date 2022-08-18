@@ -38,8 +38,9 @@ if(prodObj.day !== day) sendErr(res , StatusCodes.FORBIDDEN , "you can not delet
 
 // deleting the productivity from the db
 await prodModel.findOneAndDelete({_id: req.params.id , user: req.user._id })
-console.log("deleted")
-successStatus(res , StatusCodes.OK  , "prod deleted")
+const prods = prodModel.findOne({user : req.user._id})
+if(!prods) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get the prods from the database")
+successStatus(res , StatusCodes.OK  , prods)
 })
 
 
@@ -54,7 +55,9 @@ if(!curProd) sendErr(res , StatusCodes.NOT_FOUND , 'can not found the current pr
 // the user have the right only to update the productivity of the present day
 if(curProd.day !== currDay ) sendErr(res , StatusCodes.FORBIDDEN , 'you can not update the productivity of the past')
 const newProd = await prodModel.findOneAndUpdate({_id :  curProd._id } , {value : req.body.value} , {new : true})
-successStatus(res , StatusCodes.OK , newProd )
+const prods = await prodModel.find({user : req.user._id})
+if(!prods) sendErr(res ,StatusCodes.INTERNAL_SERVER_ERROR , 'can not get errors from the server')
+successStatus(res , StatusCodes.OK , prods )
 })
 
 // getting all the prods ***

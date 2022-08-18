@@ -1,4 +1,4 @@
-import { getReq, postReq } from "./axios"
+import { getReq, postReq , deleteReq } from "./axios"
 
 
 export const createAction =  async ( path : string ,  body : object , token : string | undefined ) : Promise<{data? : object , error? : any}>=>{
@@ -43,4 +43,17 @@ export const getPublicAction = async (path : string , body : object )=>{
             return {error}
         }
     
+}
+
+export const deleteSecureAction = async (path : string  , token) =>{
+    try{
+const responceData = await deleteReq(path , token) ; 
+if(responceData.type === "succuss"){
+    return {data :responceData.data}
+}
+else return {error : responceData.error}
+    }
+    catch(error ){
+        return {error :error}
+    }
 }

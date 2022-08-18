@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import {bindActionCreators} from 'redux'
 import { emitAction } from '../state/actionCreators';
 import CustomTooltip from '../features/productivity/tooltip';
-
+import {submitProd} from '../features/productivity'
 
 export const Productivity:React.FC  = ()=> {
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
@@ -92,7 +92,7 @@ else console.log("no data or error have been reveived")
 
         <Tooltip content={<CustomTooltip/>} />
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
-  
+  <button onClick={submitProd} >submit</button>
   </div>)
 }
 </div>

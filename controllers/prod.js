@@ -17,8 +17,9 @@ const day = date.slice( 0 , 10)
 // deleting the date inorder not to store it in the database
 const newProd = await prodModel.create({user : req.user._id , day ,  ...prodObj})  ;
 if(!newProd) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not create the productivity')
-
-successStatus(res , StatusCodes.CREATED  , newProd )
+const allProds = await prodModel.find({user : req.user._id})
+if(!allProds) {sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get all the productivities")}
+successStatus(res , StatusCodes.CREATED  , allProds )
 })
 
 

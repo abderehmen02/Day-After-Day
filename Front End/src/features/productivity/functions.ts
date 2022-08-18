@@ -11,10 +11,10 @@ export const   submitProd = async (value : number | undefined, token : string | 
 
 
 
-export const deleteProd = async (id , token , emitAction  , setErr )=>{
-    const {data , error} = await deleteSecureAction(`prod/:${id}`  , token )
+export const deleteProd = async (id : string | undefined, token : string | undefined , emitAction : Function , setErr : Function )=>{
+    const {data , error} = await deleteSecureAction(`prod/${id}`  , token )
     if(data){
-        emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS  , data)
+console.log(data)
     }
     else {
         setErr(error)

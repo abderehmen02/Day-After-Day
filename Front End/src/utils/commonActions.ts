@@ -45,7 +45,7 @@ export const getPublicAction = async (path : string , body : object )=>{
     
 }
 
-export const deleteSecureAction = async (path : string  , token) =>{
+export const deleteSecureAction = async (path : string  , token : string | undefined) =>{
     try{
 const responceData = await deleteReq(path , token) ; 
 if(responceData.type === "succuss"){

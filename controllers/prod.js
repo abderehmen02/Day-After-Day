@@ -38,7 +38,7 @@ if(prodObj.day !== day) sendErr(res , StatusCodes.FORBIDDEN , "you can not delet
 
 // deleting the productivity from the db
 await prodModel.findOneAndDelete({_id: req.params.id , user: req.user._id })
-const prods = prodModel.findOne({user : req.user._id})
+const prods = await prodModel.findOne({user : req.user._id})
 if(!prods) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get the prods from the database")
 successStatus(res , StatusCodes.OK  , prods)
 })

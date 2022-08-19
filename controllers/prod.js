@@ -26,21 +26,25 @@ successStatus(res , StatusCodes.CREATED  , allProds )
 
 // deleting the prods ***
 const deleteProd = asyncWrapper(async(req , res)=>{
-// the user can only delete the productivity of the current year
-if(!req.params.id) sendErr(res , StatusCodes.BAD_REQUEST , "you didn't provide an id for the productivity")  ; 
-const date = new Date().toISOString()
-const day = date.slice( 0 , 10) 
+    console.log(req.params.id)
+    const prod = await prodModel.find({_id  : '62fe310ee9e5f244967efed3'})
+    console.log("prod")
+    console.log(prod)
+// // the user can only delete the productivity of the current year
+// if(!req.params.id) sendErr(res , StatusCodes.BAD_REQUEST , "you didn't provide an id for the productivity")  ; 
+// const date = new Date().toISOString()
+// const day = date.slice( 0 , 10) 
 
-const prodObj = await prodModel.findOne({_id : req.params.id  , user : req.user._id})
+// const prodObj = await prodModel.findOne({_id : req.params.id  , user : req.user._id})
   
-// the user can only delete the productivity of the current day
-if(prodObj.day !== day) sendErr(res , StatusCodes.FORBIDDEN , "you can not delete the productivity of the previous days")  ;
+// // the user can only delete the productivity of the current day
+// if(prodObj.day !== day) sendErr(res , StatusCodes.FORBIDDEN , "you can not delete the productivity of the previous days")  ;
 
-// deleting the productivity from the db
-await prodModel.findOneAndDelete({_id: req.params.id , user: req.user._id })
-const prods = await prodModel.findOne({user : req.user._id})
-if(!prods) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get the prods from the database")
-successStatus(res , StatusCodes.OK  , prods)
+// // deleting the productivity from the db
+// await prodModel.findOneAndDelete({_id: req.params.id , user: req.user._id })
+// const prods = await prodModel.findOne({user : req.user._id})
+// if(!prods) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get the prods from the database")
+// successStatus(res , StatusCodes.OK  , prods)
 })
 
 

@@ -71,6 +71,8 @@ export const deleteReq = async (path : string , token : string | undefined)=>{
     }
         })
         const responceData = await responce.json()
+        console.log("res data")
+        console.log(responceData)
         return responceData; 
     }
 }

@@ -25,7 +25,7 @@ import {submitProd , deleteProd} from '../features/productivity'
 export const Productivity:React.FC  = ()=> {
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
   const  dispatch = useDispatch()   ;
-   const [days, setDays] = useState<oneProductivityState[]>([])
+  const [days, setDays] = useState<oneProductivityState[]>([])
   const state = useSelector((state : stateType)=>state)
   const [error, setError] = useState<object>({})
   console.log("state")
@@ -95,8 +95,8 @@ else console.log("no data or error have been reveived")
 
         <Tooltip content={<CustomTooltip/>} />
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
-  <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError)}} >submit</button>
-  <button onClick={()=>{deleteProd(productivityInfo.data?.current._id ,userLogin.token , emitAction , setError )}} > delete</button>
+  <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError , productivityInfo)}} >submit</button>
+  <button onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete</button>
   </div>)
 }
 </div>

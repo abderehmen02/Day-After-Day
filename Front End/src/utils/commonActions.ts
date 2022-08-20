@@ -49,8 +49,11 @@ export const deleteSecureAction = async (path : string  , token : string | undef
     try{
 const responceData = await deleteReq(path , token) ; 
 if(responceData.type === "succuss"){
+    console.log("responce data")
+console.log(responceData)
     return {data :responceData.data}
 }
+
 else return {error : responceData.error}
     }
     catch(error ){

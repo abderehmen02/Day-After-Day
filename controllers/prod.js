@@ -2,21 +2,24 @@ const prodModel = require("../db/models/prod")
 const asyncWrapper = require('../helpers/asyncWrapper')
 const { validateProd } = require("../validators/index")
 const {sendErr} = require("../helpers/sendError")
-const {StatusCodes} = require("http-status-codes")
+const {StatusCodes, getStatusCode} = require("http-status-codes")
 const successStatus =  require("../helpers/successStatus")
 
 // creating a productivity ***
 const creatProd = asyncWrapper( async (req , res)=>{
 if(!req.body.value) sendErr(res , StatusCodes.BAD_REQUEST , "there is no value for this productivity" )
 const {value  :  prodObj} = validateProd(req.body  )
-const date = req.body.date || new Date().toISOString()
+const date =  new Date().toISOString()
 
 // createing a unique day from the date inorder to store it uniquely in the database so we don't get a dublicate days
 const day = date.slice( 0 , 10) 
 
-// deleting the date inorder not to store it in the database
-const newProd = await prodModel.create({user : req.user._id , day ,  ...prodObj})  ;
+// if there is a productivity in the current day we have to update it
+const newProdExist =  await prodModel.findOneAndUpdate({user : req.user._id , day} , { value : prodObj.value })
+if(!newProdExist) {
+const newProd = await prodModel.create({user : req.user._id , day  , value : prodObj.value })  ;
 if(!newProd) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not create the productivity')
+}
 const allProds = await prodModel.find({user : req.user._id})
 if(!allProds) {sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get all the productivities")}
 successStatus(res , StatusCodes.CREATED  , allProds )

@@ -1,7 +1,7 @@
 export interface oneGoalState {
       titel: string ,  
   completed: boolean ,
-deadLine: date ,
+deadLine: Date ,
 descreption: string ,
 progress: number
 }

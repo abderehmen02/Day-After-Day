@@ -1,5 +1,5 @@
 export interface oneGoalState {
-      titel: string ,  
+      title: string ,  
   completed: boolean ,
 deadLine: Date ,
 descreption: string ,

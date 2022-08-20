@@ -8,14 +8,14 @@ const goalInitialState : goalState = {
 
     data : {
 
-        current :   { titel:  '' , 
+        current :   { title:  '' , 
 completed: false  ,
 deadLine: new Date(),
 descreption: '',
 progress: 0    } ,
 
 
-allGoals : [ { titel:  '' , 
+allGoals : [ { title:  '' , 
 completed: false  ,
 deadLine: new Date(),
 descreption: '',

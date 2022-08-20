@@ -15,21 +15,21 @@ const createGoals = asyncWrapper(async (req , res)=>{
     const goalObj = await goalModel.create({ ...goal , user : req.user._id }  )  ;
     console.log(goalObj)
     if(!goalObj) sendErr(res, StatusCodes.INTERNAL_SERVER_ERROR , "can not create the goal in the database")   ;
-    const allGoals = await goalModel.find({_id : req.user._id})
+    const allGoals = await goalModel.find({user: req.user._id})
     successResponce(res, StatusCodes.CREATED , allGoals )
 })
 
 const deleteGoal = asyncWrapper(async (req, res)=>{
     if(!req.params.id)sendErr(res, StatusCodes.BAD_REQUEST , 'the goal id is missing') ; 
     await goalModel.findOneAndDelete({_id: req.params.id , user : req.user._id})
-    const allGoals = await goalModel.find({_id : req.user.id})
+    const allGoals = await goalModel.find({ user : req.user._id})
     successResponce(res , StatusCodes.OK  , allGoals)
 })
 const updateGoal = asyncWrapper(  async (req , res)=>{
     if(!req.params.id ) sendErr(res , StatusCodes.BAD_REQUEST , "the goal id is missing")  ; 
     const newGoal  = await goalModel.findOneAndUpdate({ _id : req.params.id , user : req.user._id } , { ...req.body } , {new  : true} )
     if(!newGoal) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not update the goal in our database") ; 
-    const allGoals = await goalModel.find({_id : req.user.id})
+    const allGoals = await goalModel.find({ user : req.user._id})
     successResponce(res  , StatusCodes.OK  , allGoals )
 })
 

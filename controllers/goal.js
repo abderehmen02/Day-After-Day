@@ -7,24 +7,27 @@ const {StatusCodes} = require("http-status-codes")
 const createGoals = asyncWrapper(async (req , res)=>{
     // in a goal , the title is required and should be between 2 and  30 characters
     if(!req.body.title) sendErr(res , StatusCodes.BAD_REQUEST , "title is missing")  ; 
-    if(req.body.title.length < 2) sendErr(res , StatusCodes.BAD_REQUEST , "title is too short")
-    if(req.body.title.length > 30) sendError(res, StatusCodes.BAD_REQUEST , "title is too long")
+    if(req.body.title.length < 2) sendErr(res , StatusCodes.BAD_REQUEST , "title is too short") ; 
+    if(req.body.title.length > 30) sendError(res, StatusCodes.BAD_REQUEST , "title is too long")  ; 
     const {value : goal } = validateGoal(req.body) ;
     const goalObj = await goalModel.create({ ...goal , user : req.user._id })  ;    
     if(!goalObj) sendErr(res, StatusCodes.INTERNAL_SERVER_ERROR , "can not create the goal in the database")   ;
-    successResponce(res, StatusCodes.CREATED , goalObj )
+    const allGoals = await goalModel.find({_id : req.user.id})
+    successResponce(res, StatusCodes.CREATED , allGoals )
 })
 
 const deleteGoal = asyncWrapper(async (req, res)=>{
     if(!req.params.id)sendErr(res, StatusCodes.BAD_REQUEST , 'the goal id is missing') ; 
     await goalModel.findOneAndDelete({_id: req.params.id , user : req.user._id})
-    successResponce(res , StatusCodes.OK  , "goal deleted")
+    const allGoals = await goalModel.find({_id : req.user.id})
+    successResponce(res , StatusCodes.OK  , allGoals)
 })
 const updateGoal = asyncWrapper(  async (req , res)=>{
     if(!req.params.id ) sendErr(res , StatusCodes.BAD_REQUEST , "the goal id is missing")  ; 
     const newGoal  = await goalModel.findOneAndUpdate({ _id : req.params.id , user : req.user._id } , { ...req.body } , {new  : true} )
     if(!newGoal) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not update the goal in our database") ; 
-    successResponce(res  , StatusCodes.OK  , newGoal )
+    const allGoals = await goalModel.find({_id : req.user.id})
+    successResponce(res  , StatusCodes.OK  , allGoals )
 })
 
 const getGoals = asyncWrapper(async (req , res)=>{
@@ -32,7 +35,6 @@ const getGoals = asyncWrapper(async (req , res)=>{
     console.log(req.body)
     const goals = await goalModel.find({user : req.user._id})
     if(!goals ) sendErr(res , StatusCodes.BAD_REQUEST , "can not get the goals of the user")
-    console.log(goals)
     successResponce(res , StatusCodes.OK , goals)
 })
 

@@ -5,14 +5,17 @@ const {sendErr, sendError} = require("../helpers/sendError") ;
 const successResponce = require("../helpers/successStatus")
 const {StatusCodes} = require("http-status-codes")
 const createGoals = asyncWrapper(async (req , res)=>{
+    console.log("create goals fn")
     // in a goal , the title is required and should be between 2 and  30 characters
     if(!req.body.title) sendErr(res , StatusCodes.BAD_REQUEST , "title is missing")  ; 
     if(req.body.title.length < 2) sendErr(res , StatusCodes.BAD_REQUEST , "title is too short") ; 
     if(req.body.title.length > 30) sendError(res, StatusCodes.BAD_REQUEST , "title is too long")  ; 
     const {value : goal } = validateGoal(req.body) ;
-    const goalObj = await goalModel.create({ ...goal , user : req.user._id })  ;    
+    console.log("creating goal")
+    const goalObj = await goalModel.create({ ...goal , user : req.user._id }  )  ;
+    console.log(goalObj)
     if(!goalObj) sendErr(res, StatusCodes.INTERNAL_SERVER_ERROR , "can not create the goal in the database")   ;
-    const allGoals = await goalModel.find({_id : req.user.id})
+    const allGoals = await goalModel.find({_id : req.user._id})
     successResponce(res, StatusCodes.CREATED , allGoals )
 })
 

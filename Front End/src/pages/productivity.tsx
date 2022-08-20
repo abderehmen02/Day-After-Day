@@ -95,7 +95,7 @@ else console.log("no data or error have been reveived")
 
         <Tooltip content={<CustomTooltip/>} />
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
-  <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError , productivityInfo)}} >submit</button>
+  <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError  )}} >submit</button>
   <button onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete</button>
   </div>)
 }

@@ -5,6 +5,7 @@ import { stateType } from '../state/reducers'
 import {getGoals, submitGoal} from  '../features/goals'
 import { goalState, oneGoalState, userLoginState } from '../types'
 import {bindActionCreators} from "redux"
+import {OneGoal} from '../features/goals/components'
 import * as ActionCreators from '../state/actionCreators'
 function Goal() {
 
@@ -40,9 +41,15 @@ console.log("goals info")
         <input type="text"     placeholder='descretion'    value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}></input>
         <input type='checkbox' checked={completed}     onChange={()=>{setCompleted(!completed)}}></input>
       <label> dead line </label>  <input type='date' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /> 
-      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction )} } > submit     </button> </div> )
-      </div>
-  )
-}
+      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction )} } > submit     </button>
+      <div>{
+        userGoalsInfo.data.allGoals.map((goal : oneGoalState)=>{
+          return <div>
+            <OneGoal goal={goal} />
+            </div>
+        })
+        }</div> 
+      </div></div>
+   )}
 
 export default Goal

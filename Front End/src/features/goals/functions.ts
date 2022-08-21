@@ -1,5 +1,5 @@
 import { goalActionTypes, oneGoalState } from "../../types"
-import { createAction, getSecureAction } from "../../utils"
+import { createAction, getSecureAction, putSecureAction } from "../../utils"
 
 
 const path = 'goal'
@@ -31,5 +31,14 @@ export const getGoals = async (token : string | undefined , emitAction : Functio
     }
 }
 
+export const editGoal = async (token : string | undefined  , body : object, emitAction : Function)=>{
+const {data , error } = await putSecureAction(path , body , token) ;
+emitAction(goalActionTypes.GOAL_REQUEST ) 
+if(data){
+    console.log("data from edit goal")
+    console.log(data)
+    emitAction(goalActionTypes.GOAL_SUCCUSS , body  )  ; 
 
-
+}
+else emitAction(goalActionTypes.GOAL_ERROR , error)
+}

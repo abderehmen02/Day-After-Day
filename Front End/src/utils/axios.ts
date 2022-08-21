@@ -85,7 +85,7 @@ export const putReq  = async (path : string , body :  object , token : string | 
        headers : {
           'Content-Type': 'application/json',
            'Authorization': `bareer  ${token}`
-       }
+       } ,
        body  : JSON.stringify(body)
     })
     const responceData  = await responce.json() ; 

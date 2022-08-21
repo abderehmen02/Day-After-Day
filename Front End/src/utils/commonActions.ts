@@ -69,8 +69,9 @@ export const putSecureAction = async( path : string , body : object , token : st
     try {
 const  responceData = await putReq(path , body , token)
 if(responceData.succuss){
-    return {data : responceData}
+    return {data : responceData.data}
 }
+else return {error : responceData.error}
     }
     catch(error){
         return {error }

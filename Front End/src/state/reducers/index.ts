@@ -9,7 +9,7 @@ const reducers = combineReducers({
   userLogin : userLoginReducer ,
   userInfo    : userInfoReducer , 
   productivity : productivityReducer ,
-  goalReducer : goalReducer
+  goals : goalReducer
 })
 export default reducers
 

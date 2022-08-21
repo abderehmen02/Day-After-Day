@@ -76,3 +76,20 @@ export const deleteReq = async (path : string , token : string | undefined)=>{
         return responceData; 
     }
 }
+
+export const putReq  = async (path : string , body :  object , token : string | undefined )=>{
+ const url : string = process.env.React_App8BackEndServer + path  ;
+ if(token){
+    const responce = await fetch(url , {
+       method : 'PUT'  ,
+       headers : {
+          'Content-Type': 'application/json',
+           'Authorization': `bareer  ${token}`
+       }
+       body  : JSON.stringify(body)
+    })
+    const responceData  = await responce.json() ; 
+    return  responceData
+ } 
+
+}

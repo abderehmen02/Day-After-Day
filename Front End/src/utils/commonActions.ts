@@ -1,10 +1,11 @@
-import { getReq, postReq , deleteReq } from "./axios"
+import { getReq, postReq , deleteReq, putReq } from "./axios"
 
 
 export const createAction =  async ( path : string ,  body : object , token : string | undefined ) : Promise<{data? : object , error? : any}>=>{
 try{
 const responceData = await postReq( path ,  body , token) ;
 if(responceData.succuss){
+
     return {data : responceData.data}
 } 
 
@@ -18,10 +19,11 @@ return {error }
 }
 
 
-export const getSecureAction = async ( path : string ,  body : object, token : string | undefined)=>{
+export const getSecureAction = async ( path : string , token : string | undefined)=>{
     try{
         const responceData = await getReq( path , token)
-        if(responceData.type === "succuss"){
+
+        if(responceData.succuss){
             return {data : responceData.data}
         }
         else return {   error : responceData.error }
@@ -61,5 +63,16 @@ else {
  } }
     catch(error ){
         return {error :error}
+    }
+}
+export const putSecureAction = async( path : string , body : object , token : string | undefined  ) : Promise<{data?: any , error?: any }>=>{
+    try {
+const  responceData = await putReq(path , body , token)
+if(responceData.succuss){
+    return {data : responceData}
+}
+    }
+    catch(error){
+        return {error }
     }
 }

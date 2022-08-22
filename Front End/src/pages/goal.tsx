@@ -7,6 +7,10 @@ import { goalState, oneGoalState, userLoginState } from '../types'
 import {bindActionCreators} from "redux"
 import {OneGoal} from '../features/goals/components'
 import * as ActionCreators from '../state/actionCreators'
+import LogOut from '../components/logOut'
+
+
+
 function Goal() {
 
    const state = useSelector((state : stateType)=> state)
@@ -42,12 +46,13 @@ console.log("goals info")
         <input type='checkbox' checked={completed}     onChange={()=>{setCompleted(!completed)}} />
       <label> dead line </label>  <input type='date' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /> 
       <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction )} } > submit     </button>
-      <div>{       userGoalsInfo.data.allGoals.map((goal : oneGoalState)=>{
+      <div> {       userGoalsInfo.data.allGoals.map((goal : oneGoalState)=>{
           return <div>
             <OneGoal goal={goal} />
             </div>
         })
-        }</div> 
+        }</div>
+        <LogOut/> 
       </div></div>
    )}
 

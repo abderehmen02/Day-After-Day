@@ -19,6 +19,19 @@ return {error }
 }
 
 
+export const publicPost = async (path : string , body : object) : Promise<{error? : any , data? : any}>=>{
+    try {
+const {data , error} = await postReq(path , body , null)
+if(data.succuss){
+    return {data}
+}
+else return {error}
+    }
+    catch(error){
+        return {error}
+    }
+}
+
 export const getSecureAction = async ( path : string , token : string | undefined)=>{
     try{
         const responceData = await getReq( path , token)

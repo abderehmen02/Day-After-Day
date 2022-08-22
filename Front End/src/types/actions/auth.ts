@@ -25,4 +25,11 @@ export interface failRegester {
     error : any , 
     data : undefined
 }
+
+
+
+export interface loginBody {
+    email : string | undefined  ,
+    password : string | undefined 
+}
 export type authResponce = successRegester | failRegester 

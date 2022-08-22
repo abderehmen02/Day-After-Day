@@ -1,5 +1,5 @@
 import { goalActionTypes, oneGoalState } from "../../types"
-import { createAction, getSecureAction, putSecureAction } from "../../utils"
+import { createAction, deleteSecureAction, getSecureAction, putSecureAction } from "../../utils"
 
 
 const path = 'goal'
@@ -41,4 +41,15 @@ if(data){
 
 }
 else emitAction(goalActionTypes.GOAL_ERROR , error)
+}
+
+export const deleteGoal = async (id : string , token : string | undefined  , emitAction : Function)=>{
+    const {data , error } = await deleteSecureAction(`${path}/${id}` , token) ;
+    if(data){
+ console.log('data from deleted goal')
+ emitAction(goalActionTypes.GOAL_SUCCUSS , data)
+    }
+    else if(error){
+        console.log(error)
+    }
 }

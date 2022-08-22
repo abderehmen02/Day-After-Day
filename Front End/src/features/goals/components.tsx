@@ -4,7 +4,7 @@ import {useSelector , useDispatch } from 'react-redux'
 import { stateType } from "../../state/reducers"
 import {bindActionCreators} from 'redux'
 import * as actionCreators  from '../../state/actionCreators'
-import { editGoal } from "./functions"
+import { deleteGoal, editGoal } from "./functions"
 
 
 // a componet to display the goal for the user
@@ -60,10 +60,14 @@ console.log("edit body")
 
 
 export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
-    const [buttonText, setButtonText] = useState<string>("edit")
+    const [buttonText, setButtonText] = useState<string>("edit")  ; 
+    const userLoginInfo = useSelector((state : stateType)=>state.userLogin)  ;
+    const dispatch = useDispatch()
+    const {emitAction} = bindActionCreators(actionCreators , dispatch)
     
     return        <div>
 {buttonText === "edit" ? <DisplayOneGoal goal={goal} /> :<EditOneGoal goal={goal} /> }
         <button onClick={()=>{setButtonText(buttonText === "edit"  ? "display" : "edit" )}} >{buttonText}</button>
+        <button onClick={()=>{deleteGoal(goal._id , userLoginInfo.token ,emitAction)}} > delete </button>
     </div>
 }

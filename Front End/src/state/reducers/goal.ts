@@ -7,19 +7,8 @@ const goalInitialState : goalState = {
     loading  : false , 
 
     data : {
-
-        current :   { title:  '' , 
-completed: false  ,
-deadLine: new Date(),
-descreption: '',
-progress: 0    } ,
-
-
-allGoals : [ { title:  '' , 
-completed: false  ,
-deadLine: new Date(),
-descreption: '',
-progress: 0 } ]
+current :  null , 
+allGoals : []
     }
 }
 
@@ -34,7 +23,7 @@ if(!action.payload.length){
             error : null ,
             loading : false  ,
             data : {
-                current : action.payload[action.payload.length - 1] , 
+                current :   action.payload[action.payload.length - 1] || null , 
                  allGoals : action.payload 
             }
             }

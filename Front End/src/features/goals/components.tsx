@@ -9,11 +9,13 @@ import { editGoal } from "./functions"
 
 // a componet to display the goal for the user
 export const DisplayOneGoal = ({goal} : {goal : oneGoalState}): JSX.Element=>{
-    return <div>
+    console.log(goal.deadLine.toString().slice(0 , 10))
+    console.log("deadline")
+    return      <div>
       <span>  {goal.title}  </span>
-      <span>  {goal.descreption} </span>
-      <span>  {goal.deadLine.toISOString().slice(0 , 10)} </span>
-      <button></button>
+       <span>  {goal.descreption} </span>
+      <span>  {goal.deadLine.toString().slice( 0 , 10)} </span>
+
     </div>
 }
 
@@ -29,28 +31,29 @@ export const EditOneGoal= ({goal } : {goal : oneGoalState} ) : JSX.Element=>{
     const [progress, setProgress] = useState<number>(goal.progress)
     const dispatch  = useDispatch()
     const {emitAction}     = bindActionCreators( actionCreators  ,  dispatch)
-    const body : any = {}
+    const [body, setBody] = useState({})
  
 const checkBody = ()=>{
-if(goal.deadLine!==  deadLine ) { body.deadLine = deadLine  }
-if(goal.descreption !== descreption ){ body.descreption = descreption  }
-if(goal.completed  !== completed ){  body.descreption = descreption }
-if(goal.title !== title ){ body.title = title }
-if(goal.progress !== progress ){ body.progress = progress }
+if(goal.deadLine!=  deadLine ) { setBody({...body , deadLine})  }
+if(goal.descreption !== descreption ){ setBody({...body , descreption}) }
+if(goal.completed  != completed ){  setBody({...body , completed}) }
+if(goal.title !== title ){ setBody({...body , title}) }
+if(goal.progress !== progress ){ setBody({...body , progress}) }
 }
 
 
 useEffect( ()=>{
     checkBody()
 }, [deadLine , title ,  completed , progress , descreption])
-
+console.log(body )
+console.log("edit body")
     return <div>
 <input placeholder="title" type="text" value={title}  onChange={(e)=>{setTitle(e.target.value)}}  ></input>
-<input placeholder="descreption" type="text" value={descreption}  onChange={(e)=>{setDescreption(e.target.value)}} > </input>
+<input placeholder="descreption" type="text" value={descreption}  onChange={(e)=>{setDescreption(e.target.value)}} ></input>
 <input type="date" value={deadLine}       onChange={(e)=>{setDeadLine(e.target.value)}} ></input>
 <input type="number"  value={progress}    onChange={(e)=>{setProgress( parseInt( e.target.value))}} ></input>
 <input type='checkbox' checked={completed} onChange={()=>{setCompleted(!completed)}} ></input>
-{ Object.keys(body).length ? <button onClick={()=>{editGoal(userLoginInfo.token , body , emitAction)}} >submit</button> : <div> change something </div>  }
+{ Object.getOwnPropertyNames(body).length ? <button onClick={()=>{editGoal( goal._id , userLoginInfo.token , body , emitAction)}} >submit</button> : <div> change something </div>  }
     </div>
 }
 
@@ -59,7 +62,7 @@ useEffect( ()=>{
 export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
     const [buttonText, setButtonText] = useState<string>("edit")
     
-    return <div>
+    return        <div>
 {buttonText === "edit" ? <DisplayOneGoal goal={goal} /> :<EditOneGoal goal={goal} /> }
         <button onClick={()=>{setButtonText(buttonText === "edit"  ? "display" : "edit" )}} >{buttonText}</button>
     </div>

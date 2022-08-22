@@ -31,13 +31,13 @@ export const getGoals = async (token : string | undefined , emitAction : Functio
     }
 }
 
-export const editGoal = async (token : string | undefined  , body : object, emitAction : Function)=>{
-const {data , error } = await putSecureAction(path , body , token) ;
+export const editGoal = async (id : string ,  token : string | undefined  , body : object, emitAction : Function)=>{
+const {data , error } = await putSecureAction(`${path}/${id}` , body , token) ;
 emitAction(goalActionTypes.GOAL_REQUEST ) 
 if(data){
     console.log("data from edit goal")
     console.log(data)
-    emitAction(goalActionTypes.GOAL_SUCCUSS , body  )  ; 
+    emitAction(goalActionTypes.GOAL_SUCCUSS , data )  ; 
 
 }
 else emitAction(goalActionTypes.GOAL_ERROR , error)

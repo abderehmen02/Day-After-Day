@@ -78,7 +78,13 @@ export const deleteReq = async (path : string , token : string | undefined)=>{
 }
 
 export const putReq  = async (path : string , body :  object , token : string | undefined )=>{
- const url : string = process.env.React_App8BackEndServer + path  ;
+ const url : string = process.env.React_App_BackEndServer+ path  ;
+ console.log(url) ; 
+ console.log("put url")
+ console.log("body")
+ console.log(body)
+ console.log("token")
+ console.log(token)
  if(token){
     const responce = await fetch(url , {
        method : 'PUT'  ,
@@ -88,6 +94,8 @@ export const putReq  = async (path : string , body :  object , token : string | 
        } ,
        body  : JSON.stringify(body)
     })
+
+    console.log(responce)
     const responceData  = await responce.json() ; 
     return  responceData
  } 

@@ -1,4 +1,5 @@
 export interface oneGoalState {
+      _id : string , 
       title: string ,  
   completed: boolean ,
 deadLine: Date ,
@@ -9,7 +10,7 @@ progress: number
 
 export interface goalState {
     data : {
-        current : oneGoalState , 
+        current : oneGoalState | null, 
         allGoals : oneGoalState[] 
     }
     loading : boolean , 

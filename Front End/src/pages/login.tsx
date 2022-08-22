@@ -1,5 +1,6 @@
 import React , {useState} from 'react'
-
+import {login} from '../features/login'
+import {login as loginAction} from '../state/actionCreators'
 
 
 export const Login: React.FC = () =>{
@@ -10,7 +11,7 @@ export const Login: React.FC = () =>{
     <div>
       <input value={email} type="text" onChange={(e)=>{setEmail(e.target.value)}} ></input>
       <input value={password} type="password" onChange={(e)=>{setPassword(e.target.value)}} ></input>
-      <button > submit </button>
+      <button onClick={()=>{login({email , password} , loginAction  )}}> submit </button>
     </div>
   )
 }

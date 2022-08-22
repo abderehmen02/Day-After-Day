@@ -30,8 +30,10 @@
        if(error) {
         return dispatch({type : userLoginTypes.userLoginFail , error })
        }
+       console.log("data from login")
+       console.log(data)
         login(data.token , data.userObj)
-        navigate('/productivity')
+       console.log(error)
            }
  
   return (

@@ -4,7 +4,7 @@ import { publicPost } from "../../utils";
 
 const path : string = "login"
 
-const login = async(body : loginBody , emitAction : Function)=>{
+export const login = async(body : loginBody , emitAction : Function)=>{
 const {data , error }  = await publicPost(path , body )
 if(data){
     console.log("data from loginb")

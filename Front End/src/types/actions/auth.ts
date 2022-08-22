@@ -9,10 +9,7 @@ export interface authInfo {
     token : String  , 
 }
 
-export interface loginBody {
-    userName : String , 
-    passWord : String , 
-}
+
 
 
 export interface successRegester {

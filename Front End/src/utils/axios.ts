@@ -40,6 +40,8 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
     },
     body: JSON.stringify(body)
 })    
+console.log("responce")
+console.log(responce)
         const responceData = await responce.json()
         return responceData
     }
@@ -53,9 +55,7 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
                     'Content-Type': 'application/json',
     },
     body: JSON.stringify(body)
-})    
-                console.log(responce)
-                console.log("responce")
+})        
                 const responceData = await responce.json()
                 console.log(responceData)
      

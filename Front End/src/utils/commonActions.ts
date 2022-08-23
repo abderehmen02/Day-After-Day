@@ -5,10 +5,8 @@ export const createAction =  async ( path : string ,  body : object , token : st
 try{
 const responceData = await postReq( path ,  body , token) ;
 if(responceData.succuss){
-
     return {data : responceData.data}
 } 
-
 else { console.log("responce data from create action") ;
 console.log(responceData);   return {error : responceData.error } }
 }

@@ -26,6 +26,7 @@ export const Productivity:React.FC  = ()=> {
   console.log("productivity component")
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
   const  dispatch = useDispatch()   ;
+  const [date, setDate] = useState<string>(new Date().toISOString())
   const [days, setDays] = useState<oneProductivityState[]>([])
   const state = useSelector((state : stateType)=>state)
   const [error, setError] = useState<object>({})
@@ -69,7 +70,8 @@ else console.log("no data or error have been reveived")
 
 
 
-
+console.log("date prod")
+console.log(date)
 
   return (
 <div>
@@ -99,8 +101,9 @@ else console.log("no data or error have been reveived")
         <Tooltip content={<CustomTooltip/>} />
         </ResponsiveContainer> */}
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
-  <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError  )}} >submit</button>
+  <button onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >submit</button>
   <button onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete</button>
+  <input type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input>
   </div>)
 }
 </div>

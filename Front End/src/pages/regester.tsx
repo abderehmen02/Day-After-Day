@@ -33,6 +33,7 @@
        console.log("data from login")
        console.log(data)
         login(data.token , data.userObj)
+        navigate("/productivity")
        console.log(error)
            }
  

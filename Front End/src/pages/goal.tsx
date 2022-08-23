@@ -14,6 +14,8 @@ import LogOut from '../components/logOut'
 function Goal() {
 
    const state = useSelector((state : stateType)=> state)
+   console.log("state from goal")
+   console.log(state)
    const dispatch = useDispatch()
    const userLoginInfo : userLoginState = useSelector((state: stateType) => state.userLogin )
    const userGoalsInfo : goalState = useSelector((state : stateType) =>state.goals)

@@ -23,31 +23,34 @@ import {submitProd , deleteProd} from '../features/productivity'
 
 
 export const Productivity:React.FC  = ()=> {
+  console.log("productivity component")
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
   const  dispatch = useDispatch()   ;
   const [days, setDays] = useState<oneProductivityState[]>([])
   const state = useSelector((state : stateType)=>state)
   const [error, setError] = useState<object>({})
-  console.log("state")
+  console.log("state from productivity")
   console.log(state)
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
   const {emitAction}= bindActionCreators(actionsCreators , dispatch)  
-
+console.log("generating days")
   const generateDays = ()=>{
     // we will desplay the productivity 30 days before the current day
     const formatedDays= []
     for(let i  = 0  ; i< 30  ; i++){
      formatedDays.push({day : subDays(new Date() , i).toISOString().slice(0, 10)  , user : ''  ,_id : '' , value :  5 })
-
+     
     }
     setDays(formatedDays)
+    console.log("days generated")
      }
 
 
      
   useEffect(()=>{
+
 if(!userLogin) {navigate("/")}
 emitAction( productivityActionTypes.PRODUCTIVITY_REQUEST)
 const fetchProductivities = async  () :Promise<any>=>{
@@ -72,7 +75,7 @@ else console.log("no data or error have been reveived")
 <div>
   { productivityInfo.loading ? <div> loading...</div> :(
   <div>
-<ResponsiveContainer width="70%" height={400}>
+{/* <ResponsiveContainer width="70%" height={400}>
 <AreaChart data={days} >
       <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -82,7 +85,7 @@ else console.log("no data or error have been reveived")
         </defs>
   <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
 </AreaChart>
-</ResponsiveContainer>
+
  <XAxis   dataKey="day"
           axisLine={false}
           tickLine={false}
@@ -94,6 +97,7 @@ else console.log("no data or error have been reveived")
         />
 
         <Tooltip content={<CustomTooltip/>} />
+        </ResponsiveContainer> */}
   <input placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
   <button onClick={()=>{submitProd(todayProductivity, userLogin.token , emitAction , setError  )}} >submit</button>
   <button onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete</button>

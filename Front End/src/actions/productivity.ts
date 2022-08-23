@@ -3,6 +3,7 @@ import { getReq } from "../utils"
 
 export const getProductivities = async(token : string | undefined) : Promise<{data?: any , error?: any}> =>{
     try{
+        console.log("getting productivities")
 const responceData = await getReq("prod" , token)
 if(responceData.succuss === true){
     console.log("reponce data prod")

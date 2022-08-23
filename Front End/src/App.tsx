@@ -27,6 +27,7 @@ async function fetchUser(){
       if(storageUser){
  const {data , error} =  await userInfoAuth(storageUser)
  login(storageUser , data)(dispatch)
+    console.log("first user effect data")
     console.log(Boolean(userInfo && Object.keys(userLogin).length && storageUser))
     console.log(userInfo)
     console.log(userLogin)

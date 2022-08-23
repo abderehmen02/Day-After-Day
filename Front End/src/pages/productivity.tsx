@@ -18,6 +18,7 @@ import {bindActionCreators} from 'redux'
 import * as actionsCreators from '../state/actionCreators';
 import CustomTooltip from '../features/productivity/tooltip';
 import {submitProd , deleteProd} from '../features/productivity'
+import LogOut from '../components/logOut';
 
 
 
@@ -106,6 +107,7 @@ console.log(date)
   <input type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input>
   </div>)
 }
+<LogOut/>
 </div>
     )
 }

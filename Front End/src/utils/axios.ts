@@ -19,6 +19,8 @@ export const getReq = async  (path : string  , token?: String )=>{
      return responceData  
     }
     const responce = await fetch(url)
+    console.log(responce)
+    console.log("responce")
     const responceData = await responce.json()  ;
     return responceData
 }
@@ -33,13 +35,13 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
         console.log("body")
         console.log(body)
         const responce = await fetch(url , {
-    method: 'POST', 
-    headers: {
+                method: 'POST',
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `bareer  ${token}`
-    },
-    body: JSON.stringify(body)
-})    
+                },
+                body: JSON.stringify(body)
+            })    
 console.log("responce")
 console.log(responce)
         const responceData = await responce.json()
@@ -56,6 +58,8 @@ console.log(responce)
     },
     body: JSON.stringify(body)
 })        
+console.log("responce")
+console.log(responce)
                 const responceData = await responce.json()
                 console.log(responceData)
      

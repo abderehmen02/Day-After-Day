@@ -1,14 +1,18 @@
 import { emitAction } from "../../state/actionCreators";
-import { loginBody } from "../../types";
+import { loginBody, userLoginTypes } from "../../types";
 import { publicPost } from "../../utils";
+const path : string = "auth/login"
 
-const path : string = "login"
+export const login = async(body : loginBody , loginInState : Function , emitAction : Function , navigate  : Function )=>{
+    emitAction(userLoginTypes.userLoginRequest)
 
-export const login = async(body : loginBody , emitAction : Function)=>{
 const {data , error }  = await publicPost(path , body )
 if(data){
-    console.log("data from loginb")
-    console.log(data)
+localStorage.setItem("day-after-day"  , data.token)
+loginInState(data.token , data.userObj) ; 
+navigate('/productivity')
 }
-console.log(error)
+else if(error){
+    emitAction(userLoginTypes.userLoginFail , error)
+}
 }

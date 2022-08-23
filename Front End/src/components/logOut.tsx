@@ -12,11 +12,12 @@ const {emitAction} = bindActionCreators(actionCreators , dispatch) ;
 const navigate = useNavigate()
 
 const logOut = ()=>{
+  localStorage.removeItem("day-after-day") ; 
 emitAction(userInfoActionTypes.USER_INFO_RESET ); 
 emitAction(userLoginTypes.userLoginReset);
 emitAction(productivityActionTypes.PRODUCTIVITY_RESET) ;
 emitAction(goalActionTypes.GOAL_RESET);
-localStorage.removeItem("day-after-day") ; 
+
 navigate("/")
 }
 

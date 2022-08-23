@@ -6,7 +6,8 @@ export const userLoginReducer =  (state : userLoginState = {} , action : userLog
 switch(action.type){
     case userLoginTypes.userLoginSuccuss : {
         return {
-    token : action.token
+    token : action.token , 
+    loading : false 
         }
     }
     case userLoginTypes.userLoginFail : {

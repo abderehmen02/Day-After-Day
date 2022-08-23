@@ -19,11 +19,14 @@ return {error }
 
 export const publicPost = async (path : string , body : object) : Promise<{error? : any , data? : any}>=>{
     try {
-const {data , error} = await postReq(path , body , null)
-if(data.succuss){
-    return {data}
+const responceData = await postReq(path , body , null)
+console.log(responceData)
+console.log("loggin data")
+if(responceData.succuss){
+    console.log("data is succuss")
+    return {data : responceData.data}
 }
-else return {error}
+else return {error  : responceData.error}
     }
     catch(error){
         return {error}

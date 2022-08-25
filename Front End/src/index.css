@@ -1,0 +1,14 @@
+*{
+    margin: 0px;
+    padding : 0px ; 
+}
+
+.staticPage{
+    width: 100vw;
+    min-height: 100vh;
+  
+    position : relative
+}
+.co{
+    margin: 100px;
+}

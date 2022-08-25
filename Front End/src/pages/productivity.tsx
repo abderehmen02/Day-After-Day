@@ -75,7 +75,7 @@ console.log("date prod")
 console.log(date)
 
   return (
-<div>
+<div className='container bg-dark height-50 ' >
   { productivityInfo.loading ? <div> loading...</div> :(
   <div>
 {/* <ResponsiveContainer width="70%" height={400}>

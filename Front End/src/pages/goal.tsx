@@ -8,8 +8,8 @@ import {bindActionCreators} from "redux"
 import {OneGoal} from '../features/goals/components'
 import * as ActionCreators from '../state/actionCreators'
 import LogOut from '../components/logOut'
-
-
+import NavBar from '../components/loggedNav'
+import "../features/goals/index.css"
 
 function Goal() {
 
@@ -42,12 +42,21 @@ console.log("goals info")
     }
 
    return (
-    <div>  <div>      <input type="text"     placeholder='titel'         value={title} onChange={(e)=>{setTitle(e.target.value)}} />
-        <input type="number"   placeholder='progress'   value={progress} onChange={(e)=>{ setProgress( parseInt( e.target.value ) )}} />
-        <input type="text"     placeholder='descretion'    value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}  />
-        <input type='checkbox' checked={completed}     onChange={()=>{setCompleted(!completed)}} />
-      <label> dead line </label>  <input type='date' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /> 
-      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction )} } > submit     </button>
+    <div className='goalPage staticPage' >
+       
+<div className='createGoal' >
+  <div className='h4 goalTitle' > Create New Goal</div>
+<div className="createGorlGrid">
+     <input type="text"     placeholder='titel'   className='form-control '   value={title} onChange={(e)=>{setTitle(e.target.value)}} />
+      <input type="number"   placeholder='progress'  className='form-control' value={progress} onChange={(e)=>{ setProgress( parseInt( e.target.value ) )}} />
+      <input type="text"     placeholder='descretion' className='form-control'   value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}  />
+       <input type='checkbox' checked={completed}      className='form-control'   onChange={()=>{setCompleted(!completed)}} />
+     <input type='date' className='form-control' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /> 
+      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction )} } className="btn btn-primary form-control" > submit     </button>
+    </div>
+</div>    
+     
+     
       <div> {       userGoalsInfo.data.allGoals.map((goal : oneGoalState)=>{
           return <div>
             <OneGoal goal={goal} />
@@ -55,7 +64,7 @@ console.log("goals info")
         })
         }</div>
         <LogOut/> 
-      </div></div>
+      </div>
    )}
 
 export default Goal

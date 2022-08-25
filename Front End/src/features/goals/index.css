@@ -1,0 +1,15 @@
+.goalPage{
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ flex-direction: column;
+ background-color: aqua;
+}
+.createGoalGrid{
+    display: grid;
+    grid-template-columns: repeat(3 , 150px);
+    grid-gap: 5px;
+    border : 2px solid blue ; 
+    padding : 7px ; 
+    border-radius : 5px
+}

@@ -9,6 +9,13 @@
   
     position : relative
 }
-.co{
-    margin: 100px;
+.img{
+    background-size: cover;
+    background-position: center;
+}
+.title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.7em;
+     text-shadow: 2px 3px 5px black;
+     font-style: italic;
 }

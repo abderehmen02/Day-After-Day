@@ -5,7 +5,7 @@ import { stateType } from '../state/reducers'
 import {getGoals, } from  '../features/goals'
 import { goalState, oneGoalState , userLoginState } from '../types'
 import {bindActionCreators} from "redux"
-import {MapGoals, OneGoal} from '../features/goals/components'
+import {GoalImageLine, MapGoals, OneGoal} from '../features/goals/components'
 import * as ActionCreators from '../state/actionCreators'
 import LogOut from '../components/logOut'
 import NavBar from '../components/loggedNav'
@@ -41,6 +41,7 @@ console.log("goals info")
     <div className='goalPage staticPage' >       
 
     <Header/>
+    <GoalImageLine/>
 <MapGoals allGoals={userGoalsInfo.data.allGoals} />
     <LogOut/> 
       </div>

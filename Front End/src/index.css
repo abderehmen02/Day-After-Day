@@ -19,3 +19,17 @@
      text-shadow: 2px 3px 5px black;
      font-style: italic;
 }
+.mobileDisplay{
+    display: none;
+}
+
+@media screen and (max-width : 600px) {
+.desktop{
+        display: none;
+    }
+
+.mobileDisplay{
+    display: block;
+}
+
+}

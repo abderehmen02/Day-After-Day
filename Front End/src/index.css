@@ -23,6 +23,13 @@
     display: none;
 }
 
+.link{
+    text-decoration : none ; 
+    color : black
+}
+.link:hover{
+    color : inherit
+}
 @media screen and (max-width : 600px) {
 .desktop{
         display: none;

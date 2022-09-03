@@ -10,21 +10,26 @@
     "@types/node": "^12.12.39",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
+    "date-fns": "^2.29.2",
     "jsonwebtoken": "^8.5.1",
     "react": "^16.13.1",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^6.2.2",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "react-typewriter-effect": "^1.1.0",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "typescript": "^4.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

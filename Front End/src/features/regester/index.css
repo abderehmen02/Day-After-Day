@@ -1,0 +1,70 @@
+.regesterPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column ; 
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient( aqua  ,    rgb(4, 93, 93)  ); 
+}
+
+
+.regesterHeader{
+display: flex;
+height: 30vh;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+font-weight: bold;
+
+
+}
+.regesterForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50vw;
+    padding: 20px;
+    box-shadow: 2px 2px 4px black;
+}
+.regesterForm > div {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+}
+.regesterForm input {
+    width: 200px;
+    border-radius : 5px ; 
+    border: 2px solid transparent;
+        text-align: center;
+}
+.regesterForm input:focus{
+    box-shadow: 2px 2px 4px black;
+    border-radius  : 5px ; 
+}
+.regesterForm label{
+    text-transform: capitalize;
+}
+.regesterForm button{
+    width: 70%;
+    text-align: center;
+    box-shadow: 2px 2px 4px black;
+    background-color: aqua;
+    margin: 5px;
+    border: 2px solid transparent  ; 
+    border-radius : 5px 
+}
+@media screen and (max-width : 500px) {
+.regesterForm{
+    width: 95vw;
+}
+.regesterForm > div{
+    width: 95%;
+}
+.regesterForm button{
+    width: 95%;
+}    
+}

@@ -24,8 +24,8 @@ export const getGoals = async (token : string | undefined , emitAction : Functio
     if(data){
         console.log("data from get goals ")
         console.log(data)
-        emitAction(goalActionTypes.GOAL_SUCCUSS , data)
-    }
+      emitAction(goalActionTypes.GOAL_SUCCUSS , data) }
+    
     else {
         emitAction(goalActionTypes.GOAL_ERROR  , error)
     }

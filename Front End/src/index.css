@@ -30,6 +30,21 @@
 .link:hover{
     color : inherit
 }
+.homeIconBtn{
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    font-size: larger;
+    background-color: transparent;
+    padding: 5px 15px ;
+    border-radius : 10px ; 
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 4px black , -2px -2px 4px black ;
+}
+.homeIconBtn:hover{
+    color :  yellow ; 
+    text-shadow: 2px ;
+}
 @media screen and (max-width : 600px) {
 .desktop{
         display: none;
@@ -38,5 +53,7 @@
 .mobileDisplay{
     display: block;
 }
-
+.homeIconBtn{
+    box-shadow: none;
+}
 }

@@ -4,7 +4,7 @@
  align-items: center;
  justify-content: space-around;
  flex-direction: column;
- background-color: aqua;
+ background: linear-gradient(yellowgreen, rgb(217, 233, 186));
 }
 .createGorlGrid{
     display: grid;
@@ -19,12 +19,11 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(5, 109, 183);
-    box-shadow: 20px 20px 50px rgb(5, 109, 183);
+    box-shadow: 5px 5px 5px rgb(5, 109, 183) , -5px -5px 10px rgb(5, 109, 183) ;
     flex-direction: column;
     border-radius: 5px;
     padding: 25px;
-    width: 40%;
-    margin: 50px;
+    margin: 50px  0px;
 }
 .goalPageHeader{
     display: flex;
@@ -73,9 +72,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: rgb(64, 183, 205);
     padding : 15px;
-    margin: 5px;
-    width: 90%;   
+    margin: 15px;
+    width: 100%;   
     height: 100%;
     box-shadow: 4px 4px 8px black , -2px -2px 4px black;
 }
@@ -245,6 +245,11 @@
     cursor: pointer;
 
 }
+.goalButtonsSkeleton{
+    width: 30%;
+    
+    height: 90%;
+}
 @media screen and (max-width : 600px) {
  .goalPageHeader{
     flex-direction: column;
@@ -253,7 +258,7 @@
     width: 90vw;
  }
  .createGorlGrid{
-    background-color : aqua ; 
+
     grid-template-columns: 1fr 1fr;
     /* grid-template-rows: 1fr; */
  }

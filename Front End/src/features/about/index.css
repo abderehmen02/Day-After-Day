@@ -1,0 +1,41 @@
+.aboutPage{
+    width: 100vw;
+    background: linear-gradient(aqua , rgb(165, 244, 244) );    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction : column ; 
+}
+.aboutPage > h2{
+    margin: 20px;
+    text-transform: capitalize;
+}
+.aboutComponent{
+    width: 70vw;
+    box-shadow: 2px 2px 4px black , -2px -2px 4px black ;
+    margin: 20px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+}
+.aboutComponent> h2{
+    margin: 10px;
+    text-transform: capitalize;
+}
+.aboutSubComponent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+.aboutSubComponent > h5{
+    text-transform: capitalize;
+    margin: 5px;
+ 
+}

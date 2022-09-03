@@ -1,0 +1,26 @@
+
+.skeleton {
+    background-color: #ddd;
+}
+
+.skeleton.title{
+    width: 50%;
+    margin: 15px;
+    height: 20px;
+}
+
+.skeleton.text{
+    width: 95%;
+    height : 13px; 
+    margin: 5px;
+}
+
+.skeleton.article{
+    width: 95%;
+    height: 95%;
+}
+.skeletonWraper{
+    height: 20px;
+    width: 100%;
+    
+}

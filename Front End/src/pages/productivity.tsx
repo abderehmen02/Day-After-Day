@@ -1,14 +1,7 @@
 import React, { useState ,useEffect } from 'react'
 import {useSelector , useDispatch} from 'react-redux'
 import { stateType } from '../state/reducers'
-import {
-  ResponsiveContainer,
-  AreaChart,
-  XAxis,
-  YAxis,
-  Area,
-  Tooltip,
-  CartesianGrid } from "recharts";
+
 import { format, parseISO, subDays } from "date-fns";
 
 import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoAction  , userInfoState, userInfoExistState , productivityActionTypes, productivityState, userLoginState, oneProductivityState } from '../types';

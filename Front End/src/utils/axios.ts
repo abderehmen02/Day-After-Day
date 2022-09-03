@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 import 'dotenv' 
 import {BACKEND_SERVER} from '../config/default'
 

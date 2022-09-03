@@ -1,7 +1,7 @@
 import React , { useEffect }from 'react'     ; 
 import {useSelector , useDispatch} from 'react-redux'
 import { BrowserRouter , Routes, Route  } from "react-router-dom";
-import {Header , Nav} from './components'
+import {Header } from './components'
 import {Home , Login , Regester , Productivity} from './pages'
 import  LoggedRoute  from  './Routes/loggedRoute'
 import   UnloggedRoute from './Routes/unloggedRoute'

@@ -10,7 +10,7 @@ import {addDays} from 'date-fns'
 import goalImage from "../../assets/images/goal.png"
 import { userLoginState } from "../../types"
 import goalImageTwo from '../../assets/images/goal2.png'
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import goalLineImageBg from '../../assets/images/goal3.jpg'
 
@@ -23,7 +23,7 @@ export const DisplayOneGoal = ({goal} : {goal : oneGoalState}): JSX.Element=>{
       <div className="goalDescreption goalInfoItem" > <p> {goal.descreption}</p> </div>
       <div className="goalInfoItem">  {goal.deadLine.toString().slice( 0 , 10)} </div>
       <div className="goalInfoItem completedDisplay" > completed :  {  goal.completed ?    <i className="bi bi-check-circle-fill icon"></i> : <i className="bi bi-check-circle icon" ></i> }</div>
- <div className="girdProgress desktop" style={{width : "100%" , height : '100%'}} >      <CircularProgressbar  value={goal.progress} text={`${goal.progress}%`} /> </div> 
+ <div className="girdProgress desktop" style={{width : "100%" , height : '100%'}} >      <CircularProgressbar styles={buildStyles({pathColor :'black' , textColor : 'black' })} value={goal.progress} text={`${goal.progress}%`} /> </div> 
     </div>
 }
 
@@ -154,3 +154,5 @@ allGoals.map(goal =>{
         }</div>
 </div>
 }
+
+

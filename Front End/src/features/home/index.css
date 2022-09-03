@@ -3,11 +3,11 @@
     align-items: center;
     justify-content: space-around;
     width: 100vw;
-    height: 100vh;
+    height: 100vh ; 
     flex-direction: column;
+    background-color : yellowgreen
 }
 .header{
-    background-color: red;
    padding: 10px;
 }
 
@@ -30,7 +30,6 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: aquamarine;
     width: 100vw;
     height: 40vh;
 }
@@ -42,19 +41,47 @@
      padding: 5px 20px;
      font-style: normal; 
     cursor: pointer;
+    text-transform: capitalize;
 }
 .homeButtons{
     display: flex;
     align-items: center;
     justify-content:  space-around;
-    border: 2px solid red;
 }
 .loginBtn{
     background-color: rgb(9, 48, 175);
     border: 2px solid rgb(9, 48, 175);
-    color : whitesmoke ;
 }
-.loginBtn:hover{
-    color : yellow   ; 
+.homeBtn:hover{
+    color:  yellow;
+    text-shadow: 1px 1px 3px black  , -1px -1px 3px black;
+}
+.loginBtn:hover{ 
     box-shadow: 2px 2px -4px yellow , -2px -2px 4pxx yellow;
+}
+.regesterBtn{
+    background-color :  aqua; 
+    border: 2px solid aqua;
+}
+.aboutHomeBtn{
+    background-color: aqua;
+        border: 2px solid aqua;
+}
+@media screen and (max-width : 500px) {
+    .homePage{
+        height: fit-content;
+    }
+   .homeBody{
+    flex-direction: column;
+    height: fit-content;
+   }
+   .homeButtons{
+    flex-direction: column;
+   }
+   .homeBtn{
+    width: 60vw;
+   }
+   .homeDesk{
+    display: none;
+   }
 }

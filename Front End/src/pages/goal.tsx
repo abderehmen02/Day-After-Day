@@ -1,11 +1,12 @@
 import React , { useState  , useEffect} from 'react'
 import {useDispatch , useSelector} from 'react-redux'
-
+ 
 import { stateType } from '../state/reducers'
-import {getGoals, } from  '../features/goals'
+import {getGoals, AllGoalsSkeleton } from  '../features/goals'
 import { goalState, oneGoalState , userLoginState } from '../types'
 import {bindActionCreators} from "redux"
-import {GoalImageLine, MapGoals, OneGoal} from '../features/goals/components'
+import {GoalImageLine, MapGoals, OneGoal  } from '../features/goals/components'
+
 import * as ActionCreators from '../state/actionCreators'
 import LogOut from '../components/logOut'
 import NavBar from '../components/loggedNav'
@@ -28,21 +29,19 @@ function Goal() {
 // getting all the goals when the page rendres
 useEffect(() => {
     userLoginInfo.token &&   getGoals( userLoginInfo.token , emitAction )
+   
 }
 , [])
 console.log(userGoalsInfo)
 console.log("goals info")
 
-    if(userGoalsInfo.loading){
-      return <h1>getting goals</h1>
-    }
 
    return (
     <div className='goalPage staticPage' >       
-
     <Header/>
     <GoalImageLine/>
-<MapGoals allGoals={userGoalsInfo.data.allGoals} />
+
+{ userGoalsInfo.loading ?   <AllGoalsSkeleton/> : <MapGoals allGoals={userGoalsInfo.data.allGoals} /> }
     <LogOut/> 
       </div>
    )}

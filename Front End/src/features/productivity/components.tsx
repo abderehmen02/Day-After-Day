@@ -4,9 +4,9 @@ import { useDispatch ,useSelector  } from 'react-redux'  ;
 import { useNavigate } from 'react-router-dom'   ;
 import { bindActionCreators } from 'redux'      ;
 import { stateType } from '../../state/reducers';
-import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoAction  , userInfoState, userInfoExistState , productivityActionTypes, productivityState, userLoginState, oneProductivityState } from '../../types';
+import { loginSuccssAction  , userLoginTypes , userInfoActionTypes , userInfoAction  , userInfoState, userInfoExistState , productivityActionTypes, productivityState, userLoginState, oneProductivityState } from '../../types';
 import * as actionsCreators from '../../state/actionCreators';
-import {ResponsiveContainer , Legend , CartesianGrid  , Bar ,BarChart , Area ,  XAxis , YAxis , Tooltip } from 'recharts'
+import {ResponsiveContainer  , Cross , Legend , CartesianGrid  , Bar ,BarChart , Area ,  XAxis , YAxis , Tooltip } from 'recharts'
 import CustomTooltip from './tooltip';
 import {parseISO , format} from 'date-fns'
 
@@ -41,7 +41,7 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
     return   <div   className='graph'  >
  <ResponsiveContainer width="100%" height={400}>
          <BarChart data={days}>
-         <CartesianGrid strokeDasharray="3 3" />
+         <CartesianGrid strokeDasharray="0.3  0.31" />
         <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
@@ -49,7 +49,7 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
           </linearGradient>
         </defs>
 
-        <Bar dataKey="value" stroke="#2451B7" fill="url(#color)" />
+        <Bar dataKey="value" stroke="black" strokeLinecap='round' strokeWidth={2} fill="url(#color)" />
 
         <XAxis
           dataKey="day"
@@ -65,14 +65,17 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
         />
 
         <YAxis
+            max={10}
           dataKey="value"
           axisLine={false}
           tickLine={false}
           tickCount={8}
 
-        />
+        /> <Legend/>
+        <Cross x={10} y={1} width={2} height={50} />
           <Tooltip/>
         {/* <CartesianGrid opacity={0.1} vertical={false} /> */}
       </BarChart>
     </ResponsiveContainer>   </div>
 }
+

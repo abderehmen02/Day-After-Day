@@ -8,7 +8,10 @@ import { loginSuccssAction  , userLoginTypes , userInfoActionTypes , userInfoAct
 import * as actionsCreators from '../../state/actionCreators';
 import {ResponsiveContainer  , Cross , Legend , CartesianGrid  , Bar ,BarChart , Area ,  XAxis , YAxis , Tooltip } from 'recharts'
 import CustomTooltip from './tooltip';
-import {parseISO , format} from 'date-fns'
+import {parseISO , format} from 'date-fns'; 
+import { months } from '../../assets/months';
+import productivityImageOne from '../../assets/images/productivity11.png'
+import productivityImageTwo from '../../assets/images/productivity12.png'
 
 export const CreateProductivity  =  () : JSX.Element =>{
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
@@ -25,12 +28,17 @@ export const CreateProductivity  =  () : JSX.Element =>{
   const {emitAction}= bindActionCreators(actionsCreators , dispatch)  
 console.log("generating days")
 
-  return (  <div className='createProductivity' >
+  return (  <div className='footerProductivity' >
+  <img src={productivityImageOne} />
+  <div className='createProductivity' >
+    <h6> Create Productivity <i className="bi bi-plus-circle-fill icon"></i> </h6>
   <input className='createProductivityItem productivityInput' placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
    <input className='createProductivityItem' type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input>
   <button className='createProductivityItem add' onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></button>
   <button  className='createProductivityItem delete'  onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </button>
- </div>    )
+ </div> 
+ <img src={productivityImageTwo} />
+  </div>  )
 }
 
 
@@ -79,3 +87,10 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
     </ResponsiveContainer>   </div>
 }
 
+export const Header  = ():JSX.Element=>{
+  
+  return <div className='productivityHeader' >
+<h4>Productivity</h4>
+<h6>{new Date().getDate()} ' {months[new Date().getMonth()]}</h6>
+</div>
+}

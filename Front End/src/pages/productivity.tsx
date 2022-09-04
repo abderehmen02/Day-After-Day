@@ -11,7 +11,7 @@ import * as actionsCreators from '../state/actionCreators';
 import CustomTooltip from '../features/productivity/tooltip';
 import {submitProd , deleteProd} from '../features/productivity'
 import LogOut from '../components/logOut';
-import { CreateProductivity , Graph } from '../features/productivity/components';
+import { CreateProductivity , Graph, Header } from '../features/productivity/components';
 
 
 
@@ -91,6 +91,7 @@ console.log(date)
 
   return (
 <div className='productivityPage' >
+  <Header/>
   { productivityInfo.loading ? <div> loading...</div> :(
     <Graph days={days} />
 )

@@ -35,30 +35,43 @@ console.log("generating days")
 
 
 export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
+  console.log("days from graph")
+  console.log(days)
     return   <div   className='graph'  >
-<ResponsiveContainer  width="70%" height={400}>
-<div>
-<AreaChart data={days} >
-      <defs>
+ <ResponsiveContainer width="100%" height={400}>
+      <AreaChart data={days}>
+        <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
             <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
           </linearGradient>
         </defs>
-  <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
-</AreaChart>
 
- <XAxis   dataKey="day"
+        <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
+
+        <XAxis
+          dataKey="date"
           axisLine={false}
           tickLine={false}
+          // tickFormatter={(str) => {
+          //   const date = parseISO(str);
+          //   if (date.getDate() % 7 === 0) {
+          //     return format(date, "MMM, d");
+          //   }
+          //   return "";
+          // }}
         />
 
-        <YAxis    dataKey="value"
-                  axisLine={false}
-                  tickLine={false}
+        <YAxis
+          dataKey="value"
+          axisLine={false}
+          tickLine={false}
+          tickCount={8}
+          tickFormatter={(number) => `$${number.toFixed(2)}`}
         />
 
-        <Tooltip content={<CustomTooltip/>} /></div>
-        </ResponsiveContainer>
-    </div>
+ 
+        {/* <CartesianGrid opacity={0.1} vertical={false} /> */}
+      </AreaChart>
+    </ResponsiveContainer>   </div>
 }

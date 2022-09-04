@@ -3,15 +3,16 @@
     align-items: center;
     justify-content: space-around;
     width: 100vw;
-    height: 100vh;
+    
     flex-direction: column;
     background-color: aquamarine;
 }
 .graph{
     display: flex;
     width: 90%;
+    margin: 50px;
     background-color: black;
-   border: 2px solid red;
+    box-shadow: 5px 5px 6px black , -5px -5px 5px black;
    border-radius: 5px;
 }
 .createProductivity{
@@ -51,4 +52,15 @@
 .productivityInput:focus{
 box-shadow: 2px 3px 6px white, 2px 3px 6px white ,  ;
 border: 2px solid transparent;
+}
+@media screen and (max-width : 500px) {
+    .createProductivity{
+        margin: 15px;
+        flex-direction: column;
+        height: fit-content;
+    }
+    .createProductivity > *{
+        width: 70%;
+        margin: 20px;
+    }
 }

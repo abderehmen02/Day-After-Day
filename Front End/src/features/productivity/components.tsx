@@ -6,8 +6,9 @@ import { bindActionCreators } from 'redux'      ;
 import { stateType } from '../../state/reducers';
 import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoAction  , userInfoState, userInfoExistState , productivityActionTypes, productivityState, userLoginState, oneProductivityState } from '../../types';
 import * as actionsCreators from '../../state/actionCreators';
-import {ResponsiveContainer   ,AreaChart , Area ,  XAxis , YAxis , Tooltip } from 'recharts'
+import {ResponsiveContainer , Legend , CartesianGrid  , Bar ,BarChart , Area ,  XAxis , YAxis , Tooltip } from 'recharts'
 import CustomTooltip from './tooltip';
+import {parseISO , format} from 'date-fns'
 
 export const CreateProductivity  =  () : JSX.Element =>{
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
@@ -39,7 +40,8 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
   console.log(days)
     return   <div   className='graph'  >
  <ResponsiveContainer width="100%" height={400}>
-      <AreaChart data={days}>
+         <BarChart data={days}>
+         <CartesianGrid strokeDasharray="3 3" />
         <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
@@ -47,19 +49,19 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
           </linearGradient>
         </defs>
 
-        <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
+        <Bar dataKey="value" stroke="#2451B7" fill="url(#color)" />
 
         <XAxis
-          dataKey="date"
+          dataKey="day"
           axisLine={false}
           tickLine={false}
-          // tickFormatter={(str) => {
-          //   const date = parseISO(str);
-          //   if (date.getDate() % 7 === 0) {
-          //     return format(date, "MMM, d");
-          //   }
-          //   return "";
-          // }}
+          tickFormatter={(str) => {
+            const date = parseISO(str).toISOString();
+            console.log("date")
+            console.log(typeof date)
+            console.log(date.slice(8 , 10))
+            return date.slice(8,10)
+          }}
         />
 
         <YAxis
@@ -67,11 +69,10 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
           axisLine={false}
           tickLine={false}
           tickCount={8}
-          tickFormatter={(number) => `$${number.toFixed(2)}`}
-        />
 
- 
+        />
+          <Tooltip/>
         {/* <CartesianGrid opacity={0.1} vertical={false} /> */}
-      </AreaChart>
+      </BarChart>
     </ResponsiveContainer>   </div>
 }

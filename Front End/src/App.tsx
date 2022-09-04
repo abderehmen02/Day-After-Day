@@ -9,6 +9,7 @@ import { stateType} from './state/reducers'
 import { userInfoAuth } from './actions/auth';
 import { login } from './state/actionCreators';
 import { userLoginTypes } from './types';
+import { ResponsiveContainer} from 'recharts'
 
 const App:React.FC = () =>{
     const userInfo  = useSelector( ( state : stateType )=> state.userInfo) ; 

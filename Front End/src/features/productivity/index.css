@@ -1,0 +1,54 @@
+.productivityPage{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    background-color: aquamarine;
+}
+.graph{
+    display: flex;
+    width: 90%;
+    background-color: black;
+   border: 2px solid red;
+   border-radius: 5px;
+}
+.createProductivity{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    width: 90%;
+    height: 100px;
+    box-shadow: 2px 2px 4px black , -2px -2px 4px black ;
+}
+.createProductivityItem{
+    padding: 10px  20px ;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+.createProductivityItem.delete{
+    color: red;
+    border: 2px solid red;
+    background-color: transparent;
+    box-shadow: 2px 2px 4px black;
+}
+.createProductivityItem.delete:hover{
+    background-color: red;
+    color: white;
+}
+.createProductivityItem.add{
+    color : rgb(0, 94, 255) ; 
+    border: 2px solid rgb(0, 94, 255) ;
+    background-color: transparent;
+        box-shadow: 2px 2px 4px black;
+}
+.createProductivityItem.add:hover{
+    background-color:rgb(0, 94, 255) ;
+        color: white;
+}
+.productivityInput:focus{
+box-shadow: 2px 3px 6px white, 2px 3px 6px white ,  ;
+border: 2px solid transparent;
+}

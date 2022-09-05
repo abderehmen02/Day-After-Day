@@ -10,7 +10,10 @@
 .header{
    padding: 10px;
 }
-
+.loginGuestBtn{
+        background-color: aqua;
+            border: 2px solid aqua;
+}
 
 .homeTitle{
     font-family: Arial, Helvetica, sans-serif;

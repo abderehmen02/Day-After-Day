@@ -82,7 +82,7 @@ border: 2px solid transparent;
     grid-column-end: 3;
     color: white  ; 
     font-weight: bolder;
-    
+
     padding: 15px;
     display: flex;
     align-items: center;
@@ -98,7 +98,7 @@ border: 2px solid transparent;
     justify-content: space-around;
 }
 
-@media screen and (max-width : 500px) {
+@media screen and (max-width : 1100px) {
     .createProductivity{
         margin: 15px;
         flex-direction: column;
@@ -110,5 +110,8 @@ border: 2px solid transparent;
     }
     .footerProductivity{
         flex-direction: column;
+    }
+    .createProductivity{
+        width: 95vw;
     }
 }

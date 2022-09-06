@@ -23,11 +23,7 @@ export const Productivity:React.FC  = ()=> {
   const [days, setDays] = useState<any>([])
   const state = useSelector((state : stateType)=>state)
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ;
-  console.log(productivityInfo) 
-  console.log("productivity info")
   const [error, setError] = useState<object>({})
-  console.log("state from productivity")
-  console.log(state)
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
@@ -36,19 +32,13 @@ export const Productivity:React.FC  = ()=> {
   const generateDays  = ()=>{
     // we will desplay the productivity 30 days before the current day
     const formatedDays  = []
-     console.log("generating days") ;   
     for(let i  = 0  ; i< 30  ; i++){
-      console.log("for loop")
       let day = subDays(new Date() , i).toISOString().slice(0, 10) ; 
-      console.log("day")
-      console.log(day)
       let dayInProductivityInfo = productivityInfo.data?.allProductivities.find(( productivity )=>{
         console.log(productivity.day)
         return productivity.day === day
       })
-      console.log(productivityInfo)
       if( dayInProductivityInfo ){
-        console.log("condition is true")
         formatedDays.push({day , value : dayInProductivityInfo.value} )
         continue
       }
@@ -56,7 +46,6 @@ export const Productivity:React.FC  = ()=> {
      
     }
     setDays(formatedDays)
-    console.log("days generated")
      } 
 useEffect(()=>{
 generateDays()
@@ -86,8 +75,6 @@ else console.log("no data or error have been reveived")
 
 
 
-console.log("date prod")
-console.log(date)
 
   return (
 <div className='productivityPage' >

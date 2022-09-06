@@ -15,13 +15,8 @@ const App:React.FC = () =>{
     const userInfo  = useSelector( ( state : stateType )=> state.userInfo) ; 
     const userLogin = useSelector((state : stateType) => state.userLogin) ; 
     const dispatch = useDispatch()
-    console.log(userInfo , userLogin)
     const storageUser = localStorage.getItem("day-after-day")
 
-console.log("chekc here")
-console.log(Boolean(userInfo))
-console.log(Boolean(Object.keys(userLogin).length)) 
-console.log(Boolean(storageUser))
 
 
     useEffect(  () => {
@@ -29,20 +24,9 @@ async function fetchUser(){
       if(storageUser){
  const {data , error} =  await userInfoAuth(storageUser)
  login(storageUser , data)(dispatch)
-    console.log("first user effect data")
-    console.log(Boolean(userInfo && Object.keys(userLogin).length && storageUser))
-    console.log(userInfo)
-    console.log(userLogin)
-    console.log(storageUser)
-    console.log('data')
       } }
       fetchUser()
     }, [storageUser])
-  console.log("user login")
-  console.log(userLogin)
-  console.log("user info")
-  console.log(userInfo)
-  
  return (
 <BrowserRouter>
 

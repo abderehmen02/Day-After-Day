@@ -20,13 +20,10 @@ export const CreateProductivity  =  () : JSX.Element =>{
   const [days, setDays] = useState<oneProductivityState[]>([])
   const state = useSelector((state : stateType)=>state)
   const [error, setError] = useState<object>({})
-  console.log("state from productivity")
-  console.log(state)
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
   const navigate = useNavigate()
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
   const {emitAction}= bindActionCreators(actionsCreators , dispatch)  
-console.log("generating days")
 
   return (  <div className='footerProductivity' >
   <img src={productivityImageOne} />
@@ -44,8 +41,6 @@ console.log("generating days")
 
 
 export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
-  console.log("days from graph")
-  console.log(days)
     return   <div   className='graph'  >
  <ResponsiveContainer width="100%" height={400}>
          <BarChart data={days}>

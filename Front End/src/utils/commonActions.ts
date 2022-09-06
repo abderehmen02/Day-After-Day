@@ -7,7 +7,7 @@ const responceData = await postReq( path ,  body , token) ;
 if(responceData.succuss){
     return {data : responceData.data}
 } 
-else { console.log("responce data from create action") ;
+else { 
 console.log(responceData);   return {error : responceData.error } }
 }
 catch(error){
@@ -20,10 +20,8 @@ return {error }
 export const publicPost = async (path : string , body : object) : Promise<{error? : any , data? : any}>=>{
     try {
 const responceData = await postReq(path , body , null)
-console.log(responceData)
-console.log("loggin data")
+
 if(responceData.succuss){
-    console.log("data is succuss")
     return {data : responceData.data}
 }
 else return {error  : responceData.error}
@@ -71,8 +69,6 @@ console.log(responceData)
 }
 
 else {
-    console.log("responce data from delete sercure not succuss")
-    console.log(responceData)
      return {error : responceData.error}
  } }
     catch(error ){

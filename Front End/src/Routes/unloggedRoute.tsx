@@ -10,7 +10,7 @@ import { pathToFileURL } from "url"
 
 function UnloggedRoute() {
 const location : Location = useLocation() ;
-console.log("location")
+
 return ( 
 <div>
 <button style={{display : ( location.pathname === "/home"? "none" : "block" ) }} className="homeIconBtn" >  <Link to="/home" className="link homeLink"><span className="homeDesk" > Home </span> <i className="bi bi-house-door-fill icon homeIcon"></i> </Link> </button>

@@ -27,10 +27,7 @@ export const Buttons = () : JSX.Element =>{
    const {login , emitAction } = bindActionCreators(actionCreators , dispatch)
 
     const loginGuest = ()=>{
-      console.log(process.env.REACT_APP_GUEST_USERNAME)
-      console.log(process.env.REACT_APP_GUEST_PASSWORD)
-      console.log("data")
-     loginAction({ email  : process.env.REACT_APP_GUEST_USERNAME , password :  process.env.REACT_APP_GUEST_PASSWORD } , login , emitAction , navigate )
+         loginAction({ email  : process.env.REACT_APP_GUEST_USERNAME , password :  process.env.REACT_APP_GUEST_PASSWORD } , login , emitAction , navigate )
     }
     return           <div className="homeButtons"  >
     <button className='homeBtn loginBtn'    ><Link  className='link'  to='/login'  > login <i className="bi bi-box-arrow-in-right"></i> </Link> <br/></button>

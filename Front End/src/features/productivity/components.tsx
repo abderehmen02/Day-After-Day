@@ -41,6 +41,9 @@ export const CreateProductivity  =  () : JSX.Element =>{
 
 
 export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
+    console.log("days from graph")
+  console.log(days)
+
     return   <div   className='graph'  >
  <ResponsiveContainer width="100%" height={400}>
          <BarChart data={days}>
@@ -58,12 +61,8 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
           dataKey="day"
           axisLine={false}
           tickLine={false}
-          tickFormatter={(str) => {
-            const date = parseISO(str).toISOString();
-            console.log("date")
-            console.log(typeof date)
-            console.log(date.slice(8 , 10))
-            return date.slice(8,10)
+          tickFormatter={(str)=>{
+            return str.slice(8,10)
           }}
         />
 

@@ -33,25 +33,17 @@ export const Productivity:React.FC  = ()=> {
   const generateDays  = ()=>{
     // we will desplay the productivity 30 days before the current day
     const formatedDays  = [] ; 
-    for(let i  = 20  ; i>= -1  ; i--){
+    for(let i  = 20  ; i>= 0  ; i--){
       let day = subDays(new Date() , i).toISOString().slice(0, 10) ; 
-      console.log(i)
-      console.log(day)
-      console.log(new Date())
       let dayInProductivityInfo = productivityInfo.data?.allProductivities.find(( productivity )=>{
-        console.log(productivity.day)
         return productivity.day === day
       })
       if( dayInProductivityInfo ){
-        console.log("day in productivity info")
-        console.log(dayInProductivityInfo)
         formatedDays.push({day , value : dayInProductivityInfo.value} )
         continue
       }
      formatedDays.push({day , value :  0 }) ;
 } 
-console.log("formatedDays")
-console.log(formatedDays)
     setDays(formatedDays)
      } 
 useEffect(()=>{

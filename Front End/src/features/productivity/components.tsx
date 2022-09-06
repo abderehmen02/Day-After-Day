@@ -15,6 +15,8 @@ import productivityImageTwo from '../../assets/images/productivity12.png'
 
 export const CreateProductivity  =  () : JSX.Element =>{
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
+  console.log(productivityInfo)
+  console.log("productivity info")
   const  dispatch = useDispatch()   ;
   const [date, setDate] = useState<string>(new Date().toISOString())
   const [days, setDays] = useState<oneProductivityState[]>([])
@@ -28,9 +30,9 @@ export const CreateProductivity  =  () : JSX.Element =>{
   return (  <div className='footerProductivity' >
   <img src={productivityImageOne} />
   <div className='createProductivity' >
-    <h6> Create Productivity <i className="bi bi-plus-circle-fill icon"></i> </h6>
-  <input className='createProductivityItem productivityInput' placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> 
-   <input className='createProductivityItem' type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input>
+  <h6> Create Productivity <i className="bi bi-plus-circle-fill icon"></i> </h6>
+<div className='productivityInputContainer' >  <input className='createProductivityItem productivityInput' placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> <span>number of hours</span> </div> 
+<div className='productivityInputContainer' ><input className='createProductivityItem' type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input><span>date of productivity</span></div>
   <button className='createProductivityItem add' onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></button>
   <button  className='createProductivityItem delete'  onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </button>
  </div> 
@@ -45,7 +47,7 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
   console.log(days)
 
     return   <div   className='graph'  >
- <ResponsiveContainer width="100%" height={400}>
+         <ResponsiveContainer width="100%" height={400}>
          <BarChart data={days}>
          <CartesianGrid strokeDasharray="0.3  0.31" />
         <defs>

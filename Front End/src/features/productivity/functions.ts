@@ -14,8 +14,12 @@ export const   submitProd = async (body : {value : number | undefined , date : s
 
 
 export const deleteProd = async (id : string | undefined, token : string | undefined , emitAction : Function , setErr : Function )=>{
+    console.log('id')  ; 
+    console.log(id)    ; 
     const {data , error} = await deleteSecureAction(`prod/${id}`  , token )
     if(data){
+        console.log("data from delete prod") ; 
+        console.log(data)  ; 
 emitAction(productivityActionTypes.PRODUCTIVITY_SUCCUSS , data)
     }
     else {

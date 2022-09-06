@@ -32,16 +32,13 @@ const deleteProd = asyncWrapper(async(req , res)=>{
 console.log(req.user)
 const prodsp = await prodModel.findOne({user: req.user._id  , _id : req.params.id})
 console.log(prodsp)
-if(!req.params.id) sendErr(res , StatusCodes.BAD_REQUEST , "you didn't provide an id for the productivity")  ; 
-const date = new Date().toISOString()
-const day = date.slice( 0 , 10) 
+if(!req.params.day) sendErr(res , StatusCodes.BAD_REQUEST , "you didn't provide an id for the productivity")  ; 
 
-const prodObj = await prodModel.findOne({_id : req.params.id  , user : req.user._id})
 // the user can only delete the productivity of the current day
 // if(prodObj.day !== day) sendErr(res , StatusCodes.FORBIDDEN , "you can not delete the productivity of the previous days")  ;
 
 // deleting the productivity from the db
-await prodModel.findOneAndDelete({_id: req.params.id , user: req.user._id })
+await prodModel.findOneAndDelete({day: req.params.day , user: req.user._id })
 const prods = await prodModel.find({user : req.user._id})
 if(!prods) sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not get the prods from the database")
 successStatus(res , StatusCodes.OK  , prods)

@@ -1,0 +1,90 @@
+.homePage{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh ; 
+    flex-direction: column;
+    background-color : yellowgreen
+}
+.header{
+   padding: 10px;
+}
+.loginGuestBtn{
+        background-color: aqua;
+            border: 2px solid aqua;
+}
+
+.homeTitle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+    margin: 5px;
+    font-style: italic;
+}
+.titleInfo{
+    font-size: larger;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px;
+}
+.homeBody{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 40vh;
+}
+.homeBtn{
+    font-size: large;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+     margin: 10px;  
+     padding: 5px 20px;
+     font-style: normal; 
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.homeButtons{
+    display: flex;
+    align-items: center;
+    justify-content:  space-around;
+}
+.loginBtn{
+    background-color: rgb(9, 48, 175);
+    border: 2px solid rgb(9, 48, 175);
+}
+.homeBtn:hover{
+    color:  yellow;
+    text-shadow: 1px 1px 3px black  , -1px -1px 3px black;
+}
+.loginBtn:hover{ 
+    box-shadow: 2px 2px -4px yellow , -2px -2px 4pxx yellow;
+}
+.regesterBtn{
+    background-color :  aqua; 
+    border: 2px solid aqua;
+}
+.aboutHomeBtn{
+    background-color: aqua;
+        border: 2px solid aqua;
+}
+@media screen and (max-width : 500px) {
+    .homePage{
+        height: fit-content;
+    }
+   .homeBody{
+    flex-direction: column;
+    height: fit-content;
+   }
+   .homeButtons{
+    flex-direction: column;
+   }
+   .homeBtn{
+    width: 60vw;
+   }
+   .homeDesk{
+    display: none;
+   }
+}

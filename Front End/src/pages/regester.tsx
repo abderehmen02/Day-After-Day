@@ -6,10 +6,8 @@
   import {useDispatch , useSelector} from 'react-redux'
   import {bindActionCreators} from 'redux'
   import { useNavigate } from 'react-router-dom'
-
-
-
-
+  import { Header } from '../features/regester/components'
+  import '../features/regester/index.css'
 
 
   export const  Regester: React.FC = ()=> {
@@ -38,14 +36,14 @@
            }
  
   return (
-    <div>
-    <div>this is the regester page</div>
-    <form  >
-      <label>full name</label><input  onChange={(e)=>{setFullName(e.target.value)}} value={fullName}  ></input>
-      <label>email</label><input type="email"  onChange={(e)=>{setEmail(e.target.value)}}  value={email}  ></input>
-      <label>birthDate</label><input onChange={(e)=>{setBirthDate(e.target.value.toString())}} value={birthDate}  type='Date' ></input>
-      <label>password</label><input value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input>
-      <button onClick={(e)=>{handleSubmit(e)}} type="submit" >submit</button>
+    <div  className='regesterPage'  >
+    <Header/>
+     <form className='regesterForm' >
+<div><label>full name</label><input  onChange={(e)=>{setFullName(e.target.value)}} value={fullName}  ></input>   </div>
+<div><label>email</label><input type="email"  onChange={(e)=>{setEmail(e.target.value)}}  value={email}  ></input>    </div>
+<div><label>birthDate</label><input onChange={(e)=>{setBirthDate(e.target.value.toString())}} value={birthDate}  type='Date' ></input>  </div>
+<div><label>password</label><input value={password} onChange={(e)=>{setPassword(e.target.value)}} ></input> </div>
+      <button onClick={(e)=>{handleSubmit(e)}} type="submit" > regester </button>
       </form>
     </div>
   )

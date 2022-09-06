@@ -1,0 +1,32 @@
+.nav{
+    display: flex;
+    align-items : center ; 
+    justify-content: center;
+    width: 100vw;
+    padding: 15px;
+}
+.nav h4{
+    color : white ;  
+}
+.nav .list {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   flex-direction: row;
+   width: 70vw;
+}
+.nav .list .item{
+        border-radius : 10px  ; 
+    padding: 10px;
+}
+.nav .list .item:hover{
+    color : white ;
+
+}
+.logoutBtn{
+    background-color: transparent;
+    border: none;
+}
+.logoutBtn:hover {
+    color : white
+}

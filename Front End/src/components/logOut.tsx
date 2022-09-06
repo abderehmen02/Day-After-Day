@@ -23,7 +23,7 @@ navigate("/")
 
 
 return (
-    <div><button  onClick={logOut} >log out</button></div>
+    <div  ><button  onClick={logOut} className="logoutBtn">log out</button></div>
   )
 }
 

@@ -1,0 +1,59 @@
+*{
+    margin: 0px;
+    padding : 0px ; 
+}
+
+.staticPage{
+    width: 100vw;
+    min-height: 100vh;
+  
+    position : relative
+}
+.img{
+    background-size: cover;
+    background-position: center;
+}
+.title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.7em;
+     text-shadow: 2px 3px 5px black;
+     font-style: italic;
+}
+.mobileDisplay{
+    display: none;
+}
+
+.link{
+    text-decoration : none ; 
+    color : black
+}
+.link:hover{
+    color : inherit
+}
+.homeIconBtn{
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    font-size: larger;
+    background-color: transparent;
+    padding: 5px 15px ;
+    border-radius : 10px ; 
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 4px black , -2px -2px 4px black ;
+}
+.homeIconBtn:hover{
+    color :  yellow ; 
+    text-shadow: 2px ;
+}
+@media screen and (max-width : 600px) {
+.desktop{
+        display: none;
+    }
+
+.mobileDisplay{
+    display: block;
+}
+.homeIconBtn{
+    box-shadow: none;
+}
+}

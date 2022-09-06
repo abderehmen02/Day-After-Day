@@ -34,7 +34,7 @@ export const CreateProductivity  =  () : JSX.Element =>{
 <div className='productivityInputContainer' >  <input className='createProductivityItem productivityInput' placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> <span>number of hours</span> </div> 
 <div className='productivityInputContainer' ><input className='createProductivityItem' type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input><span>date of productivity</span></div>
   <button className='createProductivityItem add' onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></button>
-  <button  className='createProductivityItem delete'  onClick={()=>{deleteProd(productivityInfo.data?.current._id , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </button>
+  <button  className='createProductivityItem delete'  onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </button>
  </div> 
  <img src={productivityImageTwo} />
   </div>  )

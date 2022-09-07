@@ -42,7 +42,7 @@ const createJournaling = asyncWraper( async (req , res)=>{
     const newJournal = await journalingModel.findOneAndUpdate({user : req.user._id , id : req.params.id  } , journal , {new : true})
     if(newJournal){
         const allJournals = await journalingModel.find({user : req.user._id})
-        successStatus(res , StatusCodes.OK , allJournals)
+        return successStatus(res , StatusCodes.OK , allJournals)
     }
     sendErr( res , StatusCodes , "can not update the journal " )
 })

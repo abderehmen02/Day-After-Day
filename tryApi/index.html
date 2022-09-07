@@ -14,16 +14,16 @@
         try{
             console.log("journal")
 const getJournal = await fetch("http://localhost:2000/api/journaling/63187e5bac17ad0fdec9731e" , {
-method : 'DELETE'  ,
+method : 'PUT'  ,
 headers  : {
        'Content-Type': 'application/json',
         'Authorization': 'bareere barear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiaW1hZ2UiOiJpbml0IiwiYmlydGhEYXRlIjoiaW5pdCIsInZlcmlmaWVkIjoiaW5pdCIsIl9pZCI6ImluaXQiLCJlbWFpbCI6ImluaXQiLCJwYXNzd29yZCI6Im1vZGlmeSIsImZ1bGxOYW1lIjoiaW5pdCIsIl9fdiI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9pZCI6dHJ1ZSwiZW1haWwiOnRydWUsImltYWdlIjp0cnVlLCJiaXJ0aERhdGUiOnRydWUsImZ1bGxOYW1lIjp0cnVlLCJ2ZXJpZmllZCI6dHJ1ZSwiX192Ijp0cnVlfSwibW9kaWZ5Ijp7InBhc3N3b3JkIjp0cnVlfSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwic3RyaWN0TW9kZSI6dHJ1ZSwic2tpcElkIjp0cnVlLCJzZWxlY3RlZCI6e30sImZpZWxkcyI6e30sImV4Y2x1ZGUiOm51bGwsIl9pZCI6IjYzMDQ5Y2U3ZTE1NGEwOTA2M2FhZGViYyJ9LCIkaXNOZXciOmZhbHNlLCJfZG9jIjp7Il9pZCI6IjYzMDQ5Y2U3ZTE1NGEwOTA2M2FhZGViYyIsImVtYWlsIjoiYWJkZSIsImltYWdlIjoidW5rbm93blBlcnNvbi5wbmciLCJiaXJ0aERhdGUiOiIyMDIyLTA4LTAyVDAwOjAwOjAwLjAwMFoiLCJmdWxsTmFtZSI6ImFiZGUiLCJ2ZXJpZmllZCI6ZmFsc2UsIl9fdiI6MH0sImlhdCI6MTY2MjQ3MjUzNX0.vas70bcl0f9qVHsZGbaBmAylypcZlLZfLe4tdFK6dT8'
 } ,
-// body  : JSON.stringify({
-//         title: "journaling title",
-//         date: new Date().toISOString(),
-//         content: "therre is no journaling"
-//     })
+body  : JSON.stringify({
+        title: "updated url",
+        date: new Date().toISOString(),
+        content: "today is the day of the death"
+    })
 })   ; 
 const data = await getJournal.json()
 console.log(data)  }

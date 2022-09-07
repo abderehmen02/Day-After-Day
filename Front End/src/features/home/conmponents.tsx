@@ -32,7 +32,8 @@ export const Buttons = () : JSX.Element =>{
     return           <div className="homeButtons"  >
     <button className='homeBtn loginBtn'    ><Link  className='link'  to='/login'  > login <i className="bi bi-box-arrow-in-right"></i> </Link> <br/></button>
     <button className='homeBtn regesterBtn' ><Link  className='link'  to='/regester' > regester <i className="bi bi-person-plus icon"></i></Link></button>
-    <button className='homeBtn aboutHomeBtn' ><Link className='link' to="/about" > about the app <i className="bi bi-journal-text"></i> </Link> </button>
     <button className='homeBtn loginGuestBtn' onClick={loginGuest} > login as a guest </button>
+     <button className='homeBtn aboutHomeBtn' ><Link className='link' to="/about" > about the app <i className="bi bi-journal-text"></i> </Link> </button>
+   
     </div>
 }

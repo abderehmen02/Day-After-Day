@@ -1,6 +1,6 @@
 import React , { useState  , useEffect} from 'react'
 import {useDispatch , useSelector} from 'react-redux'
- 
+import {motion} from 'framer-motion';
 import { stateType } from '../state/reducers'
 import {getGoals, AllGoalsSkeleton } from  '../features/goals'
 import { goalState, oneGoalState , userLoginState } from '../types'
@@ -22,7 +22,7 @@ function Goal() {
    const userLoginInfo : userLoginState = useSelector((state: stateType) => state.userLogin )
    const userGoalsInfo : goalState = useSelector((state : stateType) =>state.goals)
    const { emitAction } = bindActionCreators(ActionCreators  , dispatch )
-
+console.log(state)
 
 // getting all the goals when the page rendres
 useEffect(() => {

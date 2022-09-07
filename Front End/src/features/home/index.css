@@ -47,28 +47,37 @@
     text-transform: capitalize;
 }
 .homeButtons{
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns : 1fr 1fr 1fr ; 
     align-items: center;
     justify-content:  space-around;
 }
 .loginBtn{
-    background-color: rgb(9, 48, 175);
+    background-color: rgb(19, 101, 215);
     border: 2px solid rgb(9, 48, 175);
 }
 .homeBtn:hover{
-    color:  yellow;
+    color:  white;
     text-shadow: 1px 1px 3px black  , -1px -1px 3px black;
 }
 .loginBtn:hover{ 
     box-shadow: 2px 2px -4px yellow , -2px -2px 4pxx yellow;
+    color: white
 }
 .regesterBtn{
     background-color :  aqua; 
     border: 2px solid aqua;
 }
 .aboutHomeBtn{
-    background-color: aqua;
+    background-color: yellowgreen;
         border: 2px solid aqua;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        box-shadow: 2px 2px 4px black , -2px -2px 4px black;
+}
+.aboutHomeBtn:hover{
+    background-color: rgb(0, 102, 255);
 }
 @media screen and (max-width : 500px) {
     .homePage{

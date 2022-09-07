@@ -40,7 +40,16 @@ const dailingValidator = joi.object({
     importantEvents: joi.array() ,
     date : joi.date().max("now") 
 })
-return dailingValidator.validate(body)
+return dailingValidator.validate(body)       ; 
 }
 
-module.exports = {validateIdea  , validateProd , validateGoal , validateDailing}
+const validateJournaling = (body)=>{
+const journalingValidator = joi.object({
+    title : joi.string() ,
+    content : joi.string().min(2) , 
+    date : joi.date().max("now")
+})
+return journalingValidator.validate(body) ; 
+}
+
+module.exports = {validateIdea  , validateProd , validateGoal , validateDailing , validateJournaling }

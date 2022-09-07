@@ -4,9 +4,7 @@ import {BACKEND_SERVER} from '../config/default'
 
 export const getReq = async  (path : string  , token?: String )=>{
     const url = BACKEND_SERVER + path
-    console.log(url)
-    console.log("getreq")
-    console.log(token)
+ 
     if(token){
         const pararms = {
              method: 'GET',
@@ -19,8 +17,7 @@ export const getReq = async  (path : string  , token?: String )=>{
      return responceData  
     }
     const responce = await fetch(url)
-    console.log(responce)
-    console.log("responce")
+
     const responceData = await responce.json()  ;
     return responceData
 }
@@ -28,12 +25,9 @@ export const getReq = async  (path : string  , token?: String )=>{
 
 export const postReq = async (path : string  ,  body  = {} ,  token? : String  | null )  =>{
   try{  const url : string =  process.env.React_App_BackEndServer + path   ; 
-    console.log('url')   ; 
-    console.log(url) ; 
+
     if(token){
-        console.log(token)
-        console.log("body")
-        console.log(body)
+
         const responce = await fetch(url , {
                 method: 'POST',
                 headers: {
@@ -42,15 +36,10 @@ export const postReq = async (path : string  ,  body  = {} ,  token? : String  |
                 },
                 body: JSON.stringify(body)
             })    
-console.log("responce")
-console.log(responce)
         const responceData = await responce.json()
         return responceData
     }
-     console.log("sending responce")
-     console.log(url)
      
-     console.log(body)
     const responce = await fetch(url , {
     method: 'POST', 
     headers: {
@@ -58,10 +47,7 @@ console.log(responce)
     },
     body: JSON.stringify(body)
 })        
-console.log("responce")
-console.log(responce)
                 const responceData = await responce.json()
-                console.log(responceData)
      
     return responceData }
     catch(error){
@@ -81,20 +67,12 @@ export const deleteReq = async (path : string , token : string | undefined)=>{
     }
         })
         const responceData = await responce.json()
-        console.log("res data")
-        console.log(responceData)
         return responceData; 
     }
 }
 
 export const putReq  = async (path : string , body :  object , token : string | undefined )=>{
  const url : string = process.env.React_App_BackEndServer+ path  ;
- console.log(url) ; 
- console.log("put url")
- console.log("body")
- console.log(body)
- console.log("token")
- console.log(token)
  if(token){
     const responce = await fetch(url , {
        method : 'PUT'  ,
@@ -105,7 +83,6 @@ export const putReq  = async (path : string , body :  object , token : string | 
        body  : JSON.stringify(body)
     })
 
-    console.log(responce)
     const responceData  = await responce.json() ; 
     return  responceData
  } 

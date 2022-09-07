@@ -1,7 +1,7 @@
-const  sendErr = (res   , {error , status})=>{
+const  sendError= (res   , {error , status})=>{
 res.status(status).json(error)  ; 
 }
-const sendError = (res , status=400 , error)=>{
+const sendErr = (res , status=400 , error)=>{
 console.log("sending error")
 console.log(status)
 res.status(status).json({error : error})

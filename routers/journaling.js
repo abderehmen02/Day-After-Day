@@ -3,4 +3,10 @@ const {createJournaling , deleteJournal , updateJournal , getJournaling} = requi
 const authorize = require("../middleWares/authorization")
 
 
-module.exports = router.get("/"  , authorize , getJournaling).post("/"  , authorize,createJournaling).put("/:id"  , authorize , updateJournal ).delete("/:id" , authorize , deleteJournal)
+router.get("/"  , authorize , getJournaling)
+router.post("/"  , authorize,createJournaling)
+router.put("/:id"  , authorize , updateJournal )
+router.delete("/:id" , authorize , deleteJournal)
+
+
+module.exports = router ; 

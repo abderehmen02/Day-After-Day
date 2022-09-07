@@ -22,7 +22,7 @@ function Goal() {
    const userLoginInfo : userLoginState = useSelector((state: stateType) => state.userLogin )
    const userGoalsInfo : goalState = useSelector((state : stateType) =>state.goals)
    const { emitAction } = bindActionCreators(ActionCreators  , dispatch )
-
+console.log(state)
 
 // getting all the goals when the page rendres
 useEffect(() => {

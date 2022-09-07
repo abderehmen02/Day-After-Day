@@ -8,12 +8,13 @@
 </head>
 <body>
     <button onclick="journal()" > journal </button>
+    <button onclick="login()" > login </button>
 </body>
 <script>
     async function journal (){
         try{
             console.log("journal")
-const getJournal = await fetch("http://localhost:2000/api/journaling/63187e5bac17ad0fdec97321" , {
+const getJournal = await fetch("https://dayy-after-day.herokuapp.com/api/journaling/63187e5bac17ad0fdec97321" , {
 method : 'DELETE'  ,
 headers  : {
        'Content-Type': 'application/json',
@@ -25,11 +26,35 @@ headers  : {
 //         content: "today is the day of the death"
 //     })
 })   ; 
+
 const data = await getJournal.json()
 console.log(data)  }
 catch(err){
     console.log(err)
 }
+    }
+
+
+async function login (){
+    try {
+        const data =  await fetch('http://localhost:2000/api/auth/login'  , {
+method : 'POST'  , 
+headers : {
+            'Content-Type': 'application/json',
+} ,
+body : JSON.stringify({
+    email : 'abdedd'   ,
+    password : 'abde'
+})
+        })
+const responceData = await data.json()
+console.log("data from login")
+console.log(responceData)
+    }
+    catch(err){
+        console.log("error from catch")
+        console.log(err)
+    }
     }
 </script>
 </html>

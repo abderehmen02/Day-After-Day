@@ -11,21 +11,21 @@ const successStatus = require('../helpers/successStatus');
 const regester = asyncWrapper(async (req  , res )=>{
 
   // hashing the password to be able to store in the database sucretly
-    if(!req.body.password) throw sendErr({error: "you must provide a password" , status : StatusCodes.FORBIDDEN })
+    if(!req.body.password) throw sendErr(res , StatusCodes.BAD_REQUEST , 'password not defiened')
     const salt = await bcrypt.genSalt(10);
-    if (!salt) { throw  new Error('Something went with generating the salt in bycrybt') ; sendErr( res , { error : 'Something went with generating the salt in bycrybt'  , status : StatusCodes.INTERNAL_SERVER_ERROR });}
+    if (!salt) { sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not generate salt')}
     const hash = await bcrypt.hash(req.body.password , salt);
-    if (!hash) {throw new Error('Something went wrong hashing the password' )  ;  sendErr(res ,{ error :  'Something went wrong hashing the password' , status : StatusCodes.INTERNAL_SERVER_ERROR })}
+    if (!hash) {sendErr(res ,  StatusCodes.INTERNAL_SERVER_ERROR , 'can not generate hash' )}
  
 
     // creating the user in the database 
   const newUser  =  await  userModel.create({...req.body , password : hash})  ;
-  if(!newUser) { throw new Error("can not create the user in the database")  ; sendErr(res , { error: "can not create the user in the database"  , status : StatusCodes.INTERNAL_SERVER_ERROR})   }     ; 
+  if(!newUser) { sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not create the user , try to use another email ')   }     ; 
 
 
   // creating the token
   const token = jwt.sign({...newUser} ,  WEB_TOKEN_SECRET  )
-  if(!token){ throw new Error("token can not be created"  )  ;sendErr( res , { error : "token can not be created"  , status : StatusCodes.INTERNAL_SERVER_ERROR } ) }
+  if(!token){ sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not generate token') }
 
   // deleting the password inorder not to send it in the front end
   newUser.password = undefined 
@@ -34,25 +34,28 @@ const regester = asyncWrapper(async (req  , res )=>{
 } )
 
 
+
+//*************************** login */
+
 const login = asyncWrapper( async (req, res)=>{
-  if(!req.body.email ||  !req.body.password) throw new Error({error : "email or password is missing"   , status : StatusCodes.BAD_REQUEST })
+  console.log("login fn")
+  if(!req.body.email ||  !req.body.password) sendErr(res ,StatusCodes.BAD_REQUEST , 'please provide and email and password')
   
   // fetch the user from the database 
   const  userObj = await userModel.findOne({email: req.body.email}) 
-  if(!userObj)  { sendErr(res , { error : "user does not exist"  , status : StatusCodes.NOT_FOUND })  ;  throw new Error("user does not exist") }
+  if(!userObj)  { sendErr(res  , StatusCodes.NOT_FOUND , 'can not find user')  }
   // authonticate the user
   const isMatch = await bcrypt.compare(req.body.password , userObj.password) 
-  if(!isMatch) { throw new Error("password is inccorect")   ; sendErr(res  , { error : "password is inccorect"  , status : StatusCodes.UNAUTHORIZED }) }
+  if(!isMatch) { sendErr(res , StatusCodes.BAD_REQUEST , 'password incorrect')}
  
   // delete the password inorder not to send it to the client
    userObj.password  = undefined 
 
   // setting the token
   const token = jwt.sign( {...userObj} , WEB_TOKEN_SECRET )
-  if(!token) {throw new Error("error hepened in the token module")  ;  sendErr(res , {error : "error hepened in the token module"  , StatusCodes : StatusCodes.INTERNAL_SERVER_ERROR }) }
-  console.log(userObj)
-  console.log(token)
+  if(!token) {sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not generte token')}
   res.cookie("day-after-day"  , token)
+  console.log(token)
   successStatus(res , StatusCodes.OK , {userObj , token})
 })
 

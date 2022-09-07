@@ -13,6 +13,8 @@ loginInState(data.token , data.userObj) ;
 navigate('/productivity')
 }
 else if(error){
+    console.log("error from login")
+    console.log(error)
     emitAction(userLoginTypes.userLoginFail , error)
 }
 }

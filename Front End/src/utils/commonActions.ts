@@ -27,6 +27,8 @@ if(responceData.succuss){
 else return {error  : responceData.error}
     }
     catch(error){
+        console.log("error from public post")
+        console.log(error)
         return {error}
     }
 }

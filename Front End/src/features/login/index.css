@@ -3,7 +3,7 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
     background: linear-gradient( rgb(112, 184, 252) , rgb(20, 120, 213) ) ;
 }
@@ -65,6 +65,10 @@ color: red;
 .inputError{
     color: red;
     box-shadow: 2px 2px 4px red , -2px -2px 4px red;
+}
+.normalInput{
+    color : black ; 
+    box-shadow: none;
 }
 @media  screen and ( max-width : 500px ) {
 .loginHeader{

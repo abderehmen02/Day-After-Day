@@ -14,6 +14,7 @@
     "install": "^0.13.0",
     "npm": "^8.19.1",
     "react-calendar": "^3.8.0",
+    "react-date-picker": "^8.4.0",
     "recharts": "^2.1.13"
   }
 }

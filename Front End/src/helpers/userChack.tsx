@@ -28,11 +28,11 @@ export const IsLoggedOut = ({children}  : any) =>{
     const userLogin  : userLoginState = useSelector((state : stateType) => state.userLogin) ; 
     const storageUser : string | null = localStorage.getItem("day-after-day") ;
 
-    if( userInfo && Object.keys(userLogin).length  && storageUser){
+    if( userInfo && userLogin.token  && storageUser){
         navigate("/productivity")
         return <div></div>
     }
-    else if(!userInfo && !Object.keys(userLogin).length && !storageUser){
+    else if(!userInfo && (!userLogin.token || userLogin.error) && !storageUser){
         return <div>{children}</div>
     }
     return <div> some error happened in the pages </div>

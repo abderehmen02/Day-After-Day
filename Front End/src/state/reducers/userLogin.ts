@@ -7,12 +7,15 @@ switch(action.type){
     case userLoginTypes.userLoginSuccuss : {
         return {
     token : action.token , 
-    loading : false 
+    loading : false,
+    error : null ,
+    
         }
     }
     case userLoginTypes.userLoginFail : {
         return {
-            error : action.error
+            error : action.error ,
+            loading:  false , 
         }
     }
     case userLoginTypes.userLoginRequest : {

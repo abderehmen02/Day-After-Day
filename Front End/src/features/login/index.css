@@ -55,6 +55,17 @@
 .loginForm button:hover {
     color : white
 }
+.errorSection{
+display: flex;
+align-items: center;
+justify-content: center;
+height: 50px;
+color: red;
+}
+.inputError{
+    color: red;
+    box-shadow: 2px 2px 4px red , -2px -2px 4px red;
+}
 @media  screen and ( max-width : 500px ) {
 .loginHeader{
     width: 95vw;

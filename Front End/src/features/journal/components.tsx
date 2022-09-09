@@ -61,7 +61,8 @@ const EditJournal = ({journal}  : {journal : oneJournalState }) : JSX.Element =>
 
 return <div>
 <input value={title} type="text" onChange={e =>{setTitle(e.target.value)}}></input>
-<input value={constent} ></input>
+<input value={constent} type="text" onChange={e =>{setContent(e.target.value)}} ></input>
+<button  ></button>
 </div>
 }
 

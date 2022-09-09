@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { stateType } from '../../state/reducers';
 import { getJournals, submitJornal } from './functions';
 import * as actionCreators from '../../state/actionCreators'
-import { JournalState, oneJournalState, userLoginState } from '../../types';
+import { journalActions, JournalState, oneJournalState, userLoginState } from '../../types';
 
 export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
     const [title, setTitle] = useState<string | undefined >("") ;
@@ -28,20 +28,62 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
 
 
 
-//------------------------------------------------------ one journal -------------
-const OneJornal = ({journal} : {journal : oneJournalState}) : JSX.Element =>{
-  return <div>
-    <h3>{journal.title}</h3>
-    <p>{journal.content}</p>
-  </div>
+
+
+
+
+// ---------------------------------------------------- display one journal -------------------
+const DisplayJournal = ({journal}  : {journal: oneJournalState}) : JSX.Element =>{
+return <div>
+  <h4>{journal.title}</h4>
+  <p>{journal.content}</p>
+</div>
+} 
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------- edit journal
+
+const EditJournal = ({journal}  : {journal : oneJournalState }) : JSX.Element =>{
+  const [title, setTitle] = useState<string | undefined >(journal.title)
+  const [content, setContent] = useState<string | undefined >(journal.content)
+  const [body, setBody] = useState<{title? : string | undefined , content? : string | undefined}>({}) ; 
+  useEffect(() => {
+  if(content !== journal.content){setBody((prevBody)=>{return {...prevBody , content }})}
+  if(title !== journal.title){ setBody((prevBody)=>{return {...prevBody , title  }}) } ;    
+  }, [title , content])
+   
+
+return <div>
+<input value={title} type="text" onChange={e =>{setTitle(e.target.value)}}></input>
+<input value={constent} ></input>
+</div>
+}
+
+
+
+
+//------------------------------------------------------ -------------------------------------------------------------------------------------------------------- one journal 
+const OneJornalComponent = ({journal} : {journal : oneJournalState}) : JSX.Element =>{ 
+const [editJournalComponent, setEditJournalComponent] = useState<boolean>(false)
+return <div>
+   {editJournalComponent ?   : <DisplayJournal journal={journal} />}
+   <button onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? 'display' : 'edit'}</button> 
+   <button> delete </button>
+   </div>
 }
 
 
 
 
 
-// ------------------------------------------------------ journal skeleton ---------------------
-const JournalsSkeleton = ()=>{
+// ------------------------------------------------------ ----------------------------------------------- ---------------------------------------------------------------- journal skeleton
+const JournalsSkeleton = () : JSX.Element=>{
   return <div>
 <h4> loading </h4>
   </div>
@@ -50,6 +92,10 @@ const JournalsSkeleton = ()=>{
 
 
 
+
+
+
+//------------------------------------------------------- maping journals ----------------------------------------------------------------------------
 export const JournalsMap = () : JSX.Element =>{ 
    const dispatch = useDispatch() ; 
    const userLogin : userLoginState = useSelector((state : stateType)=>state.userLogin)

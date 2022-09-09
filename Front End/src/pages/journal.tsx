@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import DatePicker from 'react-date-picker';
 import { useSelector } from 'react-redux';
 import { stateType } from '../state/reducers';
-import {CreateJournal} from '../features/journal/components';
+import {CreateJournal, JournalsMap} from '../features/journal/components';
 function Journal() {
     const [dateValue, setDateValue] = useState(new Date)
     const state : stateType = useSelector((state : stateType)=>state) ; 
@@ -11,6 +11,7 @@ function Journal() {
   return (
     <div>
         <CreateJournal date={dateValue} />
+        <JournalsMap/>
     </div>
   )
 }

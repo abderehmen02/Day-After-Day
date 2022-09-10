@@ -9,7 +9,7 @@ function Journal() {
     console.log("state") ;
     console.log(state)
   return (
-    <div>
+    <div className='journalPage' >
         <CreateJournal date={dateValue} />
         <JournalsMap/>
     </div>

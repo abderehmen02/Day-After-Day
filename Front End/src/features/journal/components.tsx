@@ -6,6 +6,31 @@ import { deleteJournal, getJournals, submitEditJournal, submitJornal } from './f
 import * as actionCreators from '../../state/actionCreators'
 import { journalActions, JournalState, oneJournalState, userLoginState } from '../../types';
 
+
+
+// ------------------------------------------------------------------------------- --------------journal header
+
+export const JournalHeader = () : JSX.Element =>{
+  return <div className='journalHeader' >
+<img/>
+<div className="journalInnerHeader">
+  <div className="journalTitle">
+    journaling
+  </div>
+  <div className="journalSubTitle">
+    write every idea that comes into your mind
+  </div>
+</div>
+<img/>
+  </div>
+}
+
+
+
+
+
+// -------------------------------------------------------------------------------------------- create journal component
+
 export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
     const [title, setTitle] = useState<string | undefined >("") ;
     const [content, setContent] = useState<string  | undefined>("") ;

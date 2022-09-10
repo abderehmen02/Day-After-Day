@@ -47,7 +47,7 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
     <div className="createJournalForm">
     <input value={title}      onChange={(e)=>{setTitle(e.target.value)}} ></input>
     <input value={content}    onChange={(e)=>{setContent(e.target.value)}} ></input>
-    <button onClick={()=>{submitJornal(body ,userLogin.token , emitAction)  }} > submit journal</button>
+    <button onClick={()=>{submitJornal(body ,userLogin.token , emitAction)  }} > Submit Journal <i className="bi bi-folder-plus icon"></i></button>
     </div>
     </div>
   )

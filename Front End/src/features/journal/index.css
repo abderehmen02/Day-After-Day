@@ -75,7 +75,10 @@ text-transform: capitalize;
 
 .createJournalForm > button:hover{
 background-color: rgb(0, 119, 255);
-color: black;
+color: white;
 }
 .createJournalForm >input:focus{
+    background-color: black;
+    color: white;
+    box-shadow: 3px 3px 6px black  -3px -3px 6px balck;
 }

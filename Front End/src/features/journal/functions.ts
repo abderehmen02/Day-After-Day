@@ -24,13 +24,10 @@ else if(error){
 
 
 export const  getJournals = async (token : string | undefined , emitAction : Function) : Promise<void>=>{
-console.log("get journals")
 emitAction(journalActions.JOURNAL_REQUEST) ; 
 const {data , error} = await getSecureAction(path , token) ; 
 if(data){
-console.log("data")
-console.log(data)
-emitAction(journalActions.JOURNAL_SUCCUSS , data)    
+ emitAction(journalActions.JOURNAL_SUCCUSS , data)    
 }
 else if(error){
     console.log("error")
@@ -64,9 +61,12 @@ else if(error){
 // ------------------------------------- delete journal --------------------------------------------------------------------
 
 export const deleteJournal = async (token : string | undefined , emitAction : Function , journalId : string )=>{
+    console.log("delete")
     emitAction(journalActions.JOURNAL_REQUEST)
     const {data , error} = await deleteSecureAction(path + '/' +  journalId , token   ) ; 
      if(data){
+        console.log("data from delete")
+        console.log(data)
         emitAction(journalActions.JOURNAL_SUCCUSS , data)
      }   
      else if(error){

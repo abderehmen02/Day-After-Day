@@ -31,7 +31,7 @@ const createJournaling = asyncWraper( async (req , res)=>{
     if(deletedJournal){
         console.log("delete journal inside if")
         console.log(deletedJournal)
-        const allJournals = await journalingModel.find({ user : req.user._id , _id : req.params.id })   ;
+        const allJournals = await journalingModel.find({ user : req.user._id  })   ;
         return        successStatus(res , StatusCodes.OK , allJournals) }    
         sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , "can not delete the journal")
 })

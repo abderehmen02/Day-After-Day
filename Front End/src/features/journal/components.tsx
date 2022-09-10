@@ -86,7 +86,7 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
 return <div>
    {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
    <button onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? 'display' : 'edit'}</button> 
-   <button > delete </button>
+   <button onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete </button>
    </div>
 }
 

@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background:  linear-gradient(  rgb(112, 233, 193) , white   ) ;
 }
 .journalHeader{
     display: flex;
@@ -34,4 +35,41 @@ text-transform: capitalize;
 }
 .journalSubTitle{
     color: rgb(228, 210, 210) ; 
+}
+.createJournalComponent{
+    display: flex;
+    align-items: center;
+    justify-content  : space-around ; 
+    width: 90vw;
+    padding: 15px;
+    flex-direction: column;
+    box-shadow: 2px 2px 4px rgb(0, 119, 255) , -2px -2px 4px rgb(0, 119, 255) ;   
+    height: 200px;
+}
+.createJournalTitle{
+    font-weight: bolder;
+    font-size: larger;
+}
+.createJournalForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px;
+}
+.createJournalForm > input {
+    text-align: center;
+    border-radius: 05px;
+    padding: 5px;
+}
+.createJournalForm > button{
+    background-color: transparent;
+    border: 2px solid rgb(0, 119, 255);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.createJournalForm > button:hover{
+background-color: rgb(0, 119, 255);
+color: black;
 }

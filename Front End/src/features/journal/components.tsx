@@ -42,11 +42,13 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
       title , content , date : date.toISOString()
     }
    return (
-    <div>
-    <div>CreateJournal</div>
+    <div className='createJournalComponent' >
+    <div className='createJournalTitle' >CreateJournal</div>
+    <div className="createJournalForm">
     <input value={title}      onChange={(e)=>{setTitle(e.target.value)}} ></input>
     <input value={content}    onChange={(e)=>{setContent(e.target.value)}} ></input>
     <button onClick={()=>{submitJornal(body ,userLogin.token , emitAction)  }} > submit journal</button>
+    </div>
     </div>
   )
 }

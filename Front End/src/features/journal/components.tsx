@@ -2,7 +2,7 @@ import React , { useEffect, useState} from 'react'
 import { useSelector  , useDispatch } from 'react-redux';
 import { AnyAction, Dispatch , bindActionCreators } from 'redux';
 import { stateType } from '../../state/reducers';
-import { getJournals, submitEditJournal, submitJornal } from './functions';
+import { deleteJournal, getJournals, submitEditJournal, submitJornal } from './functions';
 import * as actionCreators from '../../state/actionCreators'
 import { journalActions, JournalState, oneJournalState, userLoginState } from '../../types';
 
@@ -75,11 +75,18 @@ return <div>
 
 //------------------------------------------------------ -------------------------------------------------------------------------------------------------------- one journal 
 const OneJornalComponent = ({journal} : {journal : oneJournalState}) : JSX.Element =>{ 
+
 const [editJournalComponent, setEditJournalComponent] = useState<boolean>(false)
+const userLogin = useSelector((state : stateType)=>state.userLogin)
+const dispatch : Dispatch = useDispatch()
+const {emitAction}   = bindActionCreators( actionCreators , dispatch)
+ 
+
+
 return <div>
    {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
    <button onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? 'display' : 'edit'}</button> 
-   <button> delete </button>
+   <button > delete </button>
    </div>
 }
 

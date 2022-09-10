@@ -1,5 +1,5 @@
 import { journalActions } from "../../types"
-import { createAction, getPublicAction, getSecureAction, putSecureAction } from "../../utils"
+import { createAction, deleteSecureAction, getPublicAction, getSecureAction, putSecureAction } from "../../utils"
 
 
 
@@ -24,12 +24,17 @@ else if(error){
 
 
 export const  getJournals = async (token : string | undefined , emitAction : Function) : Promise<void>=>{
+console.log("get journals")
 emitAction(journalActions.JOURNAL_REQUEST) ; 
 const {data , error} = await getSecureAction(path , token) ; 
 if(data){
+console.log("data")
+console.log(data)
 emitAction(journalActions.JOURNAL_SUCCUSS , data)    
 }
 else if(error){
+    console.log("error")
+    console.log(error)
 emitAction(journalActions.JOURNAL_ERROR , error)
 }
 }
@@ -51,4 +56,20 @@ if(data){
 else if(error){
     emitAction(journalActions.JOURNAL_ERROR , error)
 }
+}
+
+
+
+
+// ------------------------------------- delete journal --------------------------------------------------------------------
+
+export const deleteJournal = async (token : string | undefined , emitAction : Function , journalId : string )=>{
+    emitAction(journalActions.JOURNAL_REQUEST)
+    const {data , error} = await deleteSecureAction(path + '/' +  journalId , token   ) ; 
+     if(data){
+        emitAction(journalActions.JOURNAL_SUCCUSS , data)
+     }   
+     else if(error){
+        emitAction(journalActions.JOURNAL_ERROR , error)
+     }
 }

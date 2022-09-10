@@ -5,14 +5,15 @@ import { stateType } from '../../state/reducers';
 import { deleteJournal, getJournals, submitEditJournal, submitJornal } from './functions';
 import * as actionCreators from '../../state/actionCreators'
 import { journalActions, JournalState, oneJournalState, userLoginState } from '../../types';
-
+import journalImageOne   from    '../../assets/images/journal3.jpg'
+import journalImageTwo   from    '../../assets/images/journal0.jpg'
 
 
 // ------------------------------------------------------------------------------- --------------journal header
 
 export const JournalHeader = () : JSX.Element =>{
   return <div className='journalHeader' >
-<img/>
+<img src={journalImageOne} />
 <div className="journalInnerHeader">
   <div className="journalTitle">
     journaling
@@ -21,7 +22,7 @@ export const JournalHeader = () : JSX.Element =>{
     write every idea that comes into your mind
   </div>
 </div>
-<img/>
+  <img src={journalImageTwo} ></img>
   </div>
 }
 

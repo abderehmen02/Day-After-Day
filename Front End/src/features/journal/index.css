@@ -40,6 +40,7 @@ text-transform: capitalize;
     display: flex;
     align-items: center;
     justify-content  : space-around ; 
+    background-color: rgb(112, 233, 193);
     width: 90vw;
     padding: 15px;
     flex-direction: column;
@@ -51,6 +52,7 @@ text-transform: capitalize;
     font-size: larger;
 }
 .createJournalForm{
+
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -61,15 +63,19 @@ text-transform: capitalize;
     text-align: center;
     border-radius: 05px;
     padding: 5px;
+    border: 2px solid transparent;   
 }
 .createJournalForm > button{
     background-color: transparent;
     border: 2px solid rgb(0, 119, 255);
-    padding: 5px 10px;
     border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bolder;
 }
 
 .createJournalForm > button:hover{
 background-color: rgb(0, 119, 255);
 color: black;
+}
+.createJournalForm >input:focus{
 }

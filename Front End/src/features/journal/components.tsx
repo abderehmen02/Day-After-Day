@@ -43,7 +43,7 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
     }
    return (
     <div className='createJournalComponent' >
-    <div className='createJournalTitle' >CreateJournal</div>
+    <div className='createJournalTitle' >Create Journal <i className="bi bi-plus-circle-fill icon "></i> </div>
     <div className="createJournalForm">
     <input value={title}      onChange={(e)=>{setTitle(e.target.value)}} ></input>
     <input value={content}    onChange={(e)=>{setContent(e.target.value)}} ></input>

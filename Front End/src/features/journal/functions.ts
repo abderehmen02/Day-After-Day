@@ -3,11 +3,11 @@ import { createAction, getPublicAction, getSecureAction, putSecureAction } from 
 
 
 
-const path = "journaling"
+const path :string= "journaling"
 // ------------------------------------ creating journal ---------------------
-export const submitJornal = async(body : {title : string | undefined , content : string | undefined, date : string |undefined } , token : string | undefined, emitAction : Function )  : Promise<void>=>{
+export const submitJornal = async(body : {title : string | undefined , content : string | undefined, date : string |undefined } , token : string | undefined, emitAction : Function   )  : Promise<void>=>{
 emitAction(journalActions.JOURNAL_REQUEST)
-const {data , error } = await createAction(path , body , token )
+const {data , error } = await createAction(path  , body , token )
 if(data){
     emitAction( journalActions.JOURNAL_SUCCUSS , data )
 }
@@ -19,6 +19,8 @@ else if(error){
 
 
 //---------------------------------------getting journal-------------------------
+
+
 
 
 export const  getJournals = async (token : string | undefined , emitAction : Function) : Promise<void>=>{
@@ -37,9 +39,12 @@ emitAction(journalActions.JOURNAL_ERROR , error)
 
 //----------------------------------------------------- edit journal -------------------------
 
-export const editJournals = async (body : {title? : string | undefined , content  : string | undefined} , token : string | undefined , emitAction : Function  )   : Promise<void>=>{
+
+
+
+export const submitEditJournal = async (body : {title? : string | undefined , content?  : string | undefined} , token : string | undefined , emitAction : Function , journalId : string  )   : Promise<void>=>{
 emitAction(journalActions.JOURNAL_REQUEST)
-const {data , error} = await putSecureAction(path , body , token ) ; 
+const {data , error} = await putSecureAction(path + '/' + journalId , body , token ) ; 
 if(data){
     emitAction(journalActions.JOURNAL_SUCCUSS , data )
 }

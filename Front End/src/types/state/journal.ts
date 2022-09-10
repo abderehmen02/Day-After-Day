@@ -2,6 +2,8 @@ export interface oneJournalState {
     title: string , 
     content : string , 
     date : string ,
+    user : string , 
+    _id  : string , 
 }
 
 export interface JournalState {

@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background:  linear-gradient(  rgb(112, 233, 193) , white   ) ;
+    background:  linear-gradient(         rgb(0, 166, 255) ,  rgb(112, 233, 193)        ) ;
 }
 .journalHeader{
     display: flex;
@@ -102,14 +102,14 @@ color: white;
     width: 100%;
    align-items: center;
    justify-content: space-around;
-   border: 2px solid red;
+ box-shadow: 2px 2px 4px black;
+ margin: 10px;
 }
 .oneJournalButtons{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid red;
     padding: 3px;
 }
 .oneJournalButtons >button{
@@ -121,4 +121,18 @@ color: white;
 .oneJournalButtons > .display {
     color: rgb(0, 115, 255);
     border: 2px solid rgb(0, 115, 255);
+}
+.oneJournalButtons > .display:hover {
+    background-color: rgb(0, 115, 255);
+    color : white ; 
+    box-shadow: 2px 2px 4px rgb(0, 115, 255);
+}
+.oneJournalButtons > .delete {
+    color: red;
+    border: 2px solid red;
+}
+.oneJournalButtons > .delete:hover {
+    background-color: red  ;
+    color : black ; 
+    box-shadow: 2px 2px 4px red;
 }

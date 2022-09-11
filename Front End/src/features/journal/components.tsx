@@ -114,8 +114,8 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
 return <div  className='oneJournalComponent' >
    {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
    <div className="oneJournalButtons">
-   <button className='display' onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? 'display' : 'edit'}</button> 
-   <button className='edit' onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete </button>
+   <button className='display' onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</button> 
+   <button className='delete' onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </button>
    </div>
    </div>
 }

@@ -82,3 +82,43 @@ color: white;
     color: white;
     box-shadow: 3px 3px 6px black  -3px -3px 6px balck;
 }
+.mapingJournalComponent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column ;
+    width: 90vw;
+    margin: 30px 0px;
+    padding: 10px;
+    box-shadow: 2px 2px 4px black , -2px -2px 4px black ;
+}
+.mapingJournalComponent  > h2{
+    text-transform: capitalize ;
+    text-shadow: 1px 2px 3px black;
+    margin: 5px;
+}
+.oneJournalComponent {
+    display: flex;
+    width: 100%;
+   align-items: center;
+   justify-content: space-around;
+   border: 2px solid red;
+}
+.oneJournalButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid red;
+    padding: 3px;
+}
+.oneJournalButtons >button{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 5px;
+}
+.oneJournalButtons > .display {
+    color: rgb(0, 115, 255);
+    border: 2px solid rgb(0, 115, 255);
+}

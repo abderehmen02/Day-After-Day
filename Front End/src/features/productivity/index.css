@@ -106,17 +106,20 @@ border: 2px solid transparent;
 @media screen and (max-width : 1100px) {
     .createProductivity{
         margin: 15px;
+        display: flex;
         flex-direction: column;
         height: fit-content;
     }
     .createProductivity > *{
-        width: 70%;
+        width: 100%;
         margin: 20px;
     }
+    .productivityHeader{width: 90vw;}
     .footerProductivity{
         flex-direction: column;
     }
     .createProductivity{
         width: 95vw;
+
     }
 }

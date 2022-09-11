@@ -62,7 +62,7 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
 
 // ---------------------------------------------------- display one journal -------------------
 const DisplayJournal = ({journal}  : {journal: oneJournalState}) : JSX.Element =>{
-return <div>
+return <div className='displayJournalComponent' >
   <h4>{journal.title}</h4>
   <p>{journal.content}</p>
 </div>
@@ -111,10 +111,12 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
  
 
 
-return <div>
+return <div  className='oneJournalComponent' >
    {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
+   <div className="oneJournalButtons">
    <button onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? 'display' : 'edit'}</button> 
    <button onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete </button>
+   </div>
    </div>
 }
 
@@ -146,7 +148,7 @@ export const JournalsMap = () : JSX.Element =>{
    getJournals( userLogin.token , emitAction )
    } , [])
 
-return <div>
+return <div className='mapingJournalComponent' >
 <h2>all journals</h2>
 { journal.loading ? <JournalsSkeleton/> :  journal.data?.allJournals.map((journal :oneJournalState)=>{
 return  <OneJornalComponent journal={journal} />

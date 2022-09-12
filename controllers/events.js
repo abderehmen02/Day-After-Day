@@ -17,5 +17,6 @@ export const deleteModel = asyncWrapper(async (req  , res)=>{
     const model = await eventModel.findOneAndDelete({user : req.user._id , _id : req.params._id}) ; 
     if(model) { 
         const models = await eventModel.find({user : req.user._id})
-        successStatus(res , StatusCodes.OK , ) }
+        successStatus(res , StatusCodes.OK , models ) }
+    sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not delete model')
 })

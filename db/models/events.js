@@ -1,9 +1,12 @@
-import mongoose from 'mongoose'  ; 
+const mongoose = require("mongoose")   ;
 
-const eventSchema = new  mongoose.Schema({
-    date : {type : String , require : [true , "date is not provided" ]} ,
+
+const eventSchema = new mongoose.Schema({
     title : String , 
-    descreption : String ,
-    user : mongoose.Types.ObjectId 
+    descreption : String , 
+    date : {type : String ,required : [true , 'please provide a date']} , 
+    user : mongoose.Types.ObjectId
 })
-module.exports = mongoose.model('event' , eventSchema) ;
+
+
+module.exports = mongoose.model("event"  , eventSchema)

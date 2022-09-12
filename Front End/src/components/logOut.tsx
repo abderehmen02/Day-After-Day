@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom' ;
 
 
 const LogOut = () : JSX.Element =>{
-const dispatch = useDispatch()   ; 
+
+
+ const dispatch = useDispatch()   ; 
 const {emitAction} = bindActionCreators(actionCreators , dispatch) ; 
 const navigate = useNavigate()
 

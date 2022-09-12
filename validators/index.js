@@ -52,4 +52,14 @@ const journalingValidator = joi.object({
 return journalingValidator.validate(body) ; 
 }
 
-module.exports = {validateIdea  , validateProd , validateGoal , validateDailing , validateJournaling }
+
+const validateEvent = (body)=>{
+const eventValidator = joi.object({
+title : joi.string() , 
+content : joi.string() , 
+date : joi.string() 
+})
+return eventValidator.validate(body) ; 
+}
+
+module.exports = {validateIdea  , validateProd , validateGoal , validateEvent , validateDailing , validateJournaling }

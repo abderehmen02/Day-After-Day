@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'  ; 
 
-const eventMongoose = mongoose.model({
+const eventModel = mongoose.model({
     date : {type : String , require : [true , "date is not provided" ]} ,
     title : String , 
     descreption : String ,
-    user : mongoose. 
+    user : mongoose.Types.ObjectId 
 })
+module.exports = mongoose.model('event' , eventModel) ;

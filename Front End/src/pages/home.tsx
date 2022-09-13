@@ -14,9 +14,9 @@ export const Home: React.FC =  ()=> {
     <div className='homePage' >
       <Header/>
       <div className="homeBody">
-      <img src={homeImgOne} ></img>
+     <img src={homeImgTwo} ></img>
      <Buttons/>
-    <img src={homeImgTwo} ></img>
+     <img src={homeImgOne} ></img>
     </div>
     </div>
   )

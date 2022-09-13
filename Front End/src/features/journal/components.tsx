@@ -7,6 +7,7 @@ import * as actionCreators from '../../state/actionCreators'
 import { journalActions, JournalState, oneJournalState, userLoginState } from '../../types';
 import journalImageOne   from    '../../assets/images/journal5.png'
 import journalImageTwo   from    '../../assets/images/journal6.png'
+import { Skeleton } from '../skeleton/skeleton';
 
 
 // ------------------------------------------------------------------------------- --------------journal header
@@ -27,10 +28,31 @@ export const JournalHeader = () : JSX.Element =>{
 }
 
 
+//---------------------------------------------------------------------------------------------  journal skeleton
+const DisplayJournalSkeleton = () : JSX.Element =>{
+return <div className='displayJournalComponent' >
+  <h4><Skeleton type='title'/></h4>
+  <p><Skeleton type='title' /></p>
+</div>
+}
+
+
+
+
+export const OneJournalSkeleton = (): JSX.Element=>{
+  return<div  className='oneJournalComponent'>  <DisplayJournalSkeleton  />
+   <div className="oneJournalButtons">
+   <button className='display' >  <span> edit <i className="bi bi-pencil icon"></i></span></button> 
+   <button className='delete' > delete <i className="bi bi-trash icon"></i> </button>
+   </div>
+   </div> 
+}
 
 
 
 // -------------------------------------------------------------------------------------------- create journal component
+
+
 
 export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
     const [title, setTitle] = useState<string | undefined >("") ;
@@ -112,7 +134,7 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
 
 
 return <div  className='oneJournalComponent' >
-   {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
+    {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
    <div className="oneJournalButtons">
    <button className='display' onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</button> 
    <button className='delete' onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </button>

@@ -11,10 +11,10 @@
    padding: 10px;
 }
 .loginGuestBtn{
-        background-color: rgb(46, 64, 6);
-        color: white;
+        background-color: rgb(52, 76, 2);
+        color: rgb(34, 47, 16);
 }
-.loginGuestBtn:hover{
+.loginGuestBtn.link:hover{
     color : white;
 }
 
@@ -70,17 +70,22 @@
 }
 .regesterBtn{
     background-color :  aqua; 
-    border: 2px solid aqua;
+    color: black;
 }
+.regesterBtn:hover{
+    background-color: black;
+    color: white;
+}
+
 .aboutHomeBtn{
     background-color: yellowgreen;
-        border: 2px solid aqua;
+        border: 2px solid rgb(0, 26, 255);
         grid-column-start: 1;
         grid-column-end: 4;
         box-shadow: 2px 2px 4px black , -2px -2px 4px black;
 }
 .aboutHomeBtn:hover{
-    background-color: rgb(0, 102, 255);
+    background-color: rgb(0, 102, 255) ;
 }
 @media screen and (max-width : 500px) {
     .homePage{

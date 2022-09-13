@@ -1,4 +1,4 @@
-const router = require("express").Router ; 
+const router = require("express").Router() ; 
 const { getEvents, createEvent, deleteEvent } = require("../controllers/events");
 const authorize = require("../middleWares/authorization")
 

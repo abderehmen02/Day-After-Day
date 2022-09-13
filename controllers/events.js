@@ -6,7 +6,7 @@ const { validateEvent } = require("../validators");
 const asyncWrapper  = require("../helpers/asyncWrapper") ; 
 const eventModel = require('../db/models/events')  ;
 
- const createEvent = asyncWrapper(async (req , res)=>{
+const createEvent = asyncWrapper(async (req , res)=>{
 console.log("creave event ")  ;
 const {value : event} = validateEvent(req.body) ;  
 const model = await eventModel.create({...event , user : req.user._id }) ; 
@@ -17,7 +17,7 @@ sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not create model' ) ;
 })
 
  const deleteEvent = asyncWrapper(async (req  , res)=>{
-    const model = await eventModel.findOneAndDelete({user : req.user._id , _id : req.params._id}) ; 
+    const model = await eventModel.findOneAndDelete({user : req.user._id , _id : req.params.id}) ; 
     if(model) { 
         const models = await eventModel.find({user : req.user._id})
         successStatus(res , StatusCodes.OK , models ) }
@@ -26,7 +26,7 @@ sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not create model' ) ;
 
  const editEvent = asyncWrapper(async (req , res)=>{
     const {value : event} = validateEvent(req.body)
-  const updatedEvent = await eventModel.findOneAndDelete({user : req.user._id , _id : req.params.id } , {...event} , {new : true})  
+  const updatedEvent = await eventModel.findOneAndUpdate({user : req.user._id , _id : req.params.id } , event , {new : true})  
  if(updatedEvent){
     const allEvents = await eventModel.find({user : req.user._id} ) ; 
  return    successStatus(res , StatusCodes.CREATED , allEvents )

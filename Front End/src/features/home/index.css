@@ -11,8 +11,11 @@
    padding: 10px;
 }
 .loginGuestBtn{
-        background-color: aqua;
-            border: 2px solid aqua;
+        background-color: rgb(46, 64, 6);
+        color: white;
+}
+.loginGuestBtn:hover{
+    color : white;
 }
 
 .homeTitle{
@@ -88,6 +91,9 @@
     height: fit-content;
    }
    .homeButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
    }
    .homeBtn{

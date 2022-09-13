@@ -9,6 +9,7 @@ const prodRouter   = require("./routers/prod")
 const goalRouter = require("./routers/goal")
 const dailingRouter = require("./routers/dailing")
 const journalingRouter = require("./routers/journaling")
+const eventRouter = require('./routers/events')
 
 
 // setting the middlewares
@@ -27,6 +28,9 @@ app.use('/api/prod'       , prodRouter )
 app.use("/api/goal"       , goalRouter )
 app.use("/api/dayling"    , dailingRouter  )
 app.use("/api/journaling"  , journalingRouter)
+app.use('/api/event' , eventRouter)
+
+
 
 // setting the listening function 
 const listenServer  = async ()=>{

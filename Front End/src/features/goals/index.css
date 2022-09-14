@@ -76,12 +76,10 @@
     padding : 15px;
     margin: 15px;
     width: 100%;   
-    height: 100%;
     box-shadow: 4px 4px 8px black , -2px -2px 4px black;
 }
 .mappingAllGoals{
     width: 100% ; 
-    display: flex;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,7 +89,6 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-
     height: 100%;
     width: 30%;
     flex-direction: column;
@@ -243,11 +240,9 @@
 }
 .editCompleted > i{
     cursor: pointer;
-
 }
 .goalButtonsSkeleton{
     width: 30%;
-    
     height: 90%;
 }
 @media screen and (max-width : 600px) {
@@ -258,9 +253,7 @@
     width: 90vw;
  }
  .createGorlGrid{
-
     grid-template-columns: 1fr 1fr;
-    /* grid-template-rows: 1fr; */
  }
  .createGoalGrid > input {
     font-size: small;
@@ -280,8 +273,8 @@
     visibility: hidden;
  }
  .displayGoalItem{
-    margin: 20px;
- }
+    margin: 20px ;
+}
  .goalDescreption{
     grid-column-start: 1;
     grid-column-end: 4;
@@ -292,4 +285,20 @@
     grid-column-end: 4;
     grid-row-start: 2;
  }
+ .buttons{
+    width: 200px;
+ }
+ .displayGoalItem{
+    margin: 2px;
+ }
+ .oneGoalBody{
+    width: 100%;
+    padding: 0px;
+ }
+ .oneGoal{
+    padding: 2px ;
+    padding-bottom: 20px;
+    margin: 2px;
+ }
+
 }

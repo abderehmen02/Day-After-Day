@@ -27,7 +27,8 @@ export const  getJournals = async (token : string | undefined , emitAction : Fun
 emitAction(journalActions.JOURNAL_REQUEST) ; 
 const {data , error} = await getSecureAction(path , token) ; 
 if(data){
- emitAction(journalActions.JOURNAL_SUCCUSS , data)    
+  setTimeout(()=>{
+ emitAction(journalActions.JOURNAL_SUCCUSS , data)    }, 5000 )
 }
 else if(error){
     console.log("error")

@@ -31,8 +31,8 @@ export const JournalHeader = () : JSX.Element =>{
 //---------------------------------------------------------------------------------------------  journal skeleton
 const DisplayJournalSkeleton = () : JSX.Element =>{
 return <div className='displayJournalComponent' >
-  <h4><Skeleton type='title'/></h4>
-  <p><Skeleton type='title' /></p>
+  <h4 className='journalTitleSkeleton'><Skeleton type='title'/> <Skeleton type="title" /> </h4>
+  <p  className='journalParagraphSkeleton' > <Skeleton type='paragraph' /> </p>
 </div>
 }
 
@@ -148,9 +148,12 @@ return <div  className='oneJournalComponent' >
 
 // ------------------------------------------------------ ----------------------------------------------- ---------------------------------------------------------------- journal skeleton
 const JournalsSkeleton = () : JSX.Element=>{
-  return <div>
-<h4> loading </h4>
-  </div>
+  return <div className='mapingJournalComponent' >
+<h2>all journals</h2>
+{   [1,2,3,4].map(()=>{
+return  <OneJournalSkeleton />
+})}
+</div>
 }
 
 
@@ -167,8 +170,8 @@ export const JournalsMap = () : JSX.Element =>{
    const {emitAction} = bindActionCreators(actionCreators , dispatch)
  
    useEffect(()=>{
-   getJournals( userLogin.token , emitAction )
-   } , [])
+  getJournals( userLogin.token , emitAction )
+ } , [])
 
 return <div className='mapingJournalComponent' >
 <h2>all journals</h2>

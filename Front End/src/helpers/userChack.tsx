@@ -9,7 +9,7 @@ export const IsLoggedIn = ({children }  : any)    => {
     const userLogin : userLoginState  = useSelector((state : stateType) => state.userLogin) ; 
     const storageUser : string|null = localStorage.getItem("day-after-day") ;
 
-  if( userLogin.loading === true  ) return <div> loading ... </div>
+  if( userLogin.loading === true  ) return <div> loading  loading... </div>
 
   if(!userInfo && !Object.keys(userLogin).length && !storageUser){
     navigate("/")

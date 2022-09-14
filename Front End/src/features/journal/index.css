@@ -147,6 +147,12 @@ color: white;
     text-transform : capitalize ; 
     margin: 15px;
 }
+.journalTitleSkeleton{
+    width: 400px;
+}
+.journalParagraphSkeleton{
+    width: 400px;
+}
 @media  screen and (max-width : 800px) {
     .journalHeader{
         flex-direction: column;

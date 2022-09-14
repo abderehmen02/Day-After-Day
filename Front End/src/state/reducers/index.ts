@@ -4,13 +4,15 @@ import {userInfoReducer} from './userInfo'
 import { productivityReducer } from './productivity';
 import { goalReducer } from './goal';
 import { journalReducer } from './journal';
+import { eventReducer } from './event';
 
 const reducers = combineReducers({
   userLogin : userLoginReducer ,
   userInfo    : userInfoReducer , 
   productivity : productivityReducer ,
   goals : goalReducer ,
-  journal : journalReducer
+  journal : journalReducer ,
+  event : eventReducer
 })
 export default reducers
 

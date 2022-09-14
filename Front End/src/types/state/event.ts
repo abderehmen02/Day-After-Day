@@ -6,9 +6,9 @@ export interface oneEvent {
     date : string 
 }
 export interface eventState{
-    data : oneEvent[] ,
+    data? : oneEvent[] ,
     loading : boolean , 
-    error : any
+    error? : any
 }
 export enum eventActions {
    EVENT_REQUEST = 'EVENT_REQUEST' ,

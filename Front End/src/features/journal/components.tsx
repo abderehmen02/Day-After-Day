@@ -63,13 +63,18 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
     const body = {
       title , content , date : date.toISOString()
     }
+    const resetValues  = ():void=>{
+setTitle("") ;
+setContent("") ; 
+
+    }
    return (
     <div className='createJournalComponent' >
     <div className='createJournalTitle' >Create Journal <i className="bi bi-plus-circle-fill icon "></i> </div>
     <div className="createJournalForm">
     <input value={title}      onChange={(e)=>{setTitle(e.target.value)}} ></input>
     <input value={content}    onChange={(e)=>{setContent(e.target.value)}} ></input>
-    <button onClick={()=>{submitJornal(body ,userLogin.token , emitAction)  }} > Submit Journal <i className="bi bi-folder-plus icon"></i></button>
+    <button onClick={()=>{submitJornal(body ,userLogin.token , emitAction) ; resetValues() }} > Submit Journal <i className="bi bi-folder-plus icon"></i></button>
     </div>
     </div>
   )

@@ -16,6 +16,7 @@ import goalLineImageBg from '../../assets/images/goal3.jpg'
 
 
 
+//************************************ display goal */
 
 // a componet to display the goal for the user
 export const DisplayOneGoal = ({goal} : {goal : oneGoalState}): JSX.Element=>{
@@ -85,7 +86,7 @@ useEffect( ()=>{
 }
 
 
-
+// ****************************************One goal ***********************
 export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
     const [buttonText, setButtonText] = useState<string>("edit")  ; 
     const userLoginInfo = useSelector((state : stateType)=>state.userLogin)  ;
@@ -107,7 +108,7 @@ export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
 
 
 
-// ****************** header ******************************************************
+// ****************** header + create goal ******************************************************
 
 
 
@@ -121,7 +122,12 @@ export const Header = () : JSX.Element=>{
    const body : object = {title , progress , descreption , deadLine , completed }
    const userLoginInfo : userLoginState = useSelector((state: stateType) => state.userLogin )
    const { emitAction } = bindActionCreators(actionCreators  , dispatch )
+    
 
+   // reset values 
+   const resetValues = ():void=>{
+    setTitle("") ; setProgress(0) ; setDeadLine(addDays(new Date() , 3  ) ) ; setCompleted(false) ; setDescreption("") 
+   }
 
   return   <div className='goalPageHeader' >
 <img className="goalImg goalFirstImage" src={goalImageTwo} />
@@ -135,7 +141,7 @@ export const Header = () : JSX.Element=>{
       <div className='goalCheck' > completed {completed ? <i className="bi bi-check-circle-fill icon" onClick={()=>{setCompleted(!completed)}}  ></i> : <i className="bi bi-check-circle icon" onClick={()=>{setCompleted(!completed)}} ></i>
 } </div>
      <input type='date' className='form-control' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /> 
-      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction )} } className="btn btn-primary form-control" > submit     </button>
+      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction ) ; resetValues() }  } className="btn btn-primary form-control" > submit     </button>
     </div>
 </div>    
 <img src={goalImage}  className="goalImg" />

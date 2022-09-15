@@ -35,7 +35,14 @@
 .goalCheck{
     display: flex;
     align-items: center;
+    font-weight: bolder;
     justify-content: center;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.goalCheck:hover{
+color: white;
+text-transform: capitalize;
 }
 .checkGoalInput{
     margin: 5px;
@@ -167,6 +174,7 @@
     font-size: 1.2em;
     font-weight: bold;
     margin : 15px ; 
+    color : white ; 
     text-transform: capitalize;
 }
 
@@ -244,6 +252,15 @@
 .goalButtonsSkeleton{
     width: 30%;
     height: 90%;
+}
+.deadlineInput{
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+}
+.deadlineInput > input{
+    border: 2px solid transparent;
+    cursor: pointer;
 }
 @media screen and (max-width : 600px) {
  .goalPageHeader{

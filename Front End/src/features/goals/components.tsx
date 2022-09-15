@@ -129,19 +129,18 @@ export const Header = () : JSX.Element=>{
     setTitle("") ; setProgress(0) ; setDeadLine(addDays(new Date() , 3  ) ) ; setCompleted(false) ; setDescreption("") 
    }
 
-  return   <div className='goalPageHeader' >
+ return   <div className='goalPageHeader' >
 <img className="goalImg goalFirstImage" src={goalImageTwo} />
-
 <div className='createGoal' >
  <div className='h4 goalTitle' > Create New Goal <i className="bi bi-plus-circle-fill"></i></div>
 <div className="createGorlGrid">
-     <input type="text"     placeholder='titel'   className='form-control '   value={title} onChange={(e)=>{setTitle(e.target.value)}} />
-      <input type="number"   placeholder='progress'  className='form-control' value={progress} onChange={(e)=>{ setProgress( parseInt( e.target.value ) )}} />
-      <input type="text"     placeholder='descretion' className='form-control'   value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}  />
-      <div className='goalCheck' > completed {completed ? <i className="bi bi-check-circle-fill icon" onClick={()=>{setCompleted(!completed)}}  ></i> : <i className="bi bi-check-circle icon" onClick={()=>{setCompleted(!completed)}} ></i>
+    <input type="text"     placeholder='titel'   className='form-control '   value={title} onChange={(e)=>{setTitle(e.target.value)}} />
+    <input type="number"   placeholder='progress'  className='form-control' value={progress} onChange={(e)=>{ setProgress( parseInt( e.target.value ) )}} />
+    <input type="text"     placeholder='descretion' className='form-control'   value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}  />
+    <div className='goalCheck' > completed {completed ? <i className="bi bi-check-circle-fill icon" onClick={()=>{setCompleted(!completed)}}  ></i> : <i className="bi bi-check-circle icon" onClick={()=>{setCompleted(!completed)}} ></i>
 } </div>
-     <input type='date' className='form-control' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /> 
-      <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction ) ; resetValues() }  } className="btn btn-primary form-control" > submit     </button>
+     <div className="deadlineInput" >    <input type='date' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  /><span>deadLine</span> </div> 
+    <button onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction ) ; resetValues() }  } className="btn btn-primary form-control" > submit     </button>
     </div>
 </div>    
 <img src={goalImage}  className="goalImg" />

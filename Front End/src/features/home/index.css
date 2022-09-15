@@ -87,7 +87,7 @@
 .aboutHomeBtn:hover{
     background-color: rgb(0, 102, 255) ;
 }
-@media screen and (max-width : 500px) {
+@media screen and (max-width : 950px) {
     .homePage{
         height: fit-content;
     }

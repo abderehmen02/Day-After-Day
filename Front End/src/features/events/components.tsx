@@ -1,13 +1,32 @@
 import React  , { useEffect , useState }from 'react'
 import {  useDispatch, useSelector } from 'react-redux'
 import { stateType } from '../../state/reducers'
-import { eventState  , userLoginState} from '../../types'
+import { eventState  , userLoginState , oneEvent} from '../../types'
 import { creatEvent, getEvents } from './functions'
 import * as actionCreators from '../../state/actionCreators'
 import { Dispatch  , bindActionCreators } from 'redux'
+
+
+//  -----------------------------------------------------  event skeleton --- ------- - -- - -- - - -- -
+const MapingEventsSkeleton = () : JSX.Element =>{
+  return <div>loading</div>
+}
+
+
+
+const OneEvent = ({event }  : {event : oneEvent}) : JSX.Element =>{
+return <div>
+ <div>{event.title}</div>
+ <div>{event.descreption}</div>
+</div>
+}
+
+
+
+
 export function MapingEvents(): JSX.Element {
 
-const   event : eventState  = useSelector((state: stateType)=>state.event)
+const   eventInfo : eventState  = useSelector((state: stateType)=>state.event)
 const   dispatch : Dispatch= useDispatch() ; 
 const   { emitAction } = bindActionCreators(actionCreators , dispatch)
 const    userLogin : userLoginState = useSelector((state :  stateType)=>state.userLogin)
@@ -21,7 +40,10 @@ useEffect(() => {
 }, [userLogin])
 
   return (
-    <div>eventss
+    <div>
+{eventInfo.data?.map((event : oneEvent)=>{
+  return <OneEvent event={event} />
+})}
     </div>
   )
 }

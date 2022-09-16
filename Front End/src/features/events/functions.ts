@@ -1,5 +1,5 @@
 import { eventActions } from "../../types"
-import { getSecureAction } from "../../utils"
+import { createAction, getSecureAction } from "../../utils"
 
 const path : string = 'event'
 
@@ -13,3 +13,16 @@ emitAction(eventActions.EVENT_SUCCUSS , data)
 emitAction(eventActions.EVENT_ERROR , error)
     }
 }
+
+export const creatEvent = async (body : {title  : string | undefined , descreption : string | undefined , date : string | undefined } , token : string   | undefined , emitAction : Function  ) : Promise<void>=>{
+ emitAction(eventActions.EVENT_REQUEST)
+ const {data , error  } = await createAction(path , body , token)   
+ if(data){ 
+    console.log('data from event')
+    console.log(data)
+    emitAction( eventActions.EVENT_SUCCUSS , body  )
+}
+else if(error){
+    emitAction(eventActions.EVENT_ERROR , error)
+}  
+} 

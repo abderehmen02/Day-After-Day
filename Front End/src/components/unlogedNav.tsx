@@ -5,7 +5,6 @@ import Icon from '../assets/images/favicon.png'
 
 function UnlogedNav() {
   const StyledToolBar = styled(Toolbar)(({theme})=>({
-    border: '2px solid red'  ,
  display  : 'flex' , 
  alignItems : 'center' , 
  justifyContent : 'space-between' ,
@@ -14,18 +13,25 @@ function UnlogedNav() {
 
   const StyledButton =  styled(Button)(({theme})=>({
   }))
-
+const StyledTypography = styled(Typography)(({theme})=>({
+  color : theme.palette.white.main ,
+  fontWeight : 'normal' ,
+  fontStyle: 'none' ,
+  '&:hover' : {
+     color : theme.palette.secondary.light
+  }
+}))
 
   return (
     <StyledToolBar>
-        <img src={Icon} style={{width: '60px' , height : '60px'  , border : '2px solid red'}} ></img>
+        <img src={Icon} style={{width: '60px' , height : '60px'  }} ></img>
         <Stack direction="row" gap='40px' >
-<Link to="/home" ><Typography sx={{color : (theme)=>theme.palette.secondary.light  }} variant='h4'  >Home</Typography></Link>
-<Link to='/login' ><Typography  sx={{color : (theme)=>theme.palette.secondary.light   }}  variant='h4' >Login</Typography></Link>
-<Link to="/regester" > <Typography  sx={{color : (theme)=>theme.palette.secondary.light   }} variant='h4' >Regester</Typography></Link>
-<Link to="/about" ><Typography   sx={{color : (theme)=>theme.palette.secondary.light   }} variant='h4' >About</Typography></Link>
+<Link style={{textDecoration : 'none'}} to="/home" ><StyledTypography  variant='h4'  >Home</StyledTypography></Link>
+<Link  style={{textDecoration : 'none'}} to='/login' ><StyledTypography variant="h4" >Login</StyledTypography></Link>
+<Link  style={{textDecoration : 'none'}} to="/regester" > <StyledTypography   variant='h4' >Regester</StyledTypography></Link>
+<Link  style={{textDecoration : 'none'}}  to="/about" ><StyledTypography  variant='h4' >About</StyledTypography></Link>
         </Stack>
-        <StyledButton variant='contained' >Regester</StyledButton>
+        <StyledButton variant='standard' >Get Started</StyledButton>
     </StyledToolBar>
   )
 }

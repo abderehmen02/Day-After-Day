@@ -41,34 +41,33 @@ export const Buttons = () : JSX.Element =>{
     <button className='homeBtn regesterBtn' ><Link  className='link'  to='/regester' > regester <i className="bi bi-person-plus icon"></i></Link></button>
     <button className='homeBtn loginGuestBtn link' onClick={loginGuest} > login as a guest </button>
      <button className='homeBtn aboutHomeBtn' ><Link className='link' to="/about" > about the app <i className="bi bi-journal-text"></i> </Link> </button>
-   
     </div>
 }
 
 
 
 export const HeroText = () :  JSX.Element =>{
-  return <Box sx={{ border: '2px solid black' , width : '60%' , display : 'flex' , alignItems : 'center'  , justifyContent : 'space-around' , flexDirection : 'column' }} >
+  return <Box sx={{   width : '60%' , display : 'flex' , alignItems : 'center'  , justifyContent : 'space-around' , flexDirection : 'column' , gap : '80px' }} >
     <Box>
-    <Typography variant='h3'  textAlign='center' color='white'  > A Platform Built For A New Way To Increase Your Productivity </Typography>
-    <Typography variant='h5'  >track your dailly ideas , goals and journalings </Typography>
+    <Typography variant='h3'  textAlign='center' color={(theme)=>theme.palette.white.light}  > A Platform Built For A New Way To Increase Your Productivity </Typography>
+    <Typography variant='h5' textAlign='center'  color={(theme)=>theme.palette.white.dark} >track your dailly ideas , goals and journalings </Typography>
     </Box>
-    <Box> 
-      <Button variant='outlined' >Log In</Button>
+    <Stack justifyContent='space-around' direction='row' width='100%'  > 
+      <Button variant='outlined'  >Log In</Button>
       <Button variant="contained" >Regester</Button>
-    </Box>
-    <Stack direction="row">
-      <Box sx={{ height :'200px' }} >
-        <Typography variant="caption" >Productivity</Typography>
-        <BarChartIcon/>
+    </Stack>
+    <Stack direction="row" width='90%' justifyContent='space-around' >
+      <Box sx={{ minWidth:'125px'  ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
+        <Typography variant="h5" color={(theme)=>theme.palette.white.main} >Productivity</Typography>
+        <BarChartIcon color='white' />
       </Box>
-      <Box sx={{ height :'200px' }} >
-        <Typography variant='caption' >Journaling</Typography>
-        <ArticleIcon/>
+      <Box sx={{ minWidth:'125px'  , border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
+        <Typography variant="h5" color={(theme)=>theme.palette.white.main}  >Journaling</Typography>
+        <ArticleIcon color='white' />
       </Box>
-      <Box sx={{ height :'200px' }} >
-        <Typography variant='caption' >Goals</Typography>
-        <AutoGraphIcon/>
+      <Box sx={{ minWidth:'125px' ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
+        <Typography variant="h5" color={(theme)=>theme.palette.white.main}  >Goals</Typography>
+        <AutoGraphIcon color='white' />
       </Box>
     </Stack>
   </Box>

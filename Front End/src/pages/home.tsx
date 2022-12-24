@@ -18,7 +18,8 @@ const HomeContainer = styled(Box)(({theme})=>({
 backgroundColor : theme.palette.primary.main ,
 display : 'flex' , 
 flexDirection : 'column' ,
-height : '100vh'
+height : '100vh' ,
+gap : '80px'
 }))
 
 

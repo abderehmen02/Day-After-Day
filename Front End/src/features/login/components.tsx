@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { userLoginState } from '../../types'
 import { stateType } from '../../state/reducers'
+import { Typography } from '@mui/material'
 export const Header =  ():JSX.Element=> {
   return (
     <div className='loginHeader' >
@@ -23,4 +24,11 @@ console.log(loginInfo)
 {loginInfo.error || ''}
     </div>
   )
+}
+
+export  const LoginText = () : JSX.Element =>{
+
+  return <Box>
+    <Typography color ></Typography>
+  </Box>
 }

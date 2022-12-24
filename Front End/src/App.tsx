@@ -10,7 +10,8 @@ import { userInfoAuth } from './actions/auth';
 import { login } from './state/actionCreators';
 import { userLoginTypes } from './types';
 import { ResponsiveContainer} from 'recharts'
-
+import {ThemeProvider} from '@mui/material'
+import theme from './styling/theme';
 const App:React.FC = () =>{
     const userInfo  = useSelector( ( state : stateType )=> state.userInfo) ; 
     const userLogin = useSelector((state : stateType) => state.userLogin) ; 
@@ -29,8 +30,9 @@ async function fetchUser(){
     }, [storageUser])
  return (
 <BrowserRouter>
-
+<ThemeProvider theme={theme} >
 { (!userInfo && storageUser  ) || userLogin.loading ?  <div> loading...</div>  : ( userInfo && Object.keys(userLogin).length && storageUser ? <LoggedRoute/> :<UnloggedRoute/> )}
+</ThemeProvider>
 </BrowserRouter>
         )
 

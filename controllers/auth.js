@@ -60,9 +60,11 @@ const login = asyncWrapper( async (req, res)=>{
 })
 
 const userAuth = (req , res)=>{
+  console.log("i received the request")
   if(!req.params.token) sendErr(res , StatusCodes.BAD_REQUEST  , 'there is no token in the request')
   const user = jwt.verify( req.params.token , WEB_TOKEN_SECRET)
   if(!user) sendErr(res , StatusCodes.UNAUTHORIZED , "the token is not a valid token") ;
+  console.log(user);
   successStatus(res , StatusCodes.OK , user )
 }
 module.exports  = {regester , login  , userAuth}

@@ -21,10 +21,13 @@ else return {data : false , error : responceData.error}
 
 export const userInfoAuth =   async(token : string) : Promise<any> =>{
     try{
+    console.log("sending the data")
     const responceData = await getReq(`auth/${token}`)
+    console.log(responceData)
     return {data : responceData.data._doc}
     }
     catch(err){
+        console.log("error ")
         console.log(err)
     }
 } 

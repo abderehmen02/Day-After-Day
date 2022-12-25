@@ -11,8 +11,7 @@ function UnlogedNav() {
  width : '100vw'
   }))
 
-  const StyledButton =  styled(Button)(({theme})=>({
-  }))
+
 const StyledTypography = styled(Typography)(({theme})=>({
   color : theme.palette.white.main ,
   fontWeight : 'normal' ,
@@ -31,7 +30,7 @@ const StyledTypography = styled(Typography)(({theme})=>({
 <Link  style={{textDecoration : 'none'}} to="/regester" > <StyledTypography   variant='h4' >Regester</StyledTypography></Link>
 <Link  style={{textDecoration : 'none'}}  to="/about" ><StyledTypography  variant='h4' >About</StyledTypography></Link>
         </Stack>
-        <StyledButton variant='standard' >Get Started</StyledButton>
+        <Button variant='standard' >Get Started</Button>
     </StyledToolBar>
   )
 }

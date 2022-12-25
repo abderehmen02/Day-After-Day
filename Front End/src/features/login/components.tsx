@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { userLoginState } from '../../types'
 import { stateType } from '../../state/reducers'
-import { Typography } from '@mui/material'
+import { Typography , Box} from '@mui/material'
 export const Header =  ():JSX.Element=> {
   return (
     <div className='loginHeader' >
@@ -28,7 +28,10 @@ console.log(loginInfo)
 
 export  const LoginText = () : JSX.Element =>{
 
-  return <Box>
-    <Typography color ></Typography>
+  return <Box   sx={{display : 'flex' , alignItems : 'center' , gap : '32px' , flexDirection: 'column' , width : '40%' }} >
+    <Typography sx={{width : '70%' , textAlign : 'center'}} color={(theme)=>theme.palette.secondary.light} variant='h3'> Why You Should Check Your Account Every Day  </Typography>
+    <Typography textAlign='center' color={(theme)=>theme.palette.white.main} variant='caption' > By checking your account , you will get  control of all your ideas and your taughts  throught your month or year , this will help  you to increase your productivity and be more  effective and live a hapier life  </Typography>
+    <Typography textAlign='center' color={(theme)=>theme.palette.white.main} variant='caption' > checking your account can also make you change some  of your goals that you have set in the past  </Typography>
+    <Typography textAlign='center' color={(theme)=>theme.palette.white.main} variant='caption'> it is also important to write your taughts everyday so you will get more control over them </Typography>
   </Box>
 }

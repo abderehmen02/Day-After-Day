@@ -3,6 +3,7 @@ import {createTheme} from '@mui/material'
 
 
 const theme = createTheme({
+  
     palette : {
         primary : {
             main : '#2075A8' ,
@@ -91,7 +92,7 @@ const theme = createTheme({
             border: '1.5px solid white  ',
             "&:hover" : {
               backgroundColor : '#16A1F5' ,
-              color : '#F5F11D' ,
+
               color : '#F5F11D' ,
               border: '1.5px solid #F5F11D' ,
               // adding one pixel in the padding for the border
@@ -127,7 +128,7 @@ theme.typography.h3 = {
 
 theme.typography.h4 = {
     fontSize : '24px' ,
-    fontWeight : 'bolder'
+    fontWeight: 'normal'
 }
 theme.typography.h5 = {
   fontSize : '16px' ,

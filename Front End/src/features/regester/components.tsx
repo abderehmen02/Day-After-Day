@@ -1,11 +1,12 @@
+import { Typography , Box} from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const Header  = () => {
   return (
-<div className='regesterHeader ' >
-    <h2> Regester </h2>
-    <h6>if you already have an please <Link to="/login" >login</Link></h6> 
-</div>
+    <Box>
+      <Typography variant='h3' color={(theme)=>theme.palette.secondary.light} textAlign='center' >Welcome Back To Day After Day</Typography>
+      <Typography variant='h5' color={(theme)=>theme.palette.white.main} textAlign='center' >track your dailly ideas , goals and journalings</Typography>
+    </Box>
     )
 }

@@ -19,7 +19,7 @@ backgroundColor : theme.palette.primary.main ,
 display : 'flex' , 
 flexDirection : 'column' ,
 height : '100vh' ,
-gap : '80px'
+gap : '40px'
 }))
 
 

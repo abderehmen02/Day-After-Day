@@ -51,7 +51,9 @@ const CssTextField = styled(TextField)(({theme})=>({
 }));
 
 
-
+console.log(email)
+console.log("password")
+console.log(password)
   return (
     <Box sx={{display : 'flex' , minHeight: '100vh' , gap : '10vh'  , alignItems :'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.primary.main} >
       <UnlogedNav/>
@@ -62,11 +64,11 @@ const CssTextField = styled(TextField)(({theme})=>({
   <Typography variant='h4' color={(theme)=>theme.palette.white.light} textAlign='center'  >Welcome Back To Day After Day </Typography>
 </Box>
 <Box sx={{display : 'flex' , alignItems : 'center'    , gap : '16px'   , flexDirection : 'column'  }} >
-   <CssTextField   label='User Name'     />
-<CssTextField     label='Password'     
+   <CssTextField   label='User Name'   value={email}  onChange={(e)=>{setEmail(e.target.value)}}  />
+<CssTextField     label='Password'   value={password}  onChange={(e)=>{setPassword(e.target.value)}}  
  />
 </Box>
-    <Button variant='outlined' >    Login   </Button>
+    <Button variant='outlined' onClick={()=>{loginAction({email , password} , login , loginError , navigate )}} >    Login   </Button>
 </FormControl>
 <LoginText></LoginText>
 </Box>

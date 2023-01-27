@@ -1,4 +1,6 @@
+import { Typography  , Stack  , styled,Box} from '@mui/material'
 import React from 'react'
+import { AboutPageComponentsType, AboutPageComponentType } from '../../types/data/about'
 
 
 export const  AboutText = ()=> {
@@ -30,4 +32,37 @@ at the beggining of each month , set the goals of the months , and at each week 
             </p>
         </div>
     </div>
+}
+
+
+export const AboutHeader = () :  JSX.Element=>{
+    return <Box sx={{display : 'flex' , alignItems: 'center' , justifyContent : 'center' , flexDirection : 'column'}}>
+        <Typography variant="h3" color={(theme)=>theme.palette.secondary.light} >About </Typography>
+        <Typography variant='h4' color={(theme)=>theme.palette.white.light} > How To Use Day After Day </Typography>
+    </Box>
+}
+
+
+export const AboutComponent : React.FC<{data : AboutPageComponentType , index : number} > = (props  ) : JSX.Element =>{
+
+    const StyledAboutComponent = styled(Box)(({theme})=>({
+        display : 'flex' , 
+        alignItems : 'center' , 
+        gap : '128px' ,
+        width : '90%' ,
+        padding : '50px' ,
+         flexDirection : props.index % 2 === 0 ? 'row' : 'row-reverse' , 
+    }))
+    return <StyledAboutComponent>
+<img src={props.data.image} ></img>
+<Stack gap='40px'  >
+    <Stack gap="8px" >
+    <Typography textAlign="center" variant="h3" color={(theme)=>theme.palette.secondary.light}>{props.data.title }</Typography>
+    <Typography textAlign="center"  variant="h4" color={(theme)=>theme.palette.secondary.main}  >{props.data.subtitle}</Typography>
+    </Stack>
+    <Stack gap="20px" >
+{props.data.paragraphs?.map(paragraph => <Typography color={(theme)=>theme.palette.white.light} >{paragraph}</Typography>)}
+    </Stack>
+</Stack>
+    </StyledAboutComponent>
 }

@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom'
 import './index.css'
 import LogOut from './logOut'
 function NavBar() {
+    const StyledToolBar = styled(Toolbar)(({theme})=>({
+ display  : 'flex' , 
+ alignItems : 'center' , 
+ justifyContent : 'space-between' ,
+ width : '100vw'
+  }))
+
   const [DisplayList, setDisplayList] = useState(false)
   return ( <div className="nav bg-primary">
   <h4> Day After Day </h4>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { regester } from "../actions/auth";
 import { authInfo } from "../types/actions/auth";
 import { userLoginTypes } from "../types";
@@ -19,30 +19,13 @@ import {
   Button,
 } from "@mui/material";
 
-export const Regester: React.FC = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { login } = bindActionCreators(ActionCreators, dispatch);
-  const state = useSelector((state) => state);
-  const [email, setEmail] = useState<string>("adbdlqdmsq@gmail.com");
-  const [myError, setmyError] = useState(null);
-  const [password, setPassword] = useState<string>("abdo2015");
-  const [birthDate, setBirthDate] = useState<string>(new Date().toUTCString());
-  const [FirstName, setFirstName] = useState("");
-  const [LastName, setLastName] = useState("");
-  const fullName = FirstName + LastName;
 
-  // components
+const MyInput = ({value , onchange} : {value : any , onchange : any})=>{
+return <div>
+  <input value={value} onChange={(e)=>onchange(e.target.value)} ></input>
+</div>
+}
 
-  const SignUpPage = styled(Box)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    minHeight: "100vh",
-    width: "100vw",
-    gap: "48px",
-    backgroundColor: theme.palette.primary.main,
-  }));
 
   const CssTextField = styled(TextField)(({ theme }) => ({
     width: "400px",
@@ -72,14 +55,48 @@ export const Regester: React.FC = () => {
     },
   }));
 
+
+
+
+export const Regester: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { login } = bindActionCreators(ActionCreators, dispatch);
+  const state = useSelector((state) => state);
+  const emailInput : any = useRef(null)
+  const passwordInput : any = useRef(null)
+  const firstNameInput : any = useRef(null)
+  const lastNameInput : any = useRef(null)
+  const [myError, setmyError] = useState(null);
+  const [birthDate, setBirthDate] = useState<string>(new Date().toUTCString());
+  const birthDateInput : any = useRef(null)
+
+  // components
+
+  const SignUpPage = styled(Box)(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    minHeight: "100vh",
+    width: "100vw",
+    gap: "48px",
+    backgroundColor: theme.palette.primary.main,
+  }));
+
+
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
     dispatch({ type: userLoginTypes.userLoginRequest });
+    console.log("data")
+    console.log(birthDateInput.current.value.toString())
+    console.log( emailInput.current.value);
+    console.log( passwordInput.current.value );
+    console.log(firstNameInput.current.value + lastNameInput.current.value);
+    
     const { data, error } = await regester({
-      email,
-      password,
-      birthDate,
-      fullName,
+      email : emailInput.current.value,
+      password : passwordInput.current.value  ,
+      birthDate : birthDateInput.current.value.toString() ,
+      fullName : firstNameInput.current.value + lastNameInput.current.value,
     });
     if (error) {
       return dispatch({ type: userLoginTypes.userLoginFail, error });
@@ -107,44 +124,31 @@ export const Regester: React.FC = () => {
             width="400px"
             justifyContent="space-between"
           >
-            {" "}
+        
             <CssTextField
+             id="firstName" 
               label="First Name"
-              value={FirstName}
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-            />{" "}
+              key="firstName"
+              inputRef={firstNameInput}
+            />
             <CssTextField
-              value={LastName}
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-              label="Last Name"
-            />{" "}
+                inputRef={lastNameInput}
+               label="Last Name"
+            />
           </Stack>
           <CssTextField
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+          inputRef={emailInput}
             label="Email"
           />
           <CssTextField
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            inputRef={passwordInput}
             label="Password"
           />
           <CssTextField
-            onChange={(e) => {
-              setBirthDate(e.target.value.toString());
-            }}
-            value={birthDate}
+            inputRef={birthDateInput}
             label="Birth Date"
             type="date"
-          />
+          />      
           <Button
             type="submit"
             onClick={(e) => {
@@ -152,8 +156,7 @@ export const Regester: React.FC = () => {
             }}
             variant="contained"
           >
-            {" "}
-            Regester{" "}
+            Regester
           </Button>
         </FormControl>
         <img src={SignUpImage} style={{ width: "30%", height: "100%" }} />

@@ -50,6 +50,52 @@ const theme = createTheme({
             }
           },
         },
+                {
+          props: { variant: 'error' },
+          style: {
+            backgroundColor : 'white' ,
+            color : 'red' ,
+            borderRadius : '4px' ,
+            paddingTop : '8px' ,
+            paddingBottom : '8px' ,
+            paddingRight : '16px' ,
+            paddingLeft : '16px' ,
+            minWidth : '200px' ,
+            border : '2px solid red' ,
+            "&:hover" : {
+            backgroundColor : 'red' ,
+            color : 'white'  ,
+            paddingTop : '9px' ,
+            paddingBottom : '9px' ,
+            paddingRight : '17px' ,
+            paddingLeft : '17px' ,
+            }
+          },
+        },
+                {
+          props: { variant: 'primary' },
+          style: {
+            backgroundColor : 'white' ,
+            color : '#2075A8' ,
+            borderRadius : '4px' ,
+            paddingTop : '8px' ,
+            paddingBottom : '8px' ,
+            paddingRight : '16px' ,
+            paddingLeft : '16px' ,
+            minWidth : '200px' ,
+            border : '2px solid #2075A8' ,
+            "&:hover" : {
+            backgroundColor : '#2075A8' ,
+            color : 'white'  ,
+            paddingTop : '9px' ,
+            paddingBottom : '9px' ,
+            paddingRight : '17px' ,
+            paddingLeft : '17px' ,
+            }
+          },
+        },
+
+
         {
           props: { variant: 'outlined' },
           style: {

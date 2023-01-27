@@ -6,12 +6,13 @@ import {getGoals, AllGoalsSkeleton } from  '../features/goals'
 import { goalState, oneGoalState , userLoginState } from '../types'
 import {bindActionCreators} from "redux"
 import {GoalImageLine, MapGoals, OneGoal  } from '../features/goals/components'
-
+import LoggedNav from "../components/loggedNav"
 import * as ActionCreators from '../state/actionCreators'
 import LogOut from '../components/logOut'
 import NavBar from '../components/loggedNav'
 import "../features/goals/index.css"
 import { Header } from '../features/goals/components'
+import { Box } from '@mui/material';
 
 
 
@@ -33,13 +34,14 @@ useEffect(() => {
 
 
    return (
-    <div className='goalPage staticPage' >       
+    <Box>  
+      <LoggedNav />     
     <Header/>
     <GoalImageLine/>
 
 { userGoalsInfo.loading ?   <AllGoalsSkeleton/> : <MapGoals allGoals={userGoalsInfo.data.allGoals} /> }
     <LogOut/> 
-      </div>
+      </Box>
    )}
 
 export default Goal

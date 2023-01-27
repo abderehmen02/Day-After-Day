@@ -29,21 +29,24 @@ export const CreateProductivity  =  () : JSX.Element =>{
    const StayledAddProductivityComponentContainer = styled(Box)(({theme})=>({
     display : "flex" , 
     alignItems :"center" , 
-    gap :'40px'
+    gap :'40px' ,
+    padding : '40px' ,
+    backgroundColor : theme.palette.white.light ,
+    border : '2px solid black' , 
+    borderRadius : '16px' ,
+    margin : '40px'
    }))
 
 
 
   return (  <StayledAddProductivityComponentContainer>
-  <Stack  >
-  <Typography color="primary" variant="h4" > Add New Productivity <i className="bi bi-plus-circle-fill icon"></i> </Typography>
-  <Stack>
+  <Stack gap="40px" >
+  <Typography color="primary" variant="h4" textAlign="center" > Add New Productivity <i className="bi bi-plus-circle-fill icon"></i> </Typography>
   <TextField  placeholder='Number Of Hours' variant='outlined' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></TextField>  
   <TextField   type="date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></TextField>
-  <Box>
-  <Button variant="outlined" onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></Button>
-  <Button color="error" onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </Button>
-  </Box>
+  <Stack direction="row" gap="48px" >
+  <Button variant="primary" onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></Button>
+  <Button variant="error"   onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i></Button>
   </Stack>
  </Stack> 
   </StayledAddProductivityComponentContainer>  )
@@ -93,8 +96,8 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
 
 export const Header  = ():JSX.Element=>{
   
-  return <Box sx={{display : 'flex' ,  padding : '40px',flexDirection : 'column' , alignItems : 'center' , width : '500px'}} >
-    <Typography variant='h3' textAlign="center" color={(theme)=>theme.palette.secondary.light} >Productivity</Typography>
-    <Typography variant="h4" textAlign="center" color={(theme)=>theme.palette.white.light} >Set how many hours you have been productive in your day</Typography>
+  return <Box sx={{display : 'flex' , gap : '16px' , padding : '40px',flexDirection : 'column' , alignItems : 'center' , width : '400px'}} >
+    <Typography variant='h4' textAlign="center" color={(theme)=>theme.palette.secondary.light} >Productivity</Typography>
+    <Typography variant="h5" textAlign="center" color={(theme)=>theme.palette.white.light} >Set how many hours you have been productive in your day</Typography>
   </Box>
 }

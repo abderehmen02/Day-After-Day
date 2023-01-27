@@ -12,11 +12,10 @@ import {parseISO , format} from 'date-fns';
 import { months } from '../../assets/months';
 import productivityImageOne from '../../assets/images/productivity11.png'
 import productivityImageTwo from '../../assets/images/productivity12.png'
+import { TextField, styled , Typography , Button  , Stack, Box } from '@mui/material';
 
 export const CreateProductivity  =  () : JSX.Element =>{
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
-  console.log(productivityInfo)
-  console.log("productivity info")
   const  dispatch = useDispatch()   ;
   const [date, setDate] = useState<string>(new Date().toISOString())
   const [days, setDays] = useState<oneProductivityState[]>([])
@@ -27,24 +26,33 @@ export const CreateProductivity  =  () : JSX.Element =>{
   const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
   const {emitAction}= bindActionCreators(actionsCreators , dispatch)  
 
-  return (  <div className='footerProductivity' >
-  <img src={productivityImageOne} />
-  <div className='createProductivity' >
-  <h6> Create Productivity <i className="bi bi-plus-circle-fill icon"></i> </h6>
-<div className='productivityInputContainer' >  <input className='createProductivityItem productivityInput' placeholder='your productivity' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></input> <span>number of hours</span> </div> 
-<div className='productivityInputContainer' ><input className='createProductivityItem' type="Date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></input><span>date of productivity</span></div>
-  <button className='createProductivityItem add' onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></button>
-  <button  className='createProductivityItem delete'  onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </button>
- </div> 
- <img src={productivityImageTwo} />
-  </div>  )
+   const StayledAddProductivityComponentContainer = styled(Box)(({theme})=>({
+    display : "flex" , 
+    alignItems :"center" , 
+    gap :'40px'
+   }))
+
+
+
+  return (  <StayledAddProductivityComponentContainer>
+  <Stack  >
+  <Typography color="primary" variant="h4" > Add New Productivity <i className="bi bi-plus-circle-fill icon"></i> </Typography>
+  <Stack>
+  <TextField  placeholder='Number Of Hours' variant='outlined' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></TextField>  
+  <TextField   type="date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></TextField>
+  <Box>
+  <Button variant="outlined" onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></Button>
+  <Button color="error" onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i> </Button>
+  </Box>
+  </Stack>
+ </Stack> 
+  </StayledAddProductivityComponentContainer>  )
 }
 
 
 
 export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
-    console.log("days from graph")
-  console.log(days)
+  
 
     return   <div   className='graph'  >
          <ResponsiveContainer width="100%" height={400}>
@@ -85,8 +93,8 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
 
 export const Header  = ():JSX.Element=>{
   
-  return <div className='productivityHeader' >
-<h4>Productivity</h4>
-<h6>{new Date().getDate()} ' {months[new Date().getMonth()]}</h6>
-</div>
+  return <Box sx={{display : 'flex' ,  padding : '40px',flexDirection : 'column' , alignItems : 'center' , width : '500px'}} >
+    <Typography variant='h3' textAlign="center" color={(theme)=>theme.palette.secondary.light} >Productivity</Typography>
+    <Typography variant="h4" textAlign="center" color={(theme)=>theme.palette.white.light} >Set how many hours you have been productive in your day</Typography>
+  </Box>
 }

@@ -12,7 +12,17 @@ import CustomTooltip from '../features/productivity/tooltip';
 import {submitProd , deleteProd} from '../features/productivity'
 import LogOut from '../components/logOut';
 import { CreateProductivity , Graph, Header } from '../features/productivity/components';
+import {styled} from '@mui/material'
+import { Box } from '@mui/system';
+import UnlogedNav from '../components/unlogedNav';
+import LoggedNav from "../components/loggedNav"
 
+const StyledProductivityPage = styled(Box)(({theme})=>({
+backgroundColor :theme.palette.primary.main ,
+display : 'flex' , 
+alignItems :'center'  ,
+flexDirection : 'column'
+}))
 
 
 
@@ -22,7 +32,6 @@ export const Productivity:React.FC  = ()=> {
   type dayGraph = {day : string , value : number}[]
   const [days, setDays] = useState<any>([])
   const state = useSelector((state : stateType)=>state)
-  console.log(state)
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ;
   const [error, setError] = useState<object>({})
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
@@ -76,14 +85,15 @@ else console.log("no data or error have been reveived")
 
 
   return (
-<div className='productivityPage' >
+    <StyledProductivityPage>
+  <LoggedNav/>
   <Header/>
   { productivityInfo.loading ? <div> loading...</div> :(
     <Graph days={days} />
 )
 }
 <CreateProductivity/>
-</div>
+</StyledProductivityPage>
     )
 }
 

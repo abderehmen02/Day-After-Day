@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { Button } from '@mui/material'
 import {bindActionCreators} from 'redux'
 import * as actionCreators from '../state/actionCreators'
 import { goalActionTypes, productivityActionTypes, userInfoActionTypes, userLoginTypes } from '../types';
@@ -25,7 +26,7 @@ navigate("/")
 
 
 return (
-    <div  ><button  onClick={logOut} className="logoutBtn">log out</button></div>
+    <Button  onClick={logOut}  variant='outlined' >Log Out</Button>
   )
 }
 

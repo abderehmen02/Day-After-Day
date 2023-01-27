@@ -1,26 +1,21 @@
 import React from 'react'
 import {Toolbar , Stack , Box ,styled, Typography, Button  } from '@mui/material'
-import  {Link ,useLocation } from 'react-router-dom'
+import  {Link ,useLocation , Location } from 'react-router-dom'
 import Icon from '../assets/images/favicon.png'
 
 function UnlogedNav() {
-  const location = useLocation()
+  const location : Location = useLocation()
   const StyledToolBar = styled(Toolbar)(({theme})=>({
  display  : 'flex' , 
  alignItems : 'center' , 
  justifyContent : 'space-between' ,
  width : '100vw'
   }))
-console.log('locatiion')
-console.log(location)
 const StyledTypography = styled(Typography)(({theme})=>({
   color : theme.palette.white.main ,
   fontWeight : 'normal' ,
   fontStyle: 'none' ,
   padding : '8px' ,
-  // '&:hover' : {
-  //    color : theme.palette.secondary.light
-  // }F5F11D
 }))
 
   return (

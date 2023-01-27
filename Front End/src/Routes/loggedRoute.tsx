@@ -2,7 +2,7 @@ import React from "react";
 import { Productivity } from "../pages";
 import { Route , Routes , Navigate } from "react-router-dom";
 import { IsLoggedIn } from "../helpers/userChack";
-import LoggedNav from '../components/loggedNav'
+
 import EventPage from '../pages/event'
 
 import Goal from "../pages/goal";
@@ -10,7 +10,6 @@ import About from "../pages/about";
 import Journal from "../pages/journal";
 function LoggedRoute (){
     return<div className="webPage" >
-        <LoggedNav/>
      <Routes>   
 <Route path="/event" element={<IsLoggedIn><EventPage/></IsLoggedIn>} ></Route>
 <Route  path="/productivity"   element={<IsLoggedIn><Productivity/></IsLoggedIn>}  ></Route>

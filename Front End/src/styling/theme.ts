@@ -65,10 +65,7 @@ const theme = createTheme({
             "&:hover" : {
             backgroundColor : 'red' ,
             color : 'white'  ,
-            paddingTop : '9px' ,
-            paddingBottom : '9px' ,
-            paddingRight : '17px' ,
-            paddingLeft : '17px' ,
+  
             }
           },
         },
@@ -87,11 +84,7 @@ const theme = createTheme({
             "&:hover" : {
             backgroundColor : '#2075A8' ,
             color : 'white'  ,
-            paddingTop : '9px' ,
-            paddingBottom : '9px' ,
-            paddingRight : '17px' ,
-            paddingLeft : '17px' ,
-            }
+         }
           },
         },
 

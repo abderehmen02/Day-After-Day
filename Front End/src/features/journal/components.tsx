@@ -1,4 +1,4 @@
-import React , { useEffect, useState} from 'react'
+import React , { useEffect, useRef, useState} from 'react'
 import { useSelector  , useDispatch } from 'react-redux';
 import { AnyAction, Dispatch , bindActionCreators } from 'redux';
 import { stateType } from '../../state/reducers';
@@ -8,23 +8,27 @@ import { journalActions, JournalState, oneJournalState, userLoginState } from '.
 import journalImageOne   from    '../../assets/images/journal5.png'
 import journalImageTwo   from    '../../assets/images/journal6.png'
 import { Skeleton } from '../skeleton/skeleton';
+import { Button, TextField, Typography } from '@mui/material';
+import { Stack , Box  , styled } from '@mui/system';
 
 
 // ------------------------------------------------------------------------------- --------------journal header
 
 export const JournalHeader = () : JSX.Element =>{
-  return <div className='journalHeader' >
+  const JournalHeaderContainer= styled(Box)(({theme})=>({
+  display : 'flex' ,
+  alignItems : 'center' ,
+  justifyContent: 'center' ,
+  margin :'40px'
+  }))
+  return <JournalHeaderContainer >
 <img src={journalImageOne} />
-<div className="journalInnerHeader">
-  <h4 className="journalTitle">
-    journaling
-  </h4>
-  <p className="journalSubTitle">
-    write every idea that comes into your mind
-  </p>
-</div>
-  <img src={journalImageTwo} ></img>
-  </div>
+<Stack gap="32px" width="340px" >
+  <Typography textAlign="center" variant='h3' color={(theme)=>theme.palette.secondary.light} >Journals</Typography>
+  <Typography textAlign="center" variant='h5' color={(theme)=>theme.palette.white.main} >write down  the important events that happened in your day</Typography>
+</Stack>
+<img src={journalImageTwo} ></img>
+  </JournalHeaderContainer>
 }
 
 
@@ -55,28 +59,33 @@ export const OneJournalSkeleton = (): JSX.Element=>{
 
 
 export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
-    const [title, setTitle] = useState<string | undefined >("") ;
-    const [content, setContent] = useState<string  | undefined>("") ;
+    const titleInput : any = useRef(null)
+    const contentInput : any = useRef(null)
     const userLogin : userLoginState = useSelector((state : stateType )=>state.userLogin ) ;
     const dispatch   = useDispatch()  ; 
     const {emitAction} = bindActionCreators( actionCreators , dispatch )  ; 
-    const body = {
-      title , content , date : date.toISOString()
-    }
-    const resetValues  = ():void=>{
-setTitle("") ;
-setContent("") ; 
 
-    }
+    const CreateJournalContainer = styled(Stack)(({theme})=>({
+  display: 'flex' ,
+  alignItems: 'center' , 
+  backgroundColor : 'white' ,
+  borderRadius : '8px' ,
+  padding : '40px' ,
+  gap :'40px' ,
+  width : '50%' ,
+  margin : '40px' ,
+  border: '2px solid black'
+    }))
    return (
-    <div className='createJournalComponent' >
-    <div className='createJournalTitle' >Create Journal <i className="bi bi-plus-circle-fill icon "></i> </div>
-    <div className="createJournalForm">
-    <input value={title}      onChange={(e)=>{setTitle(e.target.value)}} ></input>
-    <input value={content}    onChange={(e)=>{setContent(e.target.value)}} ></input>
-    <button onClick={()=>{submitJornal(body ,userLogin.token , emitAction) ; resetValues() }} > Submit Journal <i className="bi bi-folder-plus icon"></i></button>
-    </div>
-    </div>
+    <CreateJournalContainer>
+    <Typography variant="h3" color="primary" >Create Journal <i className="bi bi-plus-circle-fill icon "></i> </Typography>
+    <TextField inputRef={titleInput}  variant="filled" placeholder="Your title" fullWidth    ></TextField>
+    <TextField  inputRef={contentInput} variant="filled" rows={4} fullWidth placeholder="Your text"  multiline   ></TextField>
+    <Button variant='primary' fullWidth onClick={()=>{
+      submitJornal({
+      title : titleInput.current.value , content : contentInput.current.value, date : date.toISOString()
+    } ,userLogin.token , emitAction)  }} > Submit Journal <i className="bi bi-folder-plus icon"></i></Button>
+    </CreateJournalContainer>
   )
 }
 
@@ -89,10 +98,10 @@ setContent("") ;
 
 // ---------------------------------------------------- display one journal -------------------
 const DisplayJournal = ({journal}  : {journal: oneJournalState}) : JSX.Element =>{
-return <div className='displayJournalComponent' >
-  <h4>{journal.title}</h4>
-  <p>{journal.content}</p>
-</div>
+return <Stack gap="16px" >
+  <Typography textAlign="center" variant="h4">{journal.title}</Typography>
+  <Typography  textAlign="center" variant="h5" >{journal.content}</Typography>
+</Stack>
 } 
 
 
@@ -130,7 +139,6 @@ return <div>
 
 //------------------------------------------------------ -------------------------------------------------------------------------------------------------------- one journal 
 const OneJornalComponent = ({journal} : {journal : oneJournalState}) : JSX.Element =>{ 
-
 const [editJournalComponent, setEditJournalComponent] = useState<boolean>(false)
 const userLogin = useSelector((state : stateType)=>state.userLogin)
 const dispatch : Dispatch = useDispatch()
@@ -138,13 +146,13 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
  
 
 
-return <div  className='oneJournalComponent' >
+return <Stack m={2} width="80%" paddingX="10%" alignItems="center" direction="row" justifyContent="space-between"   sx={{  backgroundColor: '#ffffff' , borderRadius: 2 }} >
     {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
-   <div className="oneJournalButtons">
-   <button className='display' onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</button> 
-   <button className='delete' onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </button>
-   </div>
-   </div>
+   <Stack gap="16px" marginY={3} >
+   <Button  sx={{ color: (theme)=>theme.palette.primary.main , maxWidth:'200px' , paddingX: '8px' , paddingY: '4px' ,border: (theme)=>`2px solid ${theme.palette.primary.main}` , '&:hover' : {color : '#fff' , backgroundColor : (theme)=>theme.palette.primary.main} }}  onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</Button> 
+   <Button   sx={{ color: 'red' , border: '2px solid red' ,  maxWidth:'200px' , paddingX: '8px' , paddingY: '2px' , '&:hover' : {color : '#fff' , backgroundColor:'red'} }}  onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </Button>
+   </Stack>
+   </Stack>
 }
 
 
@@ -178,10 +186,10 @@ export const JournalsMap = () : JSX.Element =>{
   getJournals( userLogin.token , emitAction )
  } , [])
 
-return <div className='mapingJournalComponent' >
-<h2>all journals</h2>
+return <Stack width="100vw"  alignItems="center" >
+<Typography variant='h3' color={(theme)=>theme.palette.secondary.light} margin={2}  >Your Journals</Typography>
 { journal.loading ? <JournalsSkeleton/> :  journal.data?.allJournals.map((journal :oneJournalState)=>{
 return  <OneJornalComponent journal={journal} />
 })}
-</div> 
+</Stack> 
 }

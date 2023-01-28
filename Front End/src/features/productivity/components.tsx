@@ -97,7 +97,7 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
 export const Header  = ():JSX.Element=>{
   
   return <Box sx={{display : 'flex' , gap : '16px' , padding : '40px',flexDirection : 'column' , alignItems : 'center' , width : '400px'}} >
-    <Typography variant='h4' textAlign="center" color={(theme)=>theme.palette.secondary.light} >Productivity</Typography>
+    <Typography variant='h3' textAlign="center" color={(theme)=>theme.palette.secondary.light} >Productivity</Typography>
     <Typography variant="h5" textAlign="center" color={(theme)=>theme.palette.white.light} >Set how many hours you have been productive in your day</Typography>
   </Box>
 }

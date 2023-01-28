@@ -15,10 +15,12 @@ function About() {
 
 const userInfo = useSelector((state: stateType)=>state.userInfo)
 const userLogin = useSelector((state: stateType)=>state.userLogin)
+const storageUser = localStorage.getItem("day-after-day")
 
 
 console.log('====================================');
 console.log(userInfo);
+console.log(userLogin)
 console.log('====================================');
   const StyledAboutPage = styled(Box)(({theme})=>({
     backgroundColor : theme.palette.primary.main ,

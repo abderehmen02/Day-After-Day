@@ -13,7 +13,7 @@ import goalImageTwo from '../../assets/images/goal2.png'
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import goalLineImageBg from '../../assets/images/goal3.jpg'
-import { Checkbox ,  Box , FormControlLabel, Stack , styled, TextField, Typography, Button } from "@mui/material"
+import { Checkbox ,  Box , FormControlLabel, Stack , styled, TextField, Typography, Button, Grid } from "@mui/material"
 
 
 
@@ -22,7 +22,7 @@ import { Checkbox ,  Box , FormControlLabel, Stack , styled, TextField, Typograp
 // a componet to display the goal for the user
 export const DisplayOneGoal = ({goal} : {goal : oneGoalState}): JSX.Element=>{
     return      <Stack alignItems="center" width="60%" gap="32px" justifyContent="space-around" >
-      <Typography textAlign="center" variant="h4" fontWeight="bolder">{goal.title  }</Typography>   
+      <Typography textAlign="center" variant="h4" sx={{textTransform : 'capitalize'}} fontWeight="bolder">{goal.title  }</Typography>   
       <Typography  textAlign="center" > {goal.descreption}</Typography>
       <Stack direction="row" alignItems="center" justifyContent="space-around" width="60%">
       <Typography>  {goal.deadLine.toString().slice( 0 , 10)} </Typography>
@@ -77,17 +77,16 @@ useEffect( ()=>{
     checkBody()
 }, [deadLine , title ,  completed , progress , descreption])
 
-    return <div  className="editGoalItem">
-        <div className="editGoalGrid">
-<input className="editTitle form-control" placeholder="title" type="text" value={title}  onChange={(e)=>{setTitle(e.target.value)}}  ></input>
-<input className="editDescreption form-control" placeholder="descreption" type="text" value={descreption}  onChange={(e)=>{setDescreption(e.target.value)}} ></input>
-<input  type="date"  value={deadLine}       onChange={(e)=>{setDeadLine(e.target.value)}} ></input>
-<input type="number" className="form-control"  value={progress}    onChange={(e)=>{setProgress( parseInt( e.target.value))}} ></input>
-<div className="editCompleted" > completed{ completed ? <i onClick={()=>{setCompleted(false)}} className="bi bi-check-square-fill m-1"></i> : <i className="bi bi-check-square m-1" onClick={()=>{setCompleted(true)}} ></i> }</div>
-</div>
-{ Object.getOwnPropertyNames(body).length ? <button className="btn btn-primary w-100 m-1" onClick={()=>{editGoal( goal._id , userLoginInfo.token , body , emitAction)}} >submit</button> : <div className="infoTextEditGoal " > change something </div>  }
-    </div>
-}
+    return <Stack gap="16px" width="60%"  padding="24px">
+<Stack direction="row" gap="16px" >
+<TextField  label='title' placeholder="new title" variant="filled" type="text" fullWidth value={title}  onChange={(e)=>{setTitle(e.target.value)}}  ></TextField>
+<TextField  label='New deadline'  variant="filled"   value={deadLine}  fullWidth  type="date"    onChange={(e)=>{setDeadLine(e.target.value)}} ></TextField>
+<TextField  label="New progress"  type="number" fullWidth variant="filled" value={progress}    onChange={(e)=>{setProgress( parseInt( e.target.value))}} ></TextField>
+<Typography textAlign="center" > completed{ completed ? <i onClick={()=>{setCompleted(false)}} className="bi bi-check-square-fill m-1"></i> : <i className="bi bi-check-square m-1" onClick={()=>{setCompleted(true)}} ></i> }</Typography>
+</Stack>
+<TextField multiline rows={2}  placeholder="New descreption" variant="filled" label="descreption" type="text" value={descreption}  onChange={(e)=>{setDescreption(e.target.value)}} />
+{ Object.getOwnPropertyNames(body).length ? <button className="btn btn-primary w-100 m-1" onClick={()=>{editGoal( goal._id , userLoginInfo.token , body , emitAction)}} >submit</button> : <Typography color={(theme)=>theme.palette.secondary.dark} textAlign="center" > <i className="bi bi-exclamation-triangle-fill"></i> Please change something before submiting </Typography> }
+</Stack>}
 
 
 // ****************************************One goal ***********************
@@ -97,7 +96,7 @@ export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
     const dispatch = useDispatch()
     const {emitAction} = bindActionCreators(actionCreators , dispatch)
     
-    return        <Stack bgcolor={(theme)=>theme.palette.white.light} direction="row" paddingX="40px" width="90%" sx={{borderRadius: '8px'}} paddingY="20px" borderRadius={1} alignItems="center" justifyContent="space-between" gap="40px" >
+    return        <Stack bgcolor={(theme)=>theme.palette.white.light} direction="row" paddingX="40px" width="90%" sx={{borderRadius: '8px' ,  border: '1px solid black', boxShadow : '2px 2px 4px black'}} paddingY="20px" borderRadius={1} alignItems="center" justifyContent="space-between" minHeight="300px" gap="40px" >
         {/* <div className="girdProgress mobileDisplay" style={{width : "70px" , height : '70px' , border: '2px solid green'}} >       */}
         <Box style={{width: "88px" , height: "88px" }} >
         <CircularProgressbar  value={goal.progress} text={`${goal.progress}%`} /> 
@@ -115,12 +114,8 @@ export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
 
 
 // ****************** header + create goal ******************************************************
-const StyledGolasHeaderContainer = styled(Stack)(({theme})=>({
-//     backgroundColor : theme.palette.white.light ,
-// border: `2px solid ${theme.palette.primary.main}` ,
-// padding: '16px 32px'  
-direction : 'row'
-}))
+
+
 const StyledCreateGoalContainer = styled(Stack)(({theme})=>({
     backgroundColor : theme.palette.white.light ,
 border: `2px solid #000` ,
@@ -128,7 +123,8 @@ padding: '16px 32px'   ,
 width : '50%' ,
 gap: '40px' ,
 alignItems : 'center' ,
-borderRadius : '8px'
+borderRadius : '8px' ,
+boxShadow : '2px 2px 4px black'
 }))
 export const CreateGoal = () : JSX.Element=>{
    const [title, setTitle] = useState<string>('')
@@ -149,14 +145,14 @@ export const CreateGoal = () : JSX.Element=>{
 
  return   <StyledCreateGoalContainer >
 <Typography textAlign="center" variant="h3" color={(theme)=>theme.palette.primary.main} >  Add New Goal <i className="bi bi-plus-circle-fill"></i></Typography>
-<Stack gap="16px" alignItems="center"  >
-<Stack width='70%' direction="row" gap="32px" >    <TextField   fullWidth label="title"   variant="outlined"  value={title} onChange={(e)=>{setTitle(e.target.value)}} />
-    <TextField variant="outlined"  fullWidth type='number'   label='Goal Progress'   value={progress} onChange={(e)=>{ setProgress( parseInt( e.target.value ) )}} />
+<Stack gap="16px"  width="100%" alignItems="center"  >
+<Stack width='70%'  direction="row" gap="32px" >    <TextField   fullWidth label="title" placeholder="Goal Title"  variant="filled"  value={title} onChange={(e)=>{setTitle(e.target.value)}} />
+    <TextField variant="filled"  fullWidth type='number'   label='Goal Progress'   value={progress} onChange={(e)=>{ setProgress( parseInt( e.target.value ) )}} />
 </Stack>
-    <TextField sx={{width : '70%'}}  multiline rows={4} variant="outlined" label="Goal Descreption" placeholder='Goal Descreption'    value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}  />
+    <TextField sx={{width : '70%'}}  multiline rows={4} variant="filled" label="Descreption" placeholder='Goal Descreption'    value={descreption} onChange={(e)=>{setDescreption(e.target.value)}}  />
 <Stack direction="row" width="70%" justifyContent="space-around" >
     <FormControlLabel label="completed" control={<Checkbox checked={completed} onChange={()=>{setCompleted(!completed)}} /> } ></FormControlLabel>
-    <TextField label="Dead line" type='date' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  />
+    <TextField label="Dead line"  variant="filled" type='date' value={deadLine} onChange={(e)=>{setDeadLine(e.target.value)}}  />
 </Stack> 
     <Button sx={{width: '70%'}} variant="primary" fullWidth onClick={ ()=>{submitGoal(userLoginInfo.token , body , emitAction ) ; resetValues() }  }  > submit     </Button>
 </Stack>
@@ -168,12 +164,13 @@ export const CreateGoal = () : JSX.Element=>{
 //--------------------------------- the goal header
 
 export const GoalHeader : React.FC = ()=>{
-    return <Stack width="70%" gap="10%" direction="row" alignItems="center" >
+    return <Stack width="70vw"  gap="10%" justifyContent="space-around" direction="row" alignItems="center" >
     <img  src={goalImageTwo} width="150px" height="150px" />
     <Stack alignItems="center" >
         <Typography variant="h3" color={(theme)=>theme.palette.secondary.light} >Goals</Typography>
         <Typography variant='h5' color={(theme)=>theme.palette.white.light} >Set Your Goals and track your progress each day </Typography>
     </Stack>
+    <div  style={{width : '150px'  , height : '150'  , backgroundColor : 'transparent' }} ></div>
     </Stack>
 }
 
@@ -185,9 +182,9 @@ export const MapGoals = ({ allGoals } : {allGoals : oneGoalState[]}) : JSX.Eleme
 <Typography variant="h5" color={(theme)=>theme.palette.white.light} >Return back to read your goals</Typography>
 </Stack>
       <Stack alignItems="center" gap={4} >  {
-allGoals.map(goal =>{
+allGoals.length ?  allGoals.map(goal =>{
     return  <OneGoal goal={goal} /> 
-})
+}) : <Stack  gap="8px" margin="40px" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i class="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No goals found , Try to set some goals</Typography></Stack>
 }</Stack>
 </Stack>
 }

@@ -53,8 +53,8 @@ export const HeroText = () :  JSX.Element =>{
     <Typography variant='h5' textAlign='center'  color={(theme)=>theme.palette.white.dark} >track your dailly ideas , goals and journalings </Typography>
     </Box>
     <Stack justifyContent='space-around' direction='row' width='100%'  > 
-      <Button variant='outlined'  >Log In</Button>
-      <Button variant="contained" >Regester</Button>
+      <Button variant='standard'  >Regester</Button>
+      <Button variant="contained" >What Is Day After Day </Button>
     </Stack>
     <Stack direction="row" width='90%' justifyContent='space-around' >
       <Box sx={{ minWidth:'125px'  ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >

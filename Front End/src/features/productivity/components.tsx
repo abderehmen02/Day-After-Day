@@ -34,7 +34,8 @@ export const CreateProductivity  =  () : JSX.Element =>{
     backgroundColor : theme.palette.white.light ,
     border : '2px solid black' , 
     borderRadius : '16px' ,
-    margin : '40px'
+    margin : '40px' ,
+    boxShadow : '2px 2px 4px black'
    }))
 
 

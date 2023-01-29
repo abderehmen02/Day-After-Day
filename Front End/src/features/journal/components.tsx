@@ -74,7 +74,8 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
   gap :'40px' ,
   width : '50%' ,
   margin : '40px' ,
-  border: '2px solid black'
+  border: '2px solid black' ,
+  boxShadow : '2px 2px 4px black'
     }))
    return (
     <CreateJournalContainer>
@@ -98,9 +99,9 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
 
 // ---------------------------------------------------- display one journal -------------------
 const DisplayJournal = ({journal}  : {journal: oneJournalState}) : JSX.Element =>{
-return <Stack gap="16px" >
-  <Typography textAlign="center" variant="h4">{journal.title}</Typography>
-  <Typography  textAlign="center" variant="h5" >{journal.content}</Typography>
+return <Stack  width="65%" gap="16px"  height='200px' justifyContent='space-around' >
+  <Typography  textTransform="capitalize" fontWeight="bold" textAlign="center" variant="h4">{journal.title}</Typography>
+  <Typography  textAlign="center"  >{journal.content}</Typography>
 </Stack>
 } 
 
@@ -127,11 +128,11 @@ const EditJournal = ({journal}  : {journal : oneJournalState }) : JSX.Element =>
   }, [title , content])
    
 
-return <div>
-<input value={title}       type="text"       onChange={e =>{setTitle(e.target.value)}}      ></input>
-<input value={content}    type="text"       onChange={e =>{setContent(e.target.value)}}    ></input>
-{ ableSubmit ?  <button onClick={()=>{submitEditJournal(body , userLogin.token , emitAction , journal._id )}} > submit changes </button> : 'change some value before submiting'}
-</div>
+return <Stack gap={2}  width="68%" padding={1} >
+<TextField value={title}     variant="filled" placeholder="Your title" fullWidth       onChange={e =>{setTitle(e.target.value)}}      ></TextField>
+<TextField value={content}    variant="filled" placeholder="Your Descreption" multiline rows={2} fullWidth       onChange={e =>{setContent(e.target.value)}}    ></TextField>
+{ ableSubmit ?  <Button variant='outlined' onClick={()=>{submitEditJournal(body , userLogin.token , emitAction , journal._id )}} > Submit Changes </Button> : <Typography color={(theme)=>theme.palette.secondary.dark} textAlign="center" > <i className="bi bi-exclamation-triangle-fill"></i> Please change something before submiting </Typography>}
+</Stack>
 }
 
 
@@ -146,9 +147,9 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
  
 
 
-return <Stack m={2} width="80%" paddingX="10%" alignItems="center" direction="row" justifyContent="space-between"   sx={{  backgroundColor: '#ffffff' , borderRadius: 2 }} >
+return <Stack m={2}  width="80%" padding={2}  alignItems="center" direction="row" justifyContent="space-around"   sx={{  backgroundColor: '#ffffff' , borderRadius: 2 , boxShadow : '1.5px 1.5px 3px black' , border: '2px solid black' , minHeight: '250px'  }} >
     {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
-   <Stack gap="16px" marginY={3} >
+   <Stack   gap={3} >
    <Button  sx={{ color: (theme)=>theme.palette.primary.main , maxWidth:'200px' , paddingX: '8px' , paddingY: '4px' ,border: (theme)=>`2px solid ${theme.palette.primary.main}` , '&:hover' : {color : '#fff' , backgroundColor : (theme)=>theme.palette.primary.main} }}  onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</Button> 
    <Button   sx={{ color: 'red' , border: '2px solid red' ,  maxWidth:'200px' , paddingX: '8px' , paddingY: '2px' , '&:hover' : {color : '#fff' , backgroundColor:'red'} }}  onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </Button>
    </Stack>
@@ -188,8 +189,8 @@ export const JournalsMap = () : JSX.Element =>{
 
 return <Stack width="100vw"  alignItems="center" >
 <Typography variant='h3' color={(theme)=>theme.palette.secondary.light} margin={2}  >Your Journals</Typography>
-{ journal.loading ? <JournalsSkeleton/> :  journal.data?.allJournals.map((journal :oneJournalState)=>{
-return  <OneJornalComponent journal={journal} />
-})}
+{ journal.loading ? <JournalsSkeleton/> : journal.data?.allJournals.length ? journal.data?.allJournals.map((journal :oneJournalState)=>{
+return  <OneJornalComponent journal={journal} /> 
+}) :<Stack  gap="8px" margin="40px" bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i class="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No journals found , Try to write some journals</Typography></Stack>}
 </Stack> 
 }

@@ -5,14 +5,15 @@ import { productivityReducer } from './productivity';
 import { goalReducer } from './goal';
 import { journalReducer } from './journal';
 import { eventReducer } from './event';
-
+import { mobileNavButtonState } from './mobileNavButton'
 const reducers = combineReducers({
   userLogin : userLoginReducer ,
   userInfo    : userInfoReducer , 
   productivity : productivityReducer ,
   goals : goalReducer ,
   journal : journalReducer ,
-  event : eventReducer
+  event : eventReducer ,
+  mobileNavButton : mobileNavButtonState
 })
 export default reducers
 

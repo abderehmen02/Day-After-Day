@@ -191,6 +191,6 @@ return <Stack width="100vw"  alignItems="center" >
 <Typography variant='h3' color={(theme)=>theme.palette.secondary.light} margin={2}  >Your Journals</Typography>
 { journal.loading ? <JournalsSkeleton/> : journal.data?.allJournals.length ? journal.data?.allJournals.map((journal :oneJournalState)=>{
 return  <OneJornalComponent journal={journal} /> 
-}) :<Stack  gap="8px" margin="40px" bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i class="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No journals found , Try to write some journals</Typography></Stack>}
+}) :<Stack  gap="8px" margin="40px" bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i className="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No journals found , Try to write some journals</Typography></Stack>}
 </Stack> 
 }

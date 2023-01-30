@@ -184,7 +184,7 @@ export const MapGoals = ({ allGoals } : {allGoals : oneGoalState[]}) : JSX.Eleme
       <Stack alignItems="center" gap={4} >  {
 allGoals.length ?  allGoals.map(goal =>{
     return  <OneGoal goal={goal} /> 
-}) : <Stack  gap="8px" margin="40px" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i class="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No goals found , Try to set some goals</Typography></Stack>
+}) : <Stack  gap="8px" margin="40px" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i className="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No goals found , Try to set some goals</Typography></Stack>
 }</Stack>
 </Stack>
 }

@@ -19,7 +19,7 @@ backgroundColor : theme.palette.primary.main ,
 display : 'flex' , 
 flexDirection : 'column' ,
 height : '100vh' ,
-gap : '40px'
+gap : '40px' 
 }))
 
 
@@ -27,7 +27,11 @@ const StyledBody = styled(Box)(({theme})=>({
 display: 'flex' , 
 alignItems : 'center' ,
 justifyContent : 'space-around'   ,
-width: '90%'
+width: '90%' ,
+[theme.breakpoints.down("sm")] : {
+  flexDirection : 'column'
+}
+
 }))
   return (
     <HomeContainer >

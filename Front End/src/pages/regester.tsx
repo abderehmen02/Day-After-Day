@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../features/regester/components";
 import "../features/regester/index.css";
 import SignUpImage from "../assets/images/signUp.png";
+import { stateType } from '../state/reducers'
 import UnlogedNav from "../components/unlogedNav";
 import {
   FormControl,
@@ -28,8 +29,11 @@ return <div>
 
 
   const CssTextField = styled(TextField)(({ theme }) => ({
-    width: "400px",
+    width: '400px' ,
     color: "white",
+    [theme.breakpoints.down("sm")] : {
+    width : '100%'
+    } ,
     "& label.Mui-focused": {
       color: theme.palette.secondary.light,
     },
@@ -62,6 +66,7 @@ export const Regester: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { login } = bindActionCreators(ActionCreators, dispatch);
+  const userLogin  = useSelector((state: stateType)=>state.userLogin)
   const state = useSelector((state) => state);
   const emailInput : any = useRef(null)
   const passwordInput : any = useRef(null)
@@ -71,7 +76,8 @@ export const Regester: React.FC = () => {
   const birthDateInput : any = useRef(null)
 
   // components
-
+ console.log("userLogin")
+ console.log(userLogin)
   const SignUpPage = styled(Box)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
@@ -89,8 +95,11 @@ export const Regester: React.FC = () => {
       email : emailInput.current.value,
       password : passwordInput.current.value  ,
       birthDate : birthDateInput.current.value.toString() ,
-      fullName : fullNameInput 
+      fullName : fullNameInput.current.value 
     });
+    console.log("info")
+    console.log(data)
+    console.log(error)
     if (error) {
       return dispatch({ type: userLoginTypes.userLoginFail, error });
     }
@@ -103,33 +112,56 @@ export const Regester: React.FC = () => {
       <UnlogedNav />
       <Header />
       <Stack
-        direction="row"
+        direction={{xs : 'column' , sm : 'row'}}
         justifyContent="space-around"
         alignItems="center"
         width="80%"
+        spacing={{xs: '40px'}}
+      
       >
         <FormControl
-          sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          sx={{ display: "flex", flexDirection: "column", gap: "16px" , width: '100%'  }}
         >
         
             <CssTextField
-             id="firstName" 
-              label="full name"
+             id="fullname" 
+             error={userLogin.error === 'fullname should be more than 2 characters' || userLogin.error === "full name used"}
+             helperText={userLogin.error === 'fullname should be more than 2 characters'  || userLogin.error === "full name used" && userLogin.error   }
+             defaultValue={userLogin.error === 'fullname should be more than 2 characters'  || userLogin.error === "full name used" ? " " : '' } 
+              label="fullname"
               key="fullName"
               inputRef={fullNameInput}
-            />
+          
+                      /> 
           <CssTextField
-          inputRef={emailInput}
-            label="Email"
+             inputRef={emailInput}
+             label="email"
+             type="email"
+              error={userLogin.error === 'email not valid'}
+             helperText={userLogin.error === 'email not valid' && userLogin.error   }
+             defaultValue={userLogin.error === 'email not valid' ? " " : '' }
           />
           <CssTextField
             inputRef={passwordInput}
-            label="Password"
+                         error={userLogin.error === 'password should be more than 8 characters'}
+             id="password" 
+             label="password"
+             type="password"
+             helperText={userLogin.error === 'password should be more than 8 characters' && userLogin.error   }
+              defaultValue={userLogin.error === 'password should be more than 8 characters'? " " : '' } 
+              key="password"
           />
           <CssTextField
             inputRef={birthDateInput}
-            label="Birth Date"
-            type="date"
+            error={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate"}
+             helperText={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate" && userLogin.error   }
+              // defaultValue={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate"? " " : '' } 
+ 
+            type="date" 
+            label='birth date'
+            InputLabelProps={{
+            shrink: true,
+          }}
           />      
           <Button
             type="submit"
@@ -137,11 +169,12 @@ export const Regester: React.FC = () => {
               handleSubmit(e);
             }}
             variant="contained"
+            sx={{width : {xs: '100%' , sm : '400px'}}}
           >
             Regester
           </Button>
         </FormControl>
-        <img src={SignUpImage} style={{ width: "30%", height: "100%" }} />
+<Box  sx={{ width: {sm : '30%' , xs : '50%'}, height: "100%"}} >        <img src={SignUpImage} style={{width :'100%' , height : '100%'}}  /></Box>
       </Stack>
     </SignUpPage>
   );

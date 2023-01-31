@@ -11,17 +11,21 @@ var compareAsc = require('date-fns/compareAsc')
 
 
 const regester = asyncWrapper(async (req  , res )=>{
-
-  // hashing the password to be able to store in the database sucretly
+const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   console.log("request body date -------------")
   console.log(new Date(req.body.birthDate))
   console.log(new Date())
+     // checking if all the data is valid
     if(!req.body.password || !req.body.email || !req.body.birthDate || !req.body.fullName ) throw sendErr(res , StatusCodes.BAD_REQUEST , 'all fields must be filled')
+     if(req.body.fullName.length < 3 ){throw sendErr(res , StatusCodes.BAD_REQUEST , 'fullname should be more than 2 characters')}
     if(req.body.password.length < 8) {throw sendErr(res , StatusCodes.BAD_REQUEST , 'password should be more than 8 characters')}
-    if(req.body.fullName.length < 3 ){throw sendErr(res , StatusCodes.BAD_REQUEST , 'fullname should be more than 2 characters')}
+    if(!req.body.email.match(emailFormat)){throw sendErr(res , StatusCodes.BAD_REQUEST , 'email not valid')}
     if( compareAsc( new Date(req.body.birthDate) , new Date( 1900 , 01 , 01 ) ) === -1  ){ throw  sendErr(res, StatusCodes.BAD_REQUEST , "check your birthDate" ) }
     if(compareAsc(new Date(req.body.birthDate) , subYears( new Date() , 4) ) === 1){ throw sendErr( res , StatusCodes.BAD_REQUEST , 'you should be older than 4 years') }
-    const oldUser = userModel.findOne({fullName : req.body.fullName})
+
+
+    // hashing the password to be able to store in the database sucretly
+    const oldUser = await userModel.findOne({fullName : req.body.fullName})
     if(oldUser){ throw sendErr(res , StatusCodes.BAD_REQUEST , 'full name used')}
     const salt = await bcrypt.genSalt(10);
     if (!salt) { sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not generate salt')}

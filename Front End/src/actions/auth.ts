@@ -7,7 +7,9 @@ import { UserInfo } from 'os';
 export const regester  = async (body : regesterBody) :Promise<any>  =>{
     try{
      const responceData = await postReq( 'auth/regester'  , body , null)
-if(responceData.succuss === true){
+     console.log("responceData")
+     console.log(responceData)
+if(responceData && responceData.succuss === true){
     localStorage.setItem("day-after-day" , responceData.data.token ) ;
     return {data: responceData.data , error : false }
 
@@ -15,7 +17,9 @@ if(responceData.succuss === true){
 else return {data : false , error : responceData.error}
     }
     catch(err){
+        console.log("error")
         console.log(err)
+        return ({data : false , error : false})
     }
 }
 

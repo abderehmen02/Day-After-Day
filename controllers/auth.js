@@ -25,8 +25,10 @@ const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 
     // hashing the password to be able to store in the database sucretly
-    const oldUser = await userModel.findOne({fullName : req.body.fullName})
-    if(oldUser){ throw sendErr(res , StatusCodes.BAD_REQUEST , 'full name used')}
+    const oldFullName = await userModel.findOne({fullName : req.body.fullName})
+    const oldEmail = await userModel.findOne({email : req.body.email})
+    if(oldFullName){ throw sendErr(res , StatusCodes.BAD_REQUEST , 'full name used')}
+    if(oldEmail){throw sendErr(res , StatusCodes.BAD_REQUEST , 'email used' )}
     const salt = await bcrypt.genSalt(10);
     if (!salt) { sendErr(res , StatusCodes.INTERNAL_SERVER_ERROR , 'can not generate salt')}
     const hash = await bcrypt.hash(req.body.password , salt);

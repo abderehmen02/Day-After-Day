@@ -1,5 +1,4 @@
-export type navMobileButtonStateType = boolean
-export type navMobileButtonReverseActionType = 'Reverse'
+export type navMobileButtonStateType = boolean ; 
 export interface navMobileButtonActionType {
-    type : navMobileButtonActionType
-} 
+    type : string
+} ;

@@ -47,25 +47,25 @@ export const Buttons = () : JSX.Element =>{
 
 
 export const HeroText = () :  JSX.Element =>{
-  return <Box sx={{   width : '60%' , display : 'flex' , alignItems : 'center'  , justifyContent : 'space-around' , flexDirection : 'column' , gap : '80px' }} >
+  return <Box sx={{   width : {xs : '90%' , sm : '60%'} , display : 'flex' , alignItems : 'center'  , justifyContent : 'space-around' , flexDirection : 'column' , gap : '80px' }} >
     <Stack gap="24px" margin="16px">
     <Typography variant='h3'  textAlign='center' color={(theme)=>theme.palette.white.light}  > A Platform Built For A New Way To Increase Your Productivity </Typography>
     <Typography variant='h5' textAlign='center'  color={(theme)=>theme.palette.white.dark} >track your dailly ideas , goals and journalings </Typography>
     </Stack>
-    <Stack justifyContent='space-around' direction={{'xs'  : 'column'  , 'sm' : 'row'}} width='100%'  > 
+    <Stack justifyContent='space-around' spacing={{xs: '32px' }}  alignItems="center" direction={{'xs'  : 'column'  , 'sm' : 'row'}} width='100%'  > 
   <Link to="/regester" style={{textDecoration : 'none'}}>    <Button variant='standard'  >Regester</Button></Link>
    <Link to="/about" style={{textDecoration : 'none'}}>    <Button variant="contained" >What Is Day After Day </Button></Link>
     </Stack>
-    <Stack direction="row" width='90%' justifyContent='space-around' >
-      <Box sx={{ minWidth:'125px'  ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
+    <Stack direction={{xs : 'column' , sm : 'row'}} width='90%' justifyContent='space-around' >
+      <Box sx={{ minWidth:'125px' , margin : '8px'  ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
         <Typography variant="h5" color={(theme)=>theme.palette.white.main} >Productivity</Typography>
         <BarChartIcon color='white' />
       </Box>
-      <Box sx={{ minWidth:'125px'  , border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
+      <Box sx={{ minWidth:'125px'  , margin : '8px', border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
         <Typography variant="h5" color={(theme)=>theme.palette.white.main}  >Journaling</Typography>
         <ArticleIcon color='white' />
       </Box>
-      <Box sx={{ minWidth:'125px' ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
+      <Box sx={{ minWidth:'125px' , margin : '8px' ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
         <Typography variant="h5" color={(theme)=>theme.palette.white.main}  >Goals</Typography>
         <AutoGraphIcon color='white' />
       </Box>

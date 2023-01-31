@@ -65,8 +65,7 @@ export const Regester: React.FC = () => {
   const state = useSelector((state) => state);
   const emailInput : any = useRef(null)
   const passwordInput : any = useRef(null)
-  const firstNameInput : any = useRef(null)
-  const lastNameInput : any = useRef(null)
+  const fullNameInput : any = useRef(null)
   const [myError, setmyError] = useState(null);
   const [birthDate, setBirthDate] = useState<string>(new Date().toUTCString());
   const birthDateInput : any = useRef(null)
@@ -85,18 +84,12 @@ export const Regester: React.FC = () => {
 
 
   const handleSubmit = async (event: any) => {
-    dispatch({ type: userLoginTypes.userLoginRequest });
-    console.log("data")
-    console.log(birthDateInput.current.value.toString())
-    console.log( emailInput.current.value);
-    console.log( passwordInput.current.value );
-    console.log(firstNameInput.current.value + lastNameInput.current.value);
-    
+    dispatch({ type: userLoginTypes.userLoginRequest });    
     const { data, error } = await regester({
       email : emailInput.current.value,
       password : passwordInput.current.value  ,
       birthDate : birthDateInput.current.value.toString() ,
-      fullName : firstNameInput.current.value + lastNameInput.current.value,
+      fullName : fullNameInput 
     });
     if (error) {
       return dispatch({ type: userLoginTypes.userLoginFail, error });
@@ -118,24 +111,13 @@ export const Regester: React.FC = () => {
         <FormControl
           sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
         >
-          <Stack
-            direction="row"
-            spacing="5%"
-            width="400px"
-            justifyContent="space-between"
-          >
         
             <CssTextField
              id="firstName" 
-              label="First Name"
-              key="firstName"
-              inputRef={firstNameInput}
+              label="full name"
+              key="fullName"
+              inputRef={fullNameInput}
             />
-            <CssTextField
-                inputRef={lastNameInput}
-               label="Last Name"
-            />
-          </Stack>
           <CssTextField
           inputRef={emailInput}
             label="Email"

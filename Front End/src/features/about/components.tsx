@@ -52,6 +52,11 @@ export const AboutComponent : React.FC<{data : AboutPageComponentType , index : 
         width : '90%' ,
         padding : '50px' ,
          flexDirection : props.index % 2 === 0 ? 'row' : 'row-reverse' , 
+         [theme.breakpoints.down("sm")] : {
+            flexDirection : 'column-reverse' ,
+            padding : '0px' , 
+            gap : '40px' , 
+         }
     }))
     return <StyledAboutComponent>
 <img src={props.data.image} ></img>
@@ -60,7 +65,7 @@ export const AboutComponent : React.FC<{data : AboutPageComponentType , index : 
     <Typography textAlign="center" variant="h3" color={(theme)=>theme.palette.secondary.light}>{props.data.title }</Typography>
     <Typography textAlign="center"  variant="h4" color={(theme)=>theme.palette.secondary.main}  >{props.data.subtitle}</Typography>
     </Stack>
-    <Stack gap="20px" >
+    <Stack gap="20px" textAlign={{xs: 'center' , sm : 'start'}} >
 {props.data.paragraphs?.map(paragraph => <Typography color={(theme)=>theme.palette.white.light} >{paragraph}</Typography>)}
     </Stack>
 </Stack>

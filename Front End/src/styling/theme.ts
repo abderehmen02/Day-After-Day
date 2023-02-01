@@ -35,7 +35,7 @@ const theme = createTheme({
           style: {
             backgroundColor : '#F5F11D' ,
             color : 'black' ,
-            borderRadius : '4px' ,
+            borderRadius : '8px' ,
             paddingTop : '8px' ,
             paddingBottom : '8px' ,
             paddingRight : '16px' ,
@@ -51,12 +51,11 @@ const theme = createTheme({
           style: {
             backgroundColor : 'white' ,
             color : 'red' ,
-            borderRadius : '4px' ,
+            borderRadius : '8px' ,
             paddingTop : '8px' ,
             paddingBottom : '8px' ,
             paddingRight : '16px' ,
-            paddingLeft : '16px' ,
-            minWidth : '200px' ,
+            paddingLeft : '16px' ,         
             border : '2px solid red' ,
             "&:hover" : {
             backgroundColor : 'red' ,
@@ -70,12 +69,11 @@ const theme = createTheme({
           style: {
             backgroundColor : 'white' ,
             color : '#2075A8' ,
-            borderRadius : '4px' ,
+            borderRadius : '8px' ,
             paddingTop : '8px' ,
             paddingBottom : '8px' ,
             paddingRight : '16px' ,
             paddingLeft : '16px' ,
-            minWidth : '200px' ,
             border : '2px solid #2075A8' ,
             "&:hover" : {
             backgroundColor : '#2075A8' ,
@@ -93,7 +91,7 @@ const theme = createTheme({
             color : 'black' ,
             border :'2px solid black' ,
             cursor: 'pointer' ,
-            borderRadius : '4px' ,
+            borderRadius : '8px' ,
             paddingTop : '8px' ,
             paddingBottom : '8px' ,
             paddingRight : '16px' ,

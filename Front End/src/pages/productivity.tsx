@@ -2,10 +2,10 @@ import React, { useState ,useEffect, useDebugValue, useCallback } from 'react'
 import {useSelector , useDispatch} from 'react-redux'
 import { stateType } from '../state/reducers'
 import '../features/productivity/index.css'
-import { format, parseISO, subDays } from "date-fns";
+import {  parseISO, subDays } from "date-fns";
 import { loginSuccssAction , userLoginTypes , userInfoActionTypes , userInfoAction  , userInfoState, userInfoExistState , productivityActionTypes, productivityState, userLoginState, oneProductivityState } from '../types';
 import { getProductivities } from '../actions/productivity';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import {bindActionCreators} from 'redux'
 import * as actionsCreators from '../state/actionCreators';
 import CustomTooltip from '../features/productivity/tooltip';
@@ -17,11 +17,14 @@ import { Box } from '@mui/system';
 import UnlogedNav from '../components/unlogedNav';
 import LoggedNav from "../components/loggedNav"
 
+
+
 const StyledProductivityPage = styled(Box)(({theme})=>({
 backgroundColor :theme.palette.primary.main ,
 display : 'flex' , 
 alignItems :'center'  ,
-flexDirection : 'column'
+flexDirection : 'column',
+width : '100vw' ,
 }))
 
 
@@ -35,14 +38,20 @@ export const Productivity:React.FC  = ()=> {
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ;
   const [error, setError] = useState<object>({})
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
-  const navigate = useNavigate()
-  const [todayProductivity, setTodayProductivity] = useState<number| undefined>(0)
+  const navigate : NavigateFunction = useNavigate()
   const {emitAction}= bindActionCreators(actionsCreators , dispatch)  
  
-  const generateDays  = ()=>{
+  const generateDays  = () : void =>{
     // we will desplay the productivity 30 days before the current day
     const formatedDays  = [] ; 
-    for(let i  = 20  ; i>= 0  ; i--){
+    // if the screen width is short we want to add less days in the graph
+    let NumberOfGraphDays = 20 ; 
+    console.log('width')
+    console.log(window.innerWidth)
+    if(window.innerWidth <= 600) NumberOfGraphDays = 10
+    if(window.innerWidth <= 1000) NumberOfGraphDays = 15
+    console.log(NumberOfGraphDays)
+    for(let i  = NumberOfGraphDays  ; i>= 0  ; i--){
       let day = subDays(new Date() , i).toISOString().slice(0, 10) ; 
       let dayInProductivityInfo = productivityInfo.data?.allProductivities.find(( productivity )=>{
         return productivity.day === day

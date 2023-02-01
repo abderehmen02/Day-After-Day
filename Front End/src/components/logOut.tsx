@@ -1,16 +1,16 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { Dispatch } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@mui/material'
 import {bindActionCreators} from 'redux'
 import * as actionCreators from '../state/actionCreators'
 import { goalActionTypes, productivityActionTypes, userInfoActionTypes, userLoginTypes } from '../types';
 import { useNavigate } from 'react-router-dom' ; 
+import { stateType } from '../state/reducers'
 
 
 const LogOut = () : JSX.Element =>{
 
-
- const dispatch = useDispatch()   ; 
+ const dispatch  = useDispatch()   ; 
 const {emitAction} = bindActionCreators(actionCreators , dispatch) ; 
 const navigate = useNavigate()
 
@@ -26,7 +26,7 @@ navigate("/")
 
 
 return (
-    <Button  onClick={logOut}  variant='outlined' >Log Out</Button>
+    <Button  onClick={()=>{logOut(); dispatch({type: 'Reverse'}) }}   variant='outlined' >Log Out</Button>
   )
 }
 

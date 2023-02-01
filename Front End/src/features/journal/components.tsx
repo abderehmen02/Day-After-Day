@@ -19,7 +19,11 @@ export const JournalHeader = () : JSX.Element =>{
   display : 'flex' ,
   alignItems : 'center' ,
   justifyContent: 'center' ,
-  margin :'40px'
+  margin :'40px' ,
+  [theme.breakpoints.down("sm")] : {
+    flexDirection : 'column-reverse' , 
+    gap : '32px'
+  }
   }))
   return <JournalHeaderContainer >
 <img src={journalImageOne} />
@@ -27,7 +31,7 @@ export const JournalHeader = () : JSX.Element =>{
   <Typography textAlign="center" variant='h3' color={(theme)=>theme.palette.secondary.light} >Journals</Typography>
   <Typography textAlign="center" variant='h5' color={(theme)=>theme.palette.white.main} >write down  the important events that happened in your day</Typography>
 </Stack>
-<img src={journalImageTwo} ></img>
+<Box display={{xs: "none" , sm  :'block' }} ><img src={journalImageTwo} ></img></Box>
   </JournalHeaderContainer>
 }
 
@@ -75,7 +79,10 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
   width : '50%' ,
   margin : '40px' ,
   border: '2px solid black' ,
-  boxShadow : '2px 2px 4px black'
+  boxShadow : '2px 2px 4px black' , 
+  [theme.breakpoints.down('sm')] : {
+width: '95%'
+  }
     }))
    return (
     <CreateJournalContainer>
@@ -99,7 +106,7 @@ export const  CreateJournal = ({date} : {date : Date}) : JSX.Element=> {
 
 // ---------------------------------------------------- display one journal -------------------
 const DisplayJournal = ({journal}  : {journal: oneJournalState}) : JSX.Element =>{
-return <Stack  width="65%" gap="16px"  height='200px' justifyContent='space-around' >
+return <Stack  width={{sm : '65%' , xs: '90%'}} gap="16px"  minHeight='200px' justifyContent='space-around' >
   <Typography  textTransform="capitalize" fontWeight="bold" textAlign="center" variant="h4">{journal.title}</Typography>
   <Typography  textAlign="center"  >{journal.content}</Typography>
 </Stack>
@@ -147,11 +154,11 @@ const {emitAction}   = bindActionCreators( actionCreators , dispatch)
  
 
 
-return <Stack m={2}  width="80%" padding={2}  alignItems="center" direction="row" justifyContent="space-around"   sx={{  backgroundColor: '#ffffff' , borderRadius: 2 , boxShadow : '1.5px 1.5px 3px black' , border: '2px solid black' , minHeight: '250px'  }} >
+return <Stack spacing="32px"  m={2}  width={{sm : '80%' , xs : '95%'}} padding={2}  alignItems="center" direction={{xs: "column" , sm : 'row'}} justifyContent="space-around"   sx={{  backgroundColor: '#ffffff' , borderRadius: 2 , boxShadow : '1.5px 1.5px 3px black' , border: '2px solid black' , minHeight: '250px'  }} >
     {editJournalComponent ? <EditJournal journal={journal} />  : <DisplayJournal journal={journal} />}
-   <Stack   gap={3} >
-   <Button  sx={{ color: (theme)=>theme.palette.primary.main , maxWidth:'200px' , paddingX: '8px' , paddingY: '4px' ,border: (theme)=>`2px solid ${theme.palette.primary.main}` , '&:hover' : {color : '#fff' , backgroundColor : (theme)=>theme.palette.primary.main} }}  onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</Button> 
-   <Button   sx={{ color: 'red' , border: '2px solid red' ,  maxWidth:'200px' , paddingX: '8px' , paddingY: '2px' , '&:hover' : {color : '#fff' , backgroundColor:'red'} }}  onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </Button>
+   <Stack  width={{xs: '100%' , sm : '128px'}} spacing={3} direction={{xs: 'row' , sm : 'column'}}  >
+   <Button fullWidth  sx={{ color: (theme)=>theme.palette.primary.main , maxWidth:'200px' , paddingX: '8px' , paddingY: '4px' ,border: (theme)=>`2px solid ${theme.palette.primary.main}` , '&:hover' : {color : '#fff' , backgroundColor : (theme)=>theme.palette.primary.main} }}  onClick={()=>{setEditJournalComponent(value => !value)}} > {editJournalComponent ? <span>display <i className="bi bi-card-list icon"></i> </span> : <span> edit <i className="bi bi-pencil icon"></i></span>}</Button> 
+   <Button fullWidth  sx={{ color: 'red' , border: '2px solid red' ,  maxWidth:'200px' , paddingX: '8px' , paddingY: '2px' , '&:hover' : {color : '#fff' , backgroundColor:'red'} }}  onClick={()=>{deleteJournal(userLogin.token , emitAction , journal._id )}} > delete <i className="bi bi-trash icon"></i> </Button>
    </Stack>
    </Stack>
 }

@@ -19,7 +19,8 @@ backgroundColor : theme.palette.primary.main ,
 display : 'flex' , 
 flexDirection : 'column' ,
 minHeight : '100vh' ,
-gap : '40px' 
+gap : '40px'  ,
+alignItems : 'center' ,
 }))
 
 

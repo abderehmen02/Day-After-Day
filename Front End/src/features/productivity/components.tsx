@@ -1,4 +1,4 @@
-import React , {useState , useEffect} from 'react'  ;
+import React , {useState , useEffect, useRef} from 'react'  ;
 import { submitProd , deleteProd  } from './functions'  ; 
 import { useDispatch ,useSelector  } from 'react-redux'  ;
 import { useNavigate } from 'react-router-dom'   ;
@@ -17,8 +17,8 @@ import { TextField, styled , Typography , Button  , Stack, Box } from '@mui/mate
 export const CreateProductivity  =  () : JSX.Element =>{
   const productivityInfo : productivityState = useSelector((state  : stateType )=> state.productivity) ; 
   const  dispatch = useDispatch()   ;
-  const [date, setDate] = useState<string>(new Date().toISOString())
-  const [days, setDays] = useState<oneProductivityState[]>([])
+  const dateInput : any = useRef(null)
+  const todayProductivityInput : any = useRef(null)
   const state = useSelector((state : stateType)=>state)
   const [error, setError] = useState<object>({})
   const userLogin : userLoginState = useSelector(( state : stateType ) => state.userLogin)  
@@ -30,24 +30,29 @@ export const CreateProductivity  =  () : JSX.Element =>{
     display : "flex" , 
     alignItems :"center" , 
     gap :'40px' ,
-    padding : '40px' ,
+    paddingY : '40px' ,
+    padding : '16px' ,
     backgroundColor : theme.palette.white.light ,
     border : '2px solid black' , 
     borderRadius : '16px' ,
     margin : '40px' ,
-    boxShadow : '2px 2px 4px black'
+    width : '60%' ,
+    boxShadow : '2px 2px 4px black' ,
+    [theme.breakpoints.down("sm")] : {
+      width : '90%'
+    }
    }))
 
 
 
   return (  <StayledAddProductivityComponentContainer>
-  <Stack gap="40px" >
-  <Typography color="primary" variant="h4" textAlign="center" > Add New Productivity <i className="bi bi-plus-circle-fill icon"></i> </Typography>
-  <TextField  placeholder='Number Of Hours' variant='outlined' type="number" value={todayProductivity} onChange={(e)=>{setTodayProductivity(  parseFloat(e.target.value)  )}} ></TextField>  
-  <TextField   type="date" value={date} onChange={(e)=>{setDate(e.target.value)}} ></TextField>
-  <Stack direction="row" gap="48px" >
-  <Button variant="primary" onClick={()=>{submitProd({value : todayProductivity , date  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></Button>
-  <Button variant="error"   onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i></Button>
+  <Stack gap="40px" width="100%"  alignItems="center" >
+  <Typography color="primary" variant="h4" textAlign="center" marginY="40px"> Add New Productivity <i className="bi bi-plus-circle-fill icon"></i> </Typography>
+  <TextField  placeholder='Number Of Hours' variant='outlined' fullWidth type="number"  inputRef={todayProductivityInput} ></TextField>  
+  <TextField   type="date"  fullWidth inputRef={dateInput}></TextField>
+  <Stack  gap="40px"  width="100%" flexDirection={{ xs : 'column' , sm : 'row' }} >
+  <Button fullWidth variant="primary" onClick={()=>{ submitProd({value : todayProductivityInput.current.value , date : dateInput.current.value  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></Button>
+  <Button fullWidth variant="error"   onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i></Button>
   </Stack>
  </Stack> 
   </StayledAddProductivityComponentContainer>  )
@@ -73,8 +78,8 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
 
         <XAxis
           dataKey="day"
-          axisLine={false}
-          tickLine={false}
+          axisLine={true}
+          tickLine={true}
           tickFormatter={(str)=>{
             return str.slice(8,10)
           }}
@@ -83,8 +88,8 @@ export const Graph = ({days } : {days : Array<any>}) : JSX.Element =>{
         <YAxis
             max={10}
           dataKey="value"
-          axisLine={false}
-          tickLine={false}
+          axisLine={true}
+          tickLine={true}
           tickCount={8}
 
         /> <Legend/>

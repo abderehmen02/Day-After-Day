@@ -51,8 +51,8 @@ export const CreateProductivity  =  () : JSX.Element =>{
   <TextField  placeholder='Number Of Hours' variant='outlined' fullWidth type="number"  inputRef={todayProductivityInput} ></TextField>  
   <TextField   type="date"  fullWidth inputRef={dateInput}></TextField>
   <Stack  gap="40px"  width="100%" flexDirection={{ xs : 'column' , sm : 'row' }} >
-  <Button fullWidth variant="primary" onClick={()=>{ submitProd({value : todayProductivityInput.current.value , date : dateInput.current.value  }, userLogin.token , emitAction , setError  )}} >save <i className="bi bi-plus-circle-fill"></i></Button>
-  <Button fullWidth variant="error"   onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > delete <i className="bi bi-trash3-fill"></i></Button>
+  <Button fullWidth variant="primary" onClick={()=>{ submitProd({value : todayProductivityInput.current.value , date : dateInput.current.value  }, userLogin.token , emitAction , setError  ) ;console.log("date value") ; console.log(dateInput.current.value) }} >save <i className="bi bi-plus-circle-fill"></i></Button>
+  <Button fullWidth variant="error"   onClick={()=>{deleteProd(productivityInfo.data?.current.day , userLogin.token , emitAction , setError )}} > Delete Today's Productivity<i className="bi bi-trash3-fill"></i></Button>
   </Stack>
  </Stack> 
   </StayledAddProductivityComponentContainer>  )

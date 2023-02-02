@@ -46,10 +46,8 @@ export const Productivity:React.FC  = ()=> {
     const formatedDays  = [] ; 
     // if the screen width is short we want to add less days in the graph
     let NumberOfGraphDays = 20 ; 
-    console.log('width')
-    console.log(window.innerWidth)
-    if(window.innerWidth <= 600) NumberOfGraphDays = 10
-    if(window.innerWidth <= 1000) NumberOfGraphDays = 15
+    if(window.innerWidth <= 600) NumberOfGraphDays = 9
+    if(window.innerWidth <= 1000) NumberOfGraphDays = 12
     console.log(NumberOfGraphDays)
     for(let i  = NumberOfGraphDays  ; i>= 0  ; i--){
       let day = subDays(new Date() , i).toISOString().slice(0, 10) ; 

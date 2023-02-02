@@ -16,7 +16,7 @@ import { Box , styled , Stack } from '@mui/material';
 const GoalPageContainer = styled(Stack)(({theme})=>({
 backgroundColor : theme.palette.primary.main ,
 alignItems: 'center' ,
-gap : '40px'
+gap : '40px' ,
 }))
 
 function Goal() {

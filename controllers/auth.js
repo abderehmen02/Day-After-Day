@@ -55,7 +55,7 @@ const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 //*************************** login */
 
 const login = asyncWrapper( async (req, res)=>{
-  console.log("login fn")
+  console.log("login fn trigered")
   if(!req.body.email ||  !req.body.password) sendErr(res ,StatusCodes.BAD_REQUEST , 'please provide and email and password')
   
   // fetch the user from the database 

@@ -35,9 +35,9 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 // a componet to display the goal for the user
 export const DisplayOneGoal = ({goal} : {goal : oneGoalState}): JSX.Element=>{
-    return      <Stack alignItems="center" width={{xs: '100%' , sm : '60%'}} gap="32px" justifyContent="space-around" >
+    return      <Stack alignItems="center" width={{xs: '100%' , sm : '60%'}} gap="32px" justifyContent="space-around"  >
       <Typography textAlign="center" variant="h4" sx={{textTransform : 'capitalize'}} fontWeight="bolder">{goal.title  }</Typography>   
-      <Typography  textAlign="center" > {goal.descreption}</Typography>
+      <p style={{   wordWrap : 'break-word' , width : '250px' }} > {goal.descreption}</p>
       <Stack spacing={1} direction={{xs: "column" , sm : 'row'}}  alignItems="center" justifyContent="space-around" width="60%">
       <Typography>  {goal.deadLine.toString().slice( 0 , 10)} </Typography>
       <Typography> completed :  {  goal.completed ?    <i className="bi bi-check-circle-fill icon"></i> : <i className="bi bi-check-circle icon" ></i> }</Typography>
@@ -114,7 +114,7 @@ export const OneGoal = ({goal} : {goal : oneGoalState}): JSX.Element =>{
     const dispatch = useDispatch()
     const {emitAction} = bindActionCreators(actionCreators , dispatch)
     
-    return        <Stack bgcolor={(theme)=>theme.palette.white.light} direction={{xs: 'column' , sm : 'row'}} paddingX="40px" width="90%" sx={{borderRadius: '8px' ,  border: '1px solid black', boxShadow : '2px 2px 4px black'}} paddingY="20px" borderRadius={1} alignItems="center" justifyContent="space-between" minHeight="300px" gap="40px" >
+    return        <Stack bgcolor={(theme)=>theme.palette.white.light} direction={{xs: 'column' , sm : 'row'}} paddingX="40px" width="100%" sx={{borderRadius: '8px' ,  border: '1px solid black', boxShadow : '2px 2px 4px black'}} paddingY="20px" borderRadius={1} alignItems="center" justifyContent="space-between" minHeight="300px" gap="40px" >
         {/* <div className="girdProgress mobileDisplay" style={{width : "70px" , height : '70px' , border: '2px solid green'}} >       */}
            <Box display={{xs: 'block' , sm : 'none'}} sx={{width : '100%' , borderRadius : '5px' , border: '2px solid black' }} >   <BorderLinearProgress variant="determinate" value={50} /> </Box>
        <Box sx={{width: "88px" , height: "88px" }} display={{xs: 'none' , sm : 'block'}} > <CircularProgressbar  value={goal.progress} text={`${goal.progress}%`} /></Box> 
@@ -197,12 +197,12 @@ export const GoalHeader : React.FC = ()=>{
 
 
 export const MapGoals = ({ allGoals } : {allGoals : oneGoalState[]}) : JSX.Element=>{
-    return <Stack  alignItems="center" gap="40px" paddingY={5} >
+    return <Stack  alignItems="center" gap="40px" paddingY={5} width="100%"  >
 <Stack alignItems="center">
 <Typography variant="h4" color={(theme)=>theme.palette.secondary.light} > All Goals  <i className="bi bi-card-checklist m-2 "></i>  </Typography>
 <Typography variant="h5" color={(theme)=>theme.palette.white.light} >Return back to read your goals</Typography>
 </Stack>
-      <Stack alignItems="center" gap={4} >  {
+      <Stack  alignItems="center" width={{xs: '95%' , sm : '70%'}}  gap={4}  >  {
 allGoals.length ?  allGoals.map(goal =>{
     return  <OneGoal goal={goal} /> 
 }) : <Stack  gap="8px" margin="40px" sx={{boxShadow : '2px 2px 4px black' , border: '1px solid black'}} bgcolor={(theme)=>theme.palette.white.light} width="90vw" padding='40px' alignItems="center" > <Typography textAlign="center"  variant="h3" color={(theme)=>theme.palette.secondary.dark} >  <i className="bi bi-exclamation-triangle-fill"></i> Sorry ! </Typography><Typography textAlign="center" color={(theme)=>theme.palette.secondary.main} >No goals found , Try to set some goals</Typography></Stack>

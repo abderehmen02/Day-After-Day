@@ -11,8 +11,9 @@
     width: 90%;
     margin: 10px;
     background-color: white;
-    box-shadow: 5px 5px 6px black , -5px -5px 5px black;
+    box-shadow: 4px 4px 7px black ;
    border-radius: 5px;
+   border: '2px solid black'
 }
 .createProductivity{
     display: grid;

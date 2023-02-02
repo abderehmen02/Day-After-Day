@@ -106,9 +106,9 @@ width: '95%'
 
 // ---------------------------------------------------- display one journal -------------------
 const DisplayJournal = ({journal}  : {journal: oneJournalState}) : JSX.Element =>{
-return <Stack  width={{sm : '65%' , xs: '90%'}} gap="16px"  minHeight='200px' justifyContent='space-around' >
+return <Stack  width={{sm : '65%' , xs: '90%'}} gap="16px"  minHeight='200px' justifyContent='space-around'  >
   <Typography  textTransform="capitalize" fontWeight="bold" textAlign="center" variant="h4">{journal.title}</Typography>
-  <Typography  textAlign="center"  >{journal.content}</Typography>
+<p   style={{wordWrap : 'break-word' , textAlign: "center" }} > {journal.content}</p>
 </Stack>
 } 
 

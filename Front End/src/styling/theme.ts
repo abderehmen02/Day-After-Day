@@ -3,7 +3,15 @@ import {createTheme} from '@mui/material'
 
 
 const theme = createTheme({
-  
+breakpoints : {
+  values : {
+      xs: 0,
+      sm: 800,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+  }
+} ,
     palette : {
         primary : {
             main : '#2075A8' ,
@@ -112,7 +120,8 @@ const theme = createTheme({
           props: { variant: 'standard' },
           style: {
             minWidth : '200px' ,
-            backgroundColor : '#16A1F5' ,
+            backgroundColor : '' ,
+            // backgroundColor : '#16A1F5' ,
             color : 'white' ,
             // border :'2px solid black' ,
             cursor: 'pointer' ,

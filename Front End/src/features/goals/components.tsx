@@ -91,12 +91,16 @@ useEffect( ()=>{
     checkBody()
 }, [deadLine , title ,  completed , progress , descreption])
 
-    return <Stack gap="16px" width="60%"  padding="24px">
-<Stack direction="row" gap="16px" >
-<TextField  label='title' placeholder="new title" variant="filled" type="text" fullWidth value={title}  onChange={(e)=>{setTitle(e.target.value)}}  ></TextField>
+    return <Stack gap="16px" width={{xs: '100%' , sm: '60%'}}  padding={{xs: '8px' , sm: '24px'}}>
+<Stack  width={{xs: '100%'}} direction={{xs: 'column' , sm : 'row'}} gap="16px" >
+<Stack width={{xs : '100%'}} direction={{xs: 'column' , sm: "row"}} gap="16px" >
+<TextField  label='title' placeholder="new title" sx={{width : '100%'}} variant="filled" type="text" fullWidth value={title}  onChange={(e)=>{setTitle(e.target.value)}}  ></TextField>
 <TextField  label='New deadline'  variant="filled"   value={deadLine}  fullWidth  type="date"    onChange={(e)=>{setDeadLine(e.target.value)}} ></TextField>
+</Stack>
+<Stack direction={{xs: 'column' , sm : 'row' }} >
 <TextField  label="New progress"  type="number" fullWidth variant="filled" value={progress}    onChange={(e)=>{setProgress( parseInt( e.target.value))}} ></TextField>
 <Typography textAlign="center" > completed{ completed ? <i onClick={()=>{setCompleted(false)}} className="bi bi-check-square-fill m-1"></i> : <i className="bi bi-check-square m-1" onClick={()=>{setCompleted(true)}} ></i> }</Typography>
+</Stack>
 </Stack>
 <TextField multiline rows={2}  placeholder="New descreption" variant="filled" label="descreption" type="text" value={descreption}  onChange={(e)=>{setDescreption(e.target.value)}} />
 { Object.getOwnPropertyNames(body).length ? <button className="btn btn-primary w-100 m-1" onClick={()=>{editGoal( goal._id , userLoginInfo.token , body , emitAction)}} >submit</button> : <Typography color={(theme)=>theme.palette.secondary.dark} textAlign="center" > <i className="bi bi-exclamation-triangle-fill"></i> Please change something before submiting </Typography> }

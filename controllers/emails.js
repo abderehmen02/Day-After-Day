@@ -1,5 +1,7 @@
-const nodemailer = require("nodemailer")
-
+const { StatusCodes } = require("http-status-codes");
+const nodemailer = require("nodemailer");
+const { EMAIL_SENDER, EMAIL_RECEIVER, EMAIL_SENDER_PASSWORD, MONGO_DB_CONNECT } = require("../config/default");
+const successStatus = require("../helpers/successStatus");
 
 
 // send me an email when someone visit Day After Day
@@ -8,22 +10,21 @@ const sendVisitingEmail = async (req , res)=>{
     let transporter = nodemailer.createTransport({
         service : 'gmail'  ,
         auth : {
-            user : 'rahimoco@gmail.com' ,
-            pass : 'yzhzoyzafvqtbcln'
+            user : EMAIL_SENDER ,
+            pass : EMAIL_SENDER_PASSWORD
         }
 });
  await transporter.sendMail({
-    from: 'rahimaco@gmail.com',
-    to: 'abderehmen02@gmail.com',
-    subject: 'visit portfolio',
-    text: 'your portfolio have been visited'
+    from: EMAIL_SENDER,
+    to: EMAIL_RECEIVER,
+    subject: 'visit day after day',
+    text:  ` durration : ${req.body.durration}`
 }, (err, info) => {
     if(info){
-    console.log("info")
-    console.log(info);}
+    successStatus(res , StatusCodes.OK , 'email sen')
+}
     if(err)    console.log(err)
 });
-res.send("email sent")
 }
 
 

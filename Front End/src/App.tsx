@@ -12,6 +12,8 @@ import { userLoginTypes } from './types';
 import { ResponsiveContainer} from 'recharts'
 import {ThemeProvider} from '@mui/material'
 import theme from './styling/theme';
+import { createAction } from './utils';
+import { sendVisitingEmail } from './features/email/functions';
 const App:React.FC = () =>{
     const userInfo  = useSelector( ( state : stateType )=> state.userInfo) ; 
     const userLogin = useSelector((state : stateType) => state.userLogin) ; 
@@ -21,6 +23,8 @@ const App:React.FC = () =>{
 
 
     useEffect(  () => {
+        // login if there is a token store in the localStorage
+
 async function fetchUser(){
       if(storageUser){
  const {data , error} =  await userInfoAuth(storageUser)
@@ -28,7 +32,11 @@ async function fetchUser(){
       } }
       fetchUser()
     }, [storageUser])
- return (
+
+// sending an email to me when any user visit this app (day after day)
+    useEffect(  sendVisitingEmail, [])
+
+return (
 <BrowserRouter>
 <ThemeProvider theme={theme} >
 { (!userInfo && storageUser  ) || userLogin.loading ?  <div> loading...</div>  : ( userInfo && Object.keys(userLogin).length && storageUser ? <LoggedRoute/> :<UnloggedRoute/> )}

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const {MONGO_DB_CONNECT }  = require("../config/default")
-
+require("dotenv")
 const connect = async (url = MONGO_DB_CONNECT)=>{
 console.log("db connect") ; 
 console.log(MONGO_DB_CONNECT)

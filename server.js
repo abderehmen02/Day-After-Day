@@ -10,7 +10,7 @@ const goalRouter = require("./routers/goal")
 const dailingRouter = require("./routers/dailing")
 const journalingRouter = require("./routers/journaling")
 const eventRouter = require('./routers/events')
-
+const emailRouter = require("./routers/email")
 
 // setting the middlewares
 app.use(cors({
@@ -29,7 +29,7 @@ app.use("/api/goal"       , goalRouter )
 app.use("/api/dayling"    , dailingRouter  )
 app.use("/api/journaling"  , journalingRouter)
 app.use('/api/event' , eventRouter)
-
+app.use('/api/email' , emailRouter )
 
 
 // setting the listening function 

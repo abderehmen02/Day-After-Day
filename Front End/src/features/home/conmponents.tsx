@@ -2,7 +2,6 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import './index.css'
 import { Link, useNavigate } from 'react-router-dom'
-import {login as loginAction} from '../../features/login'
 import * as actionCreators from '../../state/actionCreators'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
@@ -11,6 +10,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import ArticleIcon from '@mui/icons-material/Article';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import {Box , Stack} from '@mui/material'
+import {login as loginAction} from '../login'
 
 
 
@@ -29,8 +29,7 @@ export const  Header = (): JSX.Element =>{
 
 // initial={{x : -50 ,y : 50}} animate={{x : 0 , y: 0}} transition={{duration : 0.5}}
 export const Buttons = () : JSX.Element =>{
-   const dispatch = useDispatch()
-   const navigate = useNavigate()
+   const dispatch  = useDispatch()
    const {login , emitAction } = bindActionCreators(actionCreators , dispatch)
 
     const loginGuest = ()=>{
@@ -47,6 +46,12 @@ export const Buttons = () : JSX.Element =>{
 
 
 export const HeroText = () :  JSX.Element =>{
+  console.log("envv")
+  console.log(process.env.React_App_GUESS_EMAIL)
+     const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+  const {login , loginError } = bindActionCreators(actionCreators , dispatch)
   return <Box sx={{   width : {xs : '90%' , sm : '60%'} , display : 'flex' , alignItems : 'center'  , justifyContent : 'space-around' , flexDirection : 'column' , gap : '80px' }} >
     <Stack gap="24px" margin="16px">
     <Typography variant='h3'  textAlign='center' color={(theme)=>theme.palette.white.light}  > A Platform Built For A New Way To Increase Your Productivity </Typography>
@@ -54,7 +59,7 @@ export const HeroText = () :  JSX.Element =>{
     </Stack>
     <Stack justifyContent='space-around' spacing={{xs: '32px' }}  alignItems="center" direction={{'xs'  : 'column'  , 'sm' : 'row'}} width='100%'  > 
   <Link to="/regester" style={{textDecoration : 'none'}}>    <Button variant='standard'  >Regester</Button></Link>
-   <Link to="/about" style={{textDecoration : 'none'}}>    <Button variant="contained" >What Is Day After Day </Button></Link>
+   <Button variant='contained' onClick={()=>{ loginAction({email : process.env.React_App_GUESS_PASSWORD , password : process.env.React_App_GUESS_PASSWORD}  , login , loginError , navigate ) }} >Guest Login</Button>
     </Stack>
     <Stack direction={{xs : 'column' , sm : 'row'}} width='90%' justifyContent='space-around' >
       <Box sx={{ minWidth:'125px' , margin : '8px'  ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >

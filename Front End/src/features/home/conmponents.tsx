@@ -32,13 +32,10 @@ export const Buttons = () : JSX.Element =>{
    const dispatch  = useDispatch()
    const {login , emitAction } = bindActionCreators(actionCreators , dispatch)
 
-    const loginGuest = ()=>{
-         loginAction({ email  : process.env.REACT_APP_GUEST_USERNAME , password :  process.env.REACT_APP_GUEST_PASSWORD } , login , emitAction , navigate )
-    }
     return           <div className="homeButtons"  >
     <button className='homeBtn loginBtn'    ><Link  className='link'  to='/login'  > login <i className="bi bi-box-arrow-in-right"></i> </Link> <br/></button>
     <button className='homeBtn regesterBtn' ><Link  className='link'  to='/regester' > regester <i className="bi bi-person-plus icon"></i></Link></button>
-    <button className='homeBtn loginGuestBtn link' onClick={loginGuest} > login as a guest </button>
+    <button className='homeBtn loginGuestBtn link' > login as a guest </button>
      <button className='homeBtn aboutHomeBtn' ><Link className='link' to="/about" > about the app <i className="bi bi-journal-text"></i> </Link> </button>
     </div>
 }
@@ -49,7 +46,6 @@ export const HeroText = () :  JSX.Element =>{
   console.log("envv")
   console.log(process.env.React_App_GUESS_EMAIL)
      const navigate = useNavigate()
-
   const dispatch = useDispatch()
   const {login , loginError } = bindActionCreators(actionCreators , dispatch)
   return <Box sx={{   width : {xs : '90%' , sm : '60%'} , display : 'flex' , alignItems : 'center'  , justifyContent : 'space-around' , flexDirection : 'column' , gap : '80px' }} >

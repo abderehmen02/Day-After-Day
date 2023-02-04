@@ -18,9 +18,9 @@ app.use(cors({
     origin: '*'
 }));
 app.use(express.json())
-// app.get("/"  , (req , res)=>{
-//     res.send("hello")
-// } )
+app.get("/"  , (req , res)=>{
+    res.send("hello")
+} )
 
 //setting the routers 
 app.use("/api/auth"       , authRouter )

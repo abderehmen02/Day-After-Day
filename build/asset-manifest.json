@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3bc6dfb3.chunk.css",
+    "main.js": "/static/js/main.75147ad3.chunk.js",
+    "main.js.map": "/static/js/main.75147ad3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bad5f64f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bad5f64f.js.map",
+    "static/css/2.a9562147.chunk.css": "/static/css/2.a9562147.chunk.css",
+    "static/js/2.d2df1713.chunk.js": "/static/js/2.d2df1713.chunk.js",
+    "static/js/2.d2df1713.chunk.js.map": "/static/js/2.d2df1713.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.8e09c8f1620f19b61c0bb87fef7ca0ca.js": "/precache-manifest.8e09c8f1620f19b61c0bb87fef7ca0ca.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.a9562147.chunk.css.map": "/static/css/2.a9562147.chunk.css.map",
+    "static/css/main.3bc6dfb3.chunk.css.map": "/static/css/main.3bc6dfb3.chunk.css.map",
+    "static/js/2.d2df1713.chunk.js.LICENSE.txt": "/static/js/2.d2df1713.chunk.js.LICENSE.txt",
+    "static/js/main.75147ad3.chunk.js.LICENSE.txt": "/static/js/main.75147ad3.chunk.js.LICENSE.txt",
+    "static/media/bootstrap-icons.css": "/static/media/bootstrap-icons.7f477633.woff2",
+    "static/media/dayAfterDayLogo.png": "/static/media/dayAfterDayLogo.359b5607.png",
+    "static/media/goal2.png": "/static/media/goal2.76822437.png",
+    "static/media/goalsVisualise.png": "/static/media/goalsVisualise.1e53f8f6.png",
+    "static/media/homeIllustration.png": "/static/media/homeIllustration.3080997f.png",
+    "static/media/journal5.png": "/static/media/journal5.2192d335.png",
+    "static/media/journal6.png": "/static/media/journal6.ad40f4d8.png",
+    "static/media/signUp.png": "/static/media/signUp.2c64c0fa.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bad5f64f.js",
+    "static/css/2.a9562147.chunk.css",
+    "static/js/2.d2df1713.chunk.js",
+    "static/css/main.3bc6dfb3.chunk.css",
+    "static/js/main.75147ad3.chunk.js"
+  ]
+}

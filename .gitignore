@@ -1,7 +1,6 @@
 .env
 Front End/node_modules
 node_modules
-build
 test.rest
 config/default.ts
 temp

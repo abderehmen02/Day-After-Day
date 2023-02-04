@@ -35,10 +35,10 @@ app.use('/api/email' , emailRouter )
 
 
 // serving the front end pages
-app.use(express.static(path.join(__dirname, "build")));
-app.get("*" , async(req , res)=>{
-    res.sendFile(path.join(__dirname , 'build' , 'index.html'))
-} )
+// app.use(express.static(path.join(__dirname, "build")));
+// app.get("*" , async(req , res)=>{
+//     res.sendFile(path.join(__dirname , 'build' , 'index.html'))
+// } )
 
 // setting the listening function 
 const listenServer  = async ()=>{

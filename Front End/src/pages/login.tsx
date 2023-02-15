@@ -14,14 +14,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import UnlogedNav from '../components/unlogedNav'
 
-export const Login: React.FC = () =>{
-     const email : any = useRef(null)
-     const password : any = useRef(null)
-     const dispatch : Dispatch = useDispatch()
-     const {login , emitAction , loginError } = bindActionCreators(actionCreators , dispatch)
-     const navigate : NavigateFunction = useNavigate()
-     const userLogin : userLoginState = useSelector(( state : stateType )=>state.userLogin)
-    
+
 const CssTextField  = styled(TextField)(({theme})=>({
    width : '350px' ,
    color : 'white' ,
@@ -49,6 +42,19 @@ const CssTextField  = styled(TextField)(({theme})=>({
     },
   },
 }));
+
+
+
+export const Login: React.FC = () =>{
+     const email : any = useRef(null)
+     const [UserEmail, setUserEmail] = useState("")
+     const [UserPassword, setUserPassword] = useState("")
+     const password : any = useRef(null)
+     const dispatch : Dispatch = useDispatch()
+     const {login , emitAction , loginError } = bindActionCreators(actionCreators , dispatch)
+     const navigate : NavigateFunction = useNavigate()
+     const userLogin : userLoginState = useSelector(( state : stateType )=>state.userLogin)
+    
 console.log("user login error")
 console.log(userLogin.error)
   return (
@@ -61,9 +67,9 @@ console.log(userLogin.error)
   <Typography   variant='h4' color={(theme)=>theme.palette.white.light} textAlign='center'  >Welcome Back To Day After Day </Typography>
 </Box>
 <Box sx={{  display : 'flex' , alignItems : 'center'    , gap : '16px'   , flexDirection : 'column'  }} >
-{ userLogin.error === 'can not find user' ? <TextField inputRef={email} sx={{width : '350px'}} error  helperText="incorect email" ></TextField> :  <CssTextField inputRef={email}  label='User Name'     /> }
-{ userLogin.error === 'password incorrect' ? <TextField inputRef={password} sx={{width : '350px'}} error helperText="incorect password"   ></TextField> : <CssTextField   inputRef={password} type="password" label='Password'       /> }
-      <Button sx={{width : '350px'}} variant='outlined' onClick={()=>{ loginAction({email : email.current.value , password : password.current.value}  , login , loginError , navigate ) }} >    Login   </Button>
+{ userLogin.error === 'can not find user' ? <TextField value={UserEmail} onChange={(e)=>setUserEmail(e.target.value)} sx={{width : '350px'}} error  helperText="incorect email" ></TextField> :  <CssTextField value={UserEmail} onChange={(e)=>setUserEmail(e.target.value)}   label='User Name'     /> }
+{ userLogin.error === 'password incorrect' ? <TextField value={UserPassword} onChange={(e)=>setUserPassword(e.target.value)} sx={{width : '350px'}} error helperText="incorect password"   ></TextField> : <CssTextField   value={UserPassword} onChange={(e)=>setUserPassword(e.target.value)} type="password" label='Password'       /> }
+      <Button sx={{width : '350px'}} variant='outlined' onClick={()=>{ loginAction({email : UserEmail , password : UserPassword}  , login , loginError , navigate ) }} >    Login   </Button>
 </Box>
 </FormControl>
 <LoginText></LoginText>

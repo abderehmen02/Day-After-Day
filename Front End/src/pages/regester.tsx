@@ -144,7 +144,7 @@ export const Regester: React.FC = () => {
         
             <CssTextField
              id="fullname" 
-             helper
+             
              value={FullName}
              onChange={(e)=>setFullName(e.target.value)}
              error={userLogin.error === 'fullname should be more than 2 characters' || userLogin.error === "full name used"}

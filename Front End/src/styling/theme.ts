@@ -153,27 +153,36 @@ breakpoints : {
 theme.typography.h1 = {
   fontSize: '48px',
   fontFamily : 'IM Fell Double Pica, serif' ,
-//   [theme.breakpoints.up('md')]: {
-//     fontSize: '2.4rem',
-//   },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '34px'
+  },
 };
 theme.typography.h2 = {
     fontSize : '40px' , 
-    fontFamily : 'IM Fell Double Pica, serif'
+    fontFamily : 'IM Fell Double Pica, serif' ,
+    [theme.breakpoints.down('sm')]: {
+    fontSize: '30px'
+  },
 }
 
 theme.typography.h3 = {
     fontSize : '32px' ,
-        fontFamily : 'IM Fell Double Pica, serif'
+        fontFamily : 'IM Fell Double Pica, serif' ,
+        [theme.breakpoints.down('sm')]: {
+    fontSize: '24px'
+  },
 }
 
 theme.typography.h4 = {
     fontSize : '24px' ,
-    fontWeight: 'normal'
+    fontWeight: 'normal' ,
+    [theme.breakpoints.down('sm')]: {
+    fontSize: '20px'
+  },
 }
 theme.typography.h5 = {
   fontSize : '16px' ,
-  fontWeight : 'bolder'
+  fontWeight : 'bolder' 
 }
 
 

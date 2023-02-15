@@ -21,11 +21,18 @@ import {
 } from "@mui/material";
 
 
-const MyInput = ({value , onchange} : {value : any , onchange : any})=>{
-return <div>
-  <input value={value} onChange={(e)=>onchange(e.target.value)} ></input>
-</div>
-}
+
+  const SignUpPage = styled(Box)(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    minHeight: "100vh",
+    width: "100vw",
+    gap: "48px",
+    backgroundColor: theme.palette.primary.main,
+  }));
+
+
 
 
   const CssTextField = styled(TextField)(({ theme }) => ({
@@ -62,6 +69,23 @@ return <div>
 
 
 
+
+
+
+
+
+
+
+const MyInput = ({value , onchange} : {value : any , onchange : any})=>{
+return <div>
+  <input value={value} onChange={(e)=>onchange(e.target.value)} ></input>
+</div>
+}
+
+
+
+
+
 export const Regester: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,37 +94,32 @@ export const Regester: React.FC = () => {
   const state = useSelector((state) => state);
   const emailInput : any = useRef(null)
   const passwordInput : any = useRef(null)
+  const [FullName, setFullName] = useState<string>("")
+  const [Password, setPassword] = useState<string>("")
+  const [Email, setEmail] = useState<string>("")
   const fullNameInput : any = useRef(null)
   const [myError, setmyError] = useState(null);
   const [birthDate, setBirthDate] = useState<string>(new Date().toUTCString());
   const birthDateInput : any = useRef(null)
-
   // components
- console.log("userLogin")
- console.log(userLogin)
-  const SignUpPage = styled(Box)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    minHeight: "100vh",
-    width: "100vw",
-    gap: "48px",
-    backgroundColor: theme.palette.primary.main,
-  }));
+ console.log("fullname")
+ console.log(FullName)
 
 
   const handleSubmit = async (event: any) => {
+    event.preventDefault() ;
+    console.log("email")
+    console.log(Email)
     dispatch({ type: userLoginTypes.userLoginRequest });    
     const { data, error } = await regester({
-      email : emailInput.current.value,
-      password : passwordInput.current.value  ,
-      birthDate : birthDateInput.current.value.toString() ,
-      fullName : fullNameInput.current.value 
+      email : Email,
+      password : Password,
+      birthDate : birthDate.toString() ,
+      fullName : FullName 
     });
-    console.log("info")
-    console.log(data)
-    console.log(error)
     if (error) {
+      console.log("email after")
+      console.log(Email)
       return dispatch({ type: userLoginTypes.userLoginFail, error });
     }
     login(data.token, data.userObj);
@@ -125,38 +144,38 @@ export const Regester: React.FC = () => {
         
             <CssTextField
              id="fullname" 
+             helper
+             value={FullName}
+             onChange={(e)=>setFullName(e.target.value)}
              error={userLogin.error === 'fullname should be more than 2 characters' || userLogin.error === "full name used"}
-             helperText={userLogin.error === 'fullname should be more than 2 characters'  || userLogin.error === "full name used" && userLogin.error   }
-             defaultValue={userLogin.error === 'fullname should be more than 2 characters'  || userLogin.error === "full name used" ? " " : '' } 
+             helperText={userLogin.error === 'fullname should be more than 2 characters'  || userLogin.error === "full name used" ? userLogin.error  : "username should be more than 2 characters" }
               label="fullname"
               key="fullName"
-              inputRef={fullNameInput}
-          
                       /> 
           <CssTextField
-             inputRef={emailInput}
+                        value={Email}
+              onChange={(e)=>setEmail(e.target.value)}
              label="email"
              type="email"
               error={userLogin.error === 'email not valid'}
              helperText={userLogin.error === 'email not valid' && userLogin.error   }
-             defaultValue={userLogin.error === 'email not valid' ? " " : '' }
           />
           <CssTextField
-            inputRef={passwordInput}
-                         error={userLogin.error === 'password should be more than 8 characters'}
+             value={Password}
+             onChange={(e)=>setPassword(e.target.value)}
+             error={userLogin.error === 'password should be more than 8 characters'}
              id="password" 
              label="password"
              type="password"
-             helperText={userLogin.error === 'password should be more than 8 characters' && userLogin.error   }
-              defaultValue={userLogin.error === 'password should be more than 8 characters'? " " : '' } 
+             helperText='password should be more than 8 characters'
               key="password"
           />
           <CssTextField
-            inputRef={birthDateInput}
+            value={birthDate}
+            onChange={(e)=>setBirthDate(e.target.value)}
             error={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate"}
              helperText={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate" && userLogin.error   }
-              // defaultValue={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate"? " " : '' } 
- 
+              // defaultValue={userLogin.error === 'you should be older than 4 years' || userLogin.error === "check your birthDate"? " " : '' }  
             type="date" 
             label='birth date'
             InputLabelProps={{
@@ -165,15 +184,13 @@ export const Regester: React.FC = () => {
           />      
           <Button
             type="submit"
-            onClick={(e) => {
-              handleSubmit(e);
-            }}
+            onClick={handleSubmit}
             variant="contained"
             sx={{width : {xs: '100%' , sm : '400px'}}}
           >
             Regester
           </Button>
-        </FormControl>
+        </FormControl>-
 <Box  sx={{ width: {sm : '30%' , xs : '50%'}, height: "100%"}} >        <img src={SignUpImage} style={{width :'100%' , height : '100%'}}  /></Box>
       </Stack>
     </SignUpPage>

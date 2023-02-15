@@ -47,16 +47,14 @@ const CssTextField  = styled(TextField)(({theme})=>({
 
 export const Login: React.FC = () =>{
      const email : any = useRef(null)
-     const [UserEmail, setUserEmail] = useState("")
-     const [UserPassword, setUserPassword] = useState("")
+     const [UserEmail, setUserEmail] = useState<string>("")
+     const [UserPassword, setUserPassword] = useState<string>("")
      const password : any = useRef(null)
      const dispatch : Dispatch = useDispatch()
      const {login , emitAction , loginError } = bindActionCreators(actionCreators , dispatch)
      const navigate : NavigateFunction = useNavigate()
      const userLogin : userLoginState = useSelector(( state : stateType )=>state.userLogin)
     
-console.log("user login error")
-console.log(userLogin.error)
   return (
     <Box sx={{display : 'flex' , minHeight: '100vh' , gap : '10vh'  , alignItems :'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.primary.main} >
       <UnlogedNav/>

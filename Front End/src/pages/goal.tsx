@@ -30,9 +30,7 @@ function Goal() {
 
 // getting all the goals when the page rendres
 useEffect(() => {
- if( userLoginInfo.token )   {      emitAction(goalActionTypes.GOAL_REQUEST) ;
-setTimeout(()=>{  getGoals( userLoginInfo.token , emitAction ) } , 20000000) ;  }
-   
+getGoals( userLoginInfo.token , emitAction ) 
 }
 , [])
 

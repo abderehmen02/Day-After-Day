@@ -3,7 +3,7 @@ import {useDispatch , useSelector} from 'react-redux'
 import {motion} from 'framer-motion';
 import { stateType } from '../state/reducers'
 import {getGoals, AllGoalsSkeleton } from  '../features/goals'
-import { goalState, oneGoalState , userLoginState } from '../types'
+import { goalActionTypes, goalState, oneGoalState , userLoginState } from '../types'
 import {bindActionCreators} from "redux"
 import {CreateGoal, GoalHeader, GoalImageLine, MapGoals, OneGoal  } from '../features/goals/components'
 import LoggedNav from "../components/loggedNav"
@@ -30,7 +30,8 @@ function Goal() {
 
 // getting all the goals when the page rendres
 useEffect(() => {
-    userLoginInfo.token &&   getGoals( userLoginInfo.token , emitAction )
+ if( userLoginInfo.token )   {      emitAction(goalActionTypes.GOAL_REQUEST) ;
+setTimeout(()=>{  getGoals( userLoginInfo.token , emitAction ) } , 20000000) ;  }
    
 }
 , [])

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Skeleton, SkeletonParagrapth } from '../skeleton/skeleton'
-
+import { Skeleton as MuiSkeleton , Box }  from '@mui/material'
 
 
 export const DisplayOneGoalSkeleton = ()  :JSX.Element =>{
-    return <div className="displayGoalItem" >
+    return    <div className="displayGoalItem" >
       <div className="goalDescreption goalInfoItem" > <SkeletonParagrapth lines={4} /> </div>
       <div className="goalInfoItem">  <Skeleton type='text' /> </div>
       <div className="goalInfoItem completedDisplay" > <Skeleton type='text' /> </div>
@@ -14,7 +14,8 @@ export const DisplayOneGoalSkeleton = ()  :JSX.Element =>{
 
 
 export const OneGoalSkeleton = () : JSX.Element => {
-  return         <div className="oneGoal" >
+  return <Box>
+<Box display={{xs: 'none' , sm: 'block'  }} >         <div className="oneGoal" >
 <Skeleton type='title'/>
 <div className="oneGoalBody">      
  <DisplayOneGoalSkeleton  />
@@ -22,7 +23,10 @@ export const OneGoalSkeleton = () : JSX.Element => {
  <Skeleton type='article' />
  </div>
 </div>   
- </div>  
+ </div>  </Box>
+ {/* skeleton for mobile view */}
+ <MuiSkeleton  variant="rectangular" style={{backgroundColor: 'white' , borderRadius : '4px' , margin : '16px' }} width="90vw" height='30vh' ></MuiSkeleton>
+ </Box>
 }
 
 export const AllGoalsSkeleton = () : JSX.Element =>{

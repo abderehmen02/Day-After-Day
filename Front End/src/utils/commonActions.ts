@@ -20,15 +20,14 @@ return {error }
 export const publicPost = async (path : string , body : object) : Promise<{error? : any , data? : any}>=>{
     try {
 const responceData = await postReq(path , body , null)
-console.log("responceData from public post")
-console.log(responceData)
+
 if(responceData.succuss){
     return {data : responceData.data}
 }
 else return {error  : responceData.error}
     }
     catch(error){
-        console.log("error from public post")
+
         console.log(error)
         return {error}
     }
@@ -66,8 +65,6 @@ export const deleteSecureAction = async (path : string  , token : string | undef
     try{
 const responceData = await deleteReq(path , token) ; 
 if(responceData.succuss){
-    console.log("responce data")
-console.log(responceData)
     return {data :responceData.data}
 }
 

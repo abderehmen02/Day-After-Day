@@ -40,7 +40,7 @@ const StyledTypography = styled(Typography)(({theme})=>({
   return (
     <Box>
     <StyledToolBar>
-        <img src={Icon} style={{   width: '60px' , height : '60px'  }} ></img>
+        <img src={Icon} style={{ borderRadius : '4px' ,  width: '60px' , height : '60px'  }} ></img>
         <Stack direction="row" gap='40px' >
 <Link  style={{textDecoration : 'none'}} to="/" ><StyledTypography sx={(theme)=>({borderBottom : location.pathname === '/' ? '1.5px solid white'  : 'none' , '&:hover'  : {color:  location.pathname === '/' ? theme.palette.white.light : theme.palette.secondary.light}})} variant='h4'  ><HomeIcon/> Home</StyledTypography></Link>
 <Link  style={{textDecoration : 'none'}} to='/login' ><StyledTypography variant="h4" sx={(theme)=>({borderBottom : location.pathname === '/login' ? '1.5px solid white'  : 'none' , '&:hover'  : {color:  location.pathname === '/login' ? theme.palette.white.light : theme.palette.secondary.light}})} ><PersonIcon /> Login  </StyledTypography></Link>
@@ -59,7 +59,7 @@ const StyledTypography = styled(Typography)(({theme})=>({
 <Link  style={{textDecoration : 'none'}} to="/regester" onClick={()=>{dispatch({type: 'Reverse'})}}  > <StyledTypography   variant='h4' sx={(theme)=>({borderBottom : location.pathname === '/regester' ? '1.5px solid white'  : 'none'  , color : location.pathname === '/regester' ?'secondary.light' : '#fff'})} ><PersonAddIcon/> Regester</StyledTypography></Link>
 <Link  style={{textDecoration : 'none'}}  to="/about" onClick={()=>{dispatch({type: 'Reverse'})}}  ><StyledTypography  variant='h4' sx={(theme)=>({borderBottom : location.pathname === '/about' ? '1.5px solid white'  : 'none' , color : location.pathname === '/about' ?'secondary.light' :'#fff' })} ><ArticleIcon/>  About</StyledTypography></Link>
 <Typography sx={{color : 'red'}}  onClick={()=>{dispatch({type : 'Reverse'})}} ><CloseIcon fontSize='large' /> </Typography>
-      </Stack> : <Stack direction="row" width="100vw" paddingY="16px" justifyContent="space-around" alignItems="center" ><Box onClick={()=>{dispatch({type: 'Reverse'})}} > <Typography color="secondary.light" > <FormatListBulletedIcon/></Typography></Box> <Typography variant='h3' color={(theme)=>theme.palette.secondary.light} >Day After Day</Typography>      <img src={Icon} style={{   width: '60px' , height : '60px'  }} ></img> </Stack>
+      </Stack> : <Stack direction="row" width="100vw" paddingY="16px" justifyContent="space-around" alignItems="center" ><Box onClick={()=>{dispatch({type: 'Reverse'})}} > <Typography color="secondary.light" > <FormatListBulletedIcon/></Typography></Box> <Typography variant='h3' color={(theme)=>theme.palette.secondary.light} >Day After Day</Typography>      <img src={Icon} style={{ borderRadius : '8px' , boxShadow : '1px 1px 2px black' ,  width: '60px' , height : '60px'  }} ></img> </Stack>
 } </Box>
     </Box>
   )

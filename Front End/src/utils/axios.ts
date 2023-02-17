@@ -25,8 +25,7 @@ export const getReq = async  (path : string  , token?: String )=>{
 
 export const postReq = async (path : string  ,  body  = {} ,  token? : String  | null )  =>{
   try{  const url : string =  process.env.React_App_BackEndServer + path   ; 
-console.log("body")
-console.log(body)
+
     if(token){
 
         const responce = await fetch(url , {
@@ -48,13 +47,11 @@ console.log(body)
     },
     body: JSON.stringify(body)
 })    
-        console.log("responce data from post")
-        console.log(responce)    
+    
                 const responceData = await responce.json()
      
     return responceData }
     catch(error){
-        console.log("error from catch")
         console.log(error)
     }
 }

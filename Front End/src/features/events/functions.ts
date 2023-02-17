@@ -18,8 +18,7 @@ export const creatEvent = async (body : {title  : string | undefined , descrepti
  emitAction(eventActions.EVENT_REQUEST)
  const {data , error  } = await createAction(path , body , token)   
  if(data){ 
-    console.log('data from event')
-    console.log(data)
+ 
     emitAction( eventActions.EVENT_SUCCUSS , body  )
 }
 else if(error){

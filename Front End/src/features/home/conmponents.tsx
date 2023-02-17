@@ -27,7 +27,6 @@ export const  Header = (): JSX.Element =>{
 
 
 
-// initial={{x : -50 ,y : 50}} animate={{x : 0 , y: 0}} transition={{duration : 0.5}}
 export const Buttons = () : JSX.Element =>{
    const dispatch  = useDispatch()
    const {login , emitAction } = bindActionCreators(actionCreators , dispatch)
@@ -43,8 +42,6 @@ export const Buttons = () : JSX.Element =>{
 
 
 export const HeroText = () :  JSX.Element =>{
-  console.log("envv")
-  console.log(process.env.React_App_GUESS_EMAIL)
      const navigate = useNavigate()
   const dispatch = useDispatch()
   const {login , loginError } = bindActionCreators(actionCreators , dispatch)

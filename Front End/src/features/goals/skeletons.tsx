@@ -1,6 +1,6 @@
 import React from 'react'
 import { Skeleton, SkeletonParagrapth } from '../skeleton/skeleton'
-import { Skeleton as MuiSkeleton , Box }  from '@mui/material'
+import { Skeleton as MuiSkeleton , Box  , Stack , Typography}  from '@mui/material'
 
 
 export const DisplayOneGoalSkeleton = ()  :JSX.Element =>{
@@ -30,11 +30,13 @@ export const OneGoalSkeleton = () : JSX.Element => {
 }
 
 export const AllGoalsSkeleton = () : JSX.Element =>{
-return <div className="allGoals" >
-<div className="title AllGoalsBorder" > All Goals  <i className="bi bi-card-checklist m-2 "></i> </div>
-      <div className="mappingAllGoals ">  {
+return <Stack alignItems="center">
+<Stack alignItems="center">
+<Typography variant="h4" color={(theme)=>theme.palette.secondary.light} > All Goals  <i className="bi bi-card-checklist m-2 "></i>  </Typography>
+<Typography variant="h5" color={(theme)=>theme.palette.white.light} >Return back to read your goals</Typography>
+</Stack>      <Stack alignItems="center" >  {
 [1,2].map(() =>{
     return  <OneGoalSkeleton  /> 
 })
-        }</div>
-</div>}
+        }</Stack>
+</Stack>}

@@ -1,4 +1,4 @@
-import { Box , styled } from '@mui/system'
+import { Box , styled } from '@mui/material'
 import { userInfo } from 'os'
 import React from 'react'
 import UnlogedNav from '../components/unlogedNav'

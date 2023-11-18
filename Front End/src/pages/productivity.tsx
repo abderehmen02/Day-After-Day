@@ -13,7 +13,7 @@ import {submitProd , deleteProd} from '../features/productivity'
 import LogOut from '../components/logOut';
 import { CreateProductivity , Graph, Header } from '../features/productivity/components';
 import {styled} from '@mui/material'
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 import UnlogedNav from '../components/unlogedNav';
 import LoggedNav from "../components/loggedNav"
 

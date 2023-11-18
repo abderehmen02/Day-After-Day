@@ -9,7 +9,7 @@ import journalImageOne   from    '../../assets/images/journal5.png'
 import journalImageTwo   from    '../../assets/images/journal6.png'
 import { Skeleton } from '../skeleton/skeleton';
 import { Button, TextField, Typography } from '@mui/material';
-import { Stack , Box  , styled } from '@mui/system';
+import { Stack , Box  , styled } from '@mui/material';
 
 
 // ------------------------------------------------------------------------------- --------------journal header

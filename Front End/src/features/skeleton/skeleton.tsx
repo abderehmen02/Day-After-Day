@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import { Skeleton as MuiSkeleton } from '@mui/material'
-import { Stack } from '@mui/system'
+import { Stack } from '@mui/material'
 type type = "title" | "text" | "article"
 
 export const  Skeleton = ({type} : {type : string} ) : JSX.Element =>{

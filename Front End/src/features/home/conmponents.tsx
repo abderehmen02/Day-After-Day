@@ -52,7 +52,7 @@ export const HeroText = () :  JSX.Element =>{
     </Stack>
     <Stack justifyContent='space-around' spacing={{xs: '32px' }}  alignItems="center" direction={{'xs'  : 'column'  , 'sm' : 'row'}} width='100%'  > 
   <Link to="/regester" style={{textDecoration : 'none'}}>    <Button variant='standard'  >Regester</Button></Link>
-   <Button variant='contained' onClick={()=>{ loginAction({email : process.env.React_App_GUESS_PASSWORD , password : process.env.React_App_GUESS_PASSWORD}  , login , loginError , navigate ) }} >Guest Login</Button>
+   <Button variant='contained' onClick={()=>{ loginAction({email : process.env.React_App_GUESS_EMAIL , password : process.env.React_App_GUESS_PASSWORD}  , login , loginError , navigate ) }} >Log In As A Guest</Button>
     </Stack>
     <Stack direction={{xs : 'column' , sm : 'row'}} width='90%' justifyContent='space-around' >
       <Box sx={{ minWidth:'125px' , margin : '8px'  ,border: '1.5px solid white'  , borderRadius:'8px' , height :'100px' , paddingX : '8px'    , display : 'flex' , justifyContent : 'space-around' , alignItems : 'center' , flexDirection: 'column' }} bgcolor={(theme)=>theme.palette.dark.dark}  >
